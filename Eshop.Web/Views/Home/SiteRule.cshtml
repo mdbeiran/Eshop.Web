@@ -1,0 +1,33 @@
+﻿@model Eshop.DomainClass.Setting.SiteSetting
+@{
+    ViewBag.Title = "قوانین سایت";
+}
+
+<div id="contact-page" class="container">
+    <div class="bg">
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="contact-info">
+                    <h2 class="title text-center">لوگو</h2>
+                    <img src="/Content/images/home/logo.png" class="img-responsive col-md-8 col-md-offset-2">
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <div class="about">
+                    <h2 class="title text-center">قوانین سایت</h2>
+                    @Html.Raw(Model.SiteRules)
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="container">
+                <div class="col-sm-12" style="overflow: hidden; margin-bottom: 40px">
+                    <h2 class="title text-center">مـا اینجـا هستیـم ... </h2>
+                    <div id="gmap" class="contact-map">
+                        <img src="/Content/images/home/NewMap.png" alt="Map">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

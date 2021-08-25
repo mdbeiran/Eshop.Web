@@ -1,0 +1,34 @@
+﻿@model Eshop.DomainClass.User.User
+@{
+    ViewBag.Title = "ویرایش اطلاعات کاربر";
+}
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-9 padding-right" style="overflow-x:auto;">
+                <h2 class="title text-center">اطلاعات شخصی</h2>
+                <div class="login-form">
+                    <!--login form-->
+                    <h2>ویرایش اطلاعات :</h2>
+                    @using (Html.BeginRouteForm("EditInformationPost", FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" value="@ViewBag.UrlReferer" name="referer"/>
+                        <div class="form-group">
+                            <label>نام کاربری</label>
+                            @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control", PlaceHolder = "نام کاربری شما" } })
+                            <span>@Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })</span>
+                        </div>
+                        <div class="form-group">
+                            <label>آدرس</label>
+                            @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control", PlaceHolder = "آدرس شما" } })
+                            @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                        </div>
+                        <button type="submit" class="btn btn-default">ویرایش</button>
+                    }
+                </div>
+            </div>
+            @Html.Action("UserSidebar")
+        </div>
+    </div>
+</section>

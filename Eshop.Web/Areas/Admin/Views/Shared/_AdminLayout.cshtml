@@ -1,0 +1,113 @@
+﻿@*@{
+        EshopUOW db=new EshopUOW();
+        if (!db.UserRepository.IsUserInPermission(UserManager.GetCurrentUserId(), 1))
+        {
+            Response.Redirect("/Login");
+        }
+    }*@
+
+<!DOCTYPE html>
+<!--
+BeyondAdmin - Responsive Admin Dashboard Template build with Twitter Bootstrap 3.3.6
+Version: 1.6.0
+Purchase: https://wrapbootstrap.com/theme/beyondadmin-adminapp-angularjs-mvc-WB06R48S4
+-->
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<!-- Head -->
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title</title>
+
+    <meta name="description" content="Dashboard" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="shortcut icon" href="/Areas/Admin/Content/img/favicon.png" type="image/x-icon">
+    <link href="~/Areas/Admin/Content/CustomStyle/Custom.css" rel="stylesheet" />
+    <META name="robots" content="noindex,nofollow">
+
+    <!--Basic Styles-->
+    @Html.Partial("_RefrenceStyles")
+    <!--Fonts-->
+    @Html.Partial("_RefrenceFonts")
+    <!--Beyond styles-->
+    @Html.Partial("_RefrenceTemplate")
+    @RenderSection("Styles", false)
+</head>
+<!-- /Head -->
+<!-- Body -->
+<body>
+    <!-- Loading Container -->
+    <div class="loading-container">
+        <div class="loader"></div>
+    </div>
+    <!--  /Loading Container -->
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="navbar-inner">
+            <div class="navbar-container">
+                <!-- Navbar Barnd -->
+                <div class="navbar-header pull-right">
+                    <a href="/" class="navbar-brand">
+                        <p style="margin-top: 8px">
+                            فروشگاه
+                        </p>
+                    </a>
+                </div>
+                <!-- /Navbar Barnd -->
+                <!-- Sidebar Collapse -->
+                <div class="sidebar-collapse" id="sidebar-collapse">
+                    <i class="collapse-icon fa fa-bars"></i>
+                </div>
+
+                <!-- Account Area and Settings --->
+                <div class="navbar-header pull-right">
+                    <div class="navbar-account">
+                        <ul class="account-area">
+
+                            <!-- /Account Area -->
+                            <!--Note: notice that setting div must start right after account area list.
+                            no space must be between these elements-->
+                            <!-- Settings -->
+                        </ul><div class="setting">
+
+                        </div><div class="setting-container">
+
+                        </div>
+                        <!-- Settings -->
+                    </div>
+                </div>
+                <!-- /Account Area and Settings -->
+            </div>
+        </div>
+    </div>
+    <!-- /Navbar -->
+    <!-- Main Container -->
+    <div class="main-container container-fluid">
+        <!-- Page Container -->
+        <div class="page-container">
+            <!-- Page Sidebar -->
+            @Html.Partial("_RightSideBar")
+            <!-- /Page Sidebar -->
+            <!-- Chat Bar -->
+            @Html.Partial("_SideBar")
+            <!-- /Chat Bar -->
+
+            <!-- Page Content -->
+            <div class="page-content">
+                @RenderBody()
+            </div>
+            <!-- /Page Content -->
+        </div>
+        <!-- /Page Container -->
+        <!-- Main Container -->
+
+    </div>
+    @Html.Partial("_FooterRefrences")
+
+    @RenderSection("Scripts", false)
+</body>
+<!--  /Body -->
+</html>
+

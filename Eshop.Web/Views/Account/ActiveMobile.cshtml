@@ -1,0 +1,78 @@
+﻿@model Eshop.ViewModel.User.RegisterViewModel
+@{
+    ViewBag.Title = "فعالسازی تلفن همراه";
+}
+
+<div class="container">
+    @if (!string.IsNullOrEmpty(Model.UserName) && !string.IsNullOrEmpty(Model.Mobile))
+    {
+        <section id="form">
+            <!--form-->
+            <div class="row">
+                <div class="col-sm-4 col-sm-offset-1">
+                    <h2>
+                        برای تایید حساب کاربری خود ، رمز ارسال شده را در قسمت زیر وارد کنید
+                    </h2>
+                </div>
+                <div class="col-sm-6">
+                    <div class="signup-form">
+                        @if (TempData["FailRegister"] != null)
+                        {
+                            <div class="alert alert-warning">
+                                کد وارد شده صحیح نمیباشد
+                            </div>
+                        }
+
+                        @if (ViewBag.HasMobile != false)
+                        {
+                            <div class="alert alert-warning">
+                                امکان ثبت نام در سایت با این شماره وجود ندارد
+                            </div>
+                        }
+
+                        <!--sign up form-->
+                        @if (ViewBag.HasMobile == false)
+                        {
+                            <h2>فعالسازی تلفن همراه کاربر</h2>
+                            using (Html.BeginRouteForm("ActiveMobilePost", FormMethod.Post))
+                            {
+                                @Html.AntiForgeryToken()
+                                @Html.HiddenFor(s => s.UserName)
+                                @Html.HiddenFor(s => s.Mobile)
+                                @Html.HiddenFor(s => s.Password)
+                                @Html.HiddenFor(s => s.RePassword)
+                                <div class="form-group">
+                                    @Html.EditorFor(model => model.MobileActiveCode, new { htmlAttributes = new { @class = "form-control", PlaceHolder = "کد فعالسازی شما" } })
+                                    <span>@Html.ValidationMessageFor(model => model.MobileActiveCode, "", new { @class = "text-danger" })</span>
+                                </div>
+                                <button type="submit" class="btn btn-default">فعال کردن</button>
+                                <br />
+                                <a class="btn btn-default btn-block" onclick="ReSendMessage()">ارسال مجدد</a>
+                            }
+                        }
+                    </div><!--/sign up form-->
+                </div>
+            </div>
+        </section>
+    }
+    else
+    {
+        <div class="alert alert-warning">
+            مهلت تایید نهایی شماره تلفن شما به اتمام رسیده است.
+            <br />
+
+            لطفا جهت <span><a href="/Register">ثبت نام</a></span> دوباره اقدام نمایید
+        </div>
+    }
+</div>
+
+@section CustomScripts
+{
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script>
+        function ReSendMessage() {
+            location.reload();
+        }
+    </script>
+}
+

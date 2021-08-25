@@ -1,0 +1,128 @@
+﻿@using Eshop.Business.StaticTools
+@model Eshop.DomainClass.Order.Order
+@{
+    ViewBag.Title = "بازگشت از درگاه";
+}
+
+
+<section id="cart_items">
+    <div class="container">
+        <div class="breadcrumbs">
+            <ol class="breadcrumb">
+                <li><a href="#">خانـه</a></li>
+                <li class="active">بازگشت از درگاه</li>
+            </ol>
+        </div><!--/breadcrums-->
+
+
+        @if (ViewBag.Success != null)
+        {
+            <div class="alert alert-success">
+                <h2>کاربر عزیز :</h2>
+                <p style="margin: 15px">پرداخت شما با موفقیت انجام شده و سبد خرید شما در حال آماده سازی می باشد .</p>
+                <p style="margin: 15px">کد پیگیری : @ViewBag.Status</p>
+            </div>
+
+            if (Model != null)
+            {
+                if (Model.OrderDetails != null && Model.OrderDetails.Any())
+                {
+                    <div>
+                        @foreach (var product in Model.OrderDetails)
+                        {
+                            <div id="DetailBox_@product.DetailId">
+
+                                <div class="col-md-12 well">
+
+                                    <div class="col-md-3 pull-right">
+                                        @if (ViewBag.TotalCount > ViewBag.MinimumCount)
+                                        {
+                                            <img src="@PathTools.ProductImageThumbPath@product.Product.PUblicProductImageName" alt="" style="width: 100%" class="img-thumbnail">
+                                        }
+                                        else
+                                        {
+                                            <img src="@PathTools.ProductImageThumbPath@product.Product.SingleProductImageName" alt="" style="width: 100%" class="img-thumbnail">
+                                        }
+
+                                    </div>
+
+                                    <div class="col-md-9 pull-right">
+
+                                        @if (ViewBag.TotalCount > ViewBag.MinimumCount)
+                                        {
+                                            <h4>عنوان : <a href="/MajorProductDetail/@product.ProductId">@product.Product.Title</a></h4>
+                                        }
+                                        else
+                                        {
+                                            <h4>عنوان : <a href="/ProductDetail/@product.ProductId">@product.Product.Title</a></h4>
+                                        }
+                                        <p>شناسـه : @product.Product.ProductCode</p>
+                                        @foreach (var item in product.OrderSelectedFeatures)
+                                        {
+                                            <p class="text-bold">@item.ProductSelectedFeatures.ProductFeatures.FeatureTitle : @item.ProductSelectedFeatures.Value</p>
+                                        }
+                                        <p>قیمت : @((ViewBag.TotalCount > ViewBag.MinimumCount) ? product.Product.PublicPrice : product.Product.SinglePrice)</p>
+                                        <p>تعداد : @product.Count</p>
+                                        <p>مجموع : @((ViewBag.TotalCount > ViewBag.MinimumCount) ? product.Product.PublicPrice * product.Count : product.Product.SinglePrice * product.Count)</p>
+
+
+                                    </div>
+                                    <div class="clearfix"></div>
+                                    <br />
+                                </div>
+                            </div>
+
+                            <div class="clearfix"></div>
+                        }
+                    </div>
+                }
+                else
+                {
+                    <div class="alert alert-warning">
+                        <p>
+                            سبد خرید شما خالیست
+                        </p>
+                    </div>
+                }
+            }
+            else
+            {
+                <div class="alert alert-warning">
+                    <p>
+                        سبد خرید شما خالیست
+                    </p>
+                </div>
+            }
+        }
+        else
+        {
+            <div class="alert alert-warning col-sm-6 col-sm-offset-3">
+                <h2>عملیات با شکست مواجه شد .</h2>
+                <p style="margin: 15px">@ViewBag.Massage</p>
+                <p style="margin: 15px">کد پیگیری : @ViewBag.Status</p>
+            </div>
+        }
+    </div>
+</section>
+@if (Model != null && ViewBag.Success != null)
+{
+    if (Model.OrderDetails != null && Model.OrderDetails.Any())
+    {
+        <section id="do_action">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="total_area">
+                            <ul>
+                                <li>مجمـوع سبـد خریـد <span>@ViewBag.Sum.ToString("#,0") تومان</span></li>
+                                <li>مالیـات (9%) <span>@ViewBag.Maliat.ToString("#,0") تومان</span></li>
+                                <li>هزینـه حمل و نقـل <span>رایـگان</span></li>
+                                <li>مجموع پرداخت شده <span>@ViewBag.Final.ToString("#,0") تومان</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    }
+}

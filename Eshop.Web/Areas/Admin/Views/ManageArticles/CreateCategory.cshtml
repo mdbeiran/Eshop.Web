@@ -1,0 +1,99 @@
+﻿@model Eshop.DomainClass.Articles.ArticleCategory
+@{
+    ViewBag.Title = "افزودن گروه";
+}
+
+<!-- Page Breadcrumb -->
+<div class="page-breadcrumbs">
+    <ul class="breadcrumb">
+        <li>
+            <i class="fa fa-home"></i>
+            <a href="#">خانه</a>
+        </li>
+        <li class="active">مدیریت مقالات</li>
+        <li class="active">افزودن گروه جدید</li>
+    </ul>
+</div>
+<!-- /Page Breadcrumb -->
+<!-- Page Header -->
+<div class="page-header position-relative">
+    <div class="header-title">
+        <h1>
+            افزودن گروه
+        </h1>
+    </div>
+    <!--Header Buttons-->
+    <div class="header-buttons">
+        <a class="sidebar-toggler" href="#">
+            <i class="fa fa-arrows-h"></i>
+        </a>
+        <a class="refresh" id="refresh-toggler" href="">
+            <i class="glyphicon glyphicon-refresh"></i>
+        </a>
+        <a class="fullscreen" id="fullscreen-toggler" href="#">
+            <i class="glyphicon glyphicon-fullscreen"></i>
+        </a>
+    </div>
+    <!--Header Buttons End-->
+</div>
+<!-- /Page Header -->
+<!-- Page Body -->
+<div class="page-body">
+    <div class="row">
+        <div class="col-lg-12 col-sm-12 col-xs-12">
+            @if (ViewBag.UrlError)
+            {
+                <div class="alert alert-warning">
+                    عنوان لینک از قبل وجود دارد
+                </div>
+            }
+            @using (Html.BeginForm("CreateCategory", "ManageArticles", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                <input type="checkbox" name="@nameof(Model.IsDelete)" value="true" hidden/>
+                <input type="number" name="@nameof(Model.ParentID)" value="@ViewBag.parentId" hidden/>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="widget flat radius-bordered">
+                            <div class="widget-header bg-green">
+                                <span class="widget-caption">افزودن گروه</span>
+                            </div>
+                            <div class="widget-body">
+                                <div id="registration-form">
+                                    <div class="form-group col-md-3">
+                                        <span class="input-icon icon-right">
+                                            @Html.EditorFor(model => model.Title, new {htmlAttributes = new {@class = "form-control", PlaceHolder = Html.DisplayNameFor(m => m.Title)}})
+                                            @Html.ValidationMessageFor(model => model.Title, "", new {@class = "text-danger"})
+                                            <i class="fa fa-group circular"></i>
+                                        </span>
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <span class="input-icon icon-right">
+                                            @Html.EditorFor(model => model.NameInUrl, new {htmlAttributes = new {@class = "form-control", PlaceHolder = Html.DisplayNameFor(m => m.NameInUrl)}})
+                                            @Html.ValidationMessageFor(model => model.NameInUrl, "", new {@class = "text-danger"})
+                                            <i class="fa fa-link circular"></i>
+                                        </span>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox" class="colored-success" name="@nameof(Model.IsActive)" value="true">
+                                                <span class="text">@Html.DisplayNameFor(model => model.IsActive)</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <button type="submit" class="btn btn-success btn-block">ثبت گروه</button>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+

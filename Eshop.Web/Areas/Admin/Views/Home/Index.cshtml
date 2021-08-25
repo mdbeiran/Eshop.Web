@@ -1,0 +1,124 @@
+﻿@model Eshop.ViewModel.Public.AdminIndexViewModel
+
+@{
+    ViewBag.Title = "پنل ادمین";
+}
+
+<!-- Page Breadcrumb -->
+<div class="page-breadcrumbs">
+    <ul class="breadcrumb">
+        <li>
+            <i class="fa fa-home"></i>
+            <a href="/Admin">خانه</a>
+        </li>
+    </ul>
+</div>
+<!-- /Page Breadcrumb -->
+<!-- Page Header -->
+<div class="page-header position-relative">
+    <div class="header-title">
+        <h1>
+            صفحه اصلی مدیریت
+        </h1>
+    </div>
+    <!--Header Buttons-->
+    <div class="header-buttons">
+        <a class="sidebar-toggler" href="#">
+            <i class="fa fa-arrows-h"></i>
+        </a>
+        <a class="refresh" id="refresh-toggler" href="">
+            <i class="glyphicon glyphicon-refresh"></i>
+        </a>
+        <a class="fullscreen" id="fullscreen-toggler" href="#">
+            <i class="glyphicon glyphicon-fullscreen"></i>
+        </a>
+    </div>
+</div>
+
+<div class="page-body">
+    <div class="col-md-7">
+
+
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <div class="databox radius-bordered bg-white">
+                <div class="databox-right bg-themesecondary">
+                    <div class="databox-piechart">
+                        <div data-toggle="easypiechart" class="easyPieChart" data-barcolor="#fff" data-linecap="butt" data-percent="50" data-animate="500" data-linewidth="3" data-size="47" data-trackcolor="rgba(255,255,255,0.1)" style="width: 47px; height: 47px; line-height: 47px;">
+                            <span class="white font-90">@Model.NewContactCount</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="databox-left">
+                    <span class="databox-number themesecondary"><a href="/Admin/ManageSite/ContactUs?ContactState=NotRead" style="color: inherit">تماس های کاربران</a></span>
+                    <div class="databox-text darkgray"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <div class="databox radius-bordered bg-white">
+                <div class="databox-right bg-themesecondary">
+                    <div class="databox-piechart">
+                        <div data-toggle="easypiechart" class="easyPieChart" data-barcolor="#fff" data-linecap="butt" data-percent="50" data-animate="500" data-linewidth="3" data-size="47" data-trackcolor="rgba(255,255,255,0.1)" style="width: 47px; height: 47px; line-height: 47px;">
+                            <span class="white font-90">@Model.NewOrderdCount</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="databox-left">
+                    <span class="databox-number themesecondary"><a href="/Admin/ManageProducts/ShowNewBuys?State=NotSent" style="color: inherit">تعداد خرید های جدید</a></span>
+                    <div class="databox-text darkgray"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="col-md-5">
+        <div class="col-md-12">
+            <div class="widget">
+                <div class="widget-header bordered-bottom bordered-green">
+                    <i class="widget-icon fa fa-tags green"></i>
+                    <span class="widget-caption green">لیست نظرات</span>
+                </div><!--Widget Header-->
+                <div class="widget-body  no-padding">
+                    <div class="tickets-container" style="min-height: 350px!important">
+                        <ul class="tickets-list" id="Commnets_List_Self">
+                            @foreach (var comment in Model.ArticleComments.ArticleComments)
+                            {
+                                <li class="ticket-item CursorPointer" id="Comment_Box_@comment.CommantID">
+                                    <div class="row">
+                                        <div class="ticket-user col-lg-12 col-sm-12 col-xs-12" onclick="OpenArticleComment('@comment.CommantID')">
+                                            <span class="user-at">نظر</span>
+                                            <span class="user-name">@comment.User.UserName</span>
+                                            <span class="user-at">در رابطه با</span>
+                                            <span class="user-name">@comment.Article.ArticleTitle</span>
+                                        </div>
+                                        <div class="ticket-time ArticleCommentsText col-lg-12 col-sm-12 col-xs-12" id="Comment_Text_@comment.CommantID">
+                                            <div class="divider hidden-md hidden-sm hidden-xs"></div>
+                                            <p class="">
+                                                @Html.Raw(comment.Comment)
+                                            </p>
+                                            <hr />
+                                            <div class="btn btn-success" onclick="ReadArticleComment(@comment.CommantID)">
+                                                دیدم
+                                            </div>
+                                            <div class="btn btn-danger" onclick="DeleteArticleComment(@comment.CommantID)">
+                                                حذف
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                        <div class="ticket-state bg-palethemeprimary">
+                                            <i class="fa fa-check"></i>
+                                        </div>
+                                    </div>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+

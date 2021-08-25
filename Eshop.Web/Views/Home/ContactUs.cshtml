@@ -1,0 +1,121 @@
+﻿@using System.Web.UI.WebControls
+@using Eshop.DomainClass.Setting
+@model Eshop.DomainClass.Setting.SiteSetting
+@{
+    ViewBag.Title = "تماس باما";
+    ContactUs contact = new ContactUs();
+}
+
+<div id="contact-page" class="container">
+    <div class="bg">
+        <div class="row">
+            <div class="container">
+                <div class="col-sm-12" style="overflow: hidden; margin-bottom: 40px">
+                    <h2 class="title text-center">تمـاس با مـا</h2>
+                    <div id="gmap" class="contact-map">
+                        <img src="/Content/images/home/NewMap.png" alt="Map">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-8">
+                <div class="contact-form">
+                    <h2 class="title text-center">با ما در ارتباط باشیـد</h2>
+                    <div class="status alert alert-success" style="display: none"></div>
+
+                    <div class="alert alert-warning Display-None" id="ErrorContactUsMessage">
+                        <h4>
+                            ثبت با شکست مواجه شد
+                        </h4>
+                        <p>
+                            لطفا اطلاعات خود را به صورت کامل و دقیق وارد کنید
+                        </p>
+                    </div>
+
+                    <div class="alert alert-success Display-None" id="SuccessContactUsMessage">
+                        اطلاعات شما با موفقیت ثبت شد
+                    </div>
+                    @using (Ajax.BeginForm("ContactUs", "Home", FormMethod.Post, new AjaxOptions { OnFailure = "ErrorContactUsMessage", OnSuccess = "SuccessContactUsMessage" }, new { @class = "contact-form row", id = "main-contact-form" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <div class="form-group col-md-6 pull-right">
+                            <span class="input-icon icon-right">
+                                @Html.EditorFor(model => contact.Name, new { htmlAttributes = new { @class = "form-control", PlaceHolder = Html.DisplayNameFor(m => contact.Name) } })
+                                @Html.ValidationMessageFor(model => contact.Name, "", new { @class = "text-danger" })
+                            </span>
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <span class="input-icon icon-right">
+                                @Html.EditorFor(model => contact.Mobile, new { htmlAttributes = new { @class = "form-control", PlaceHolder = Html.DisplayNameFor(m => contact.Mobile) } })
+                                @Html.ValidationMessageFor(model => contact.Mobile, "", new { @class = "text-danger" })
+                            </span>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <span class="input-icon icon-right">
+                                @Html.EditorFor(model => contact.Subject, new { htmlAttributes = new { @class = "form-control", PlaceHolder = Html.DisplayNameFor(m => contact.Subject) } })
+                                @Html.ValidationMessageFor(model => contact.Subject, "", new { @class = "text-danger" })
+                            </span>
+                        </div>
+
+                        <div class="form-group col-md-12">
+                            <span class="input-icon icon-right">
+                                @Html.EditorFor(model => contact.Message, new { htmlAttributes = new { @class = "form-control animated", PlaceHolder = Html.DisplayNameFor(m => contact.Message) } })
+                                @Html.ValidationMessageFor(model => contact.Message, "", new { @class = "text-danger" })
+                            </span>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <input name="submit" class="btn btn-primary pull-right" value="ارسـال" type="submit" onclick="">
+                        </div>
+                    }
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="contact-info">
+                    <h2 class="title text-center">اطلاعات تماس</h2>
+                    <address>
+                        <p>@Model.SiteName</p>
+                        <p>آدرس : @Model.Address</p>
+                        <p>تلفن تماس : @Model.SiteTell</p>
+                        <p>فکس : @Model.SiteFax</p>
+                        <p style="font-family: tahoma;">ایمیـل : @Model.SiteEmail</p>
+                    </address>
+                    <div class="social-networks">
+                        <h2 class="title text-center">شبکـه های اجتـماعی</h2>
+                        <span class="socials-share share">
+                            <ul>
+                                <a href="#">
+                                    <li>
+                                        <label>بلـه</label>
+                                        <img src="/Content/images/product-details/Bale.png">
+                                    </li>
+                                </a>
+                                <a href="#">
+                                    <li>
+                                        <label>سـروش</label>
+                                        <img src="/Content/images/product-details/Soroush.png">
+                                    </li>
+                                </a>
+                                <a href="#">
+                                    <li>
+                                        <label>اینستاگرام</label>
+                                        <img src="/Content/images/product-details/Instagram.png">
+                                    </li>
+                                </a>
+                            </ul>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section CustomScripts
+{
+    <script src="~/Content/CustomJs/jquery.blockUI.js"></script>
+    <script src="~/Content/CustomJs/ResizeTextArea.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+}

@@ -1,0 +1,152 @@
+﻿@using Eshop.Business.StaticTools
+@model Eshop.DomainClass.Order.Order
+@{
+    ViewBag.Title = "جزییات سفارش کالا";
+}
+
+<div class="page-breadcrumbs">
+    <ul class="breadcrumb">
+        <li>
+            <i class="fa fa-home"></i>
+            <a href="#">خانه</a>
+        </li>
+        <li>مدیریت محصولات</li>
+        <li class="active">لیست خریدها</li>
+        <li class="active">جزییات سبد خرید</li>
+    </ul>
+</div>
+<!-- /Page Breadcrumb -->
+<!-- Page Header -->
+<div class="page-header position-relative">
+    <div class="header-title">
+        <h1>
+            لیست خرید ها
+        </h1>
+    </div>
+    <!--Header Buttons-->
+    <div class="header-buttons">
+        <a class="sidebar-toggler" href="#">
+            <i class="fa fa-arrows-h"></i>
+        </a>
+        <a class="refresh" id="refresh-toggler" href="">
+            <i class="glyphicon glyphicon-refresh"></i>
+        </a>
+        <a class="fullscreen" id="fullscreen-toggler" href="#">
+            <i class="glyphicon glyphicon-fullscreen"></i>
+        </a>
+    </div>
+    <!--Header Buttons End-->
+</div>
+<!-- /Page Header -->
+<!-- Page Body -->
+
+<div class="page-body">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="well">
+                @if (!Model.IsSend)
+                {
+                    <div class="col-md-3">
+                        <a class="btn btn-success btn-block" data-remodal-target="modal" onclick="SendOrderToUser(@Model.OrderId)">
+                            ارسال کالا
+                        </a>
+                    </div>
+                }
+                else
+                {
+                    <div class="alert alert-success">
+                        <p>
+                            سبد خرید کاربر ارسال شد
+                        </p>
+                    </div>
+                }
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4 col-md-3">
+            <div class="well">
+                <div class="thumbnail">
+                    <img src="@PathTools.UserAvatar" alt="" style="width: 100%" class="img-thumbnail">
+                </div>
+                <hr />
+                <div>
+                    <p class="text-bold">سفارش دهنده :</p>
+                    <p>@Model.User.UserName</p>
+                    <hr />
+
+                    <p class="text-bold">تلفن تماس :</p>
+                    <p>@Model.User.Mobile</p>
+                    <hr />
+
+                    <p class="text-bold">آدرس :</p>
+                    <p>@Model.User.Address</p>
+                    <hr />
+
+                    <p class="text-bold">کد پیگیری :</p>
+                    <p>@Model.StatusCode</p>
+                    <hr />
+
+                    <p class="text-bold">مجموع کل خرید :</p>
+                    <p>@ViewBag.Final</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-8 col-md-9">
+
+            @foreach (var product in Model.OrderDetails)
+            {
+                <div class="well col-md-12">
+                    <div class="col-md-3">
+                        @if (ViewBag.TotalCount > ViewBag.MinimumCount)
+                        {
+                            <img src="@PathTools.ProductImageThumbPath@product.Product.PUblicProductImageName" alt="" style="width: 100%" class="img-thumbnail">
+                        }
+                        else
+                        {
+                            <img src="@PathTools.ProductImageThumbPath@product.Product.SingleProductImageName" alt="" style="width: 100%" class="img-thumbnail">
+                        }
+                        @if (ViewBag.TotalCount > ViewBag.MinimumCount)
+                        {
+                            <h4 style="text-align: center;margin-top: 10px">عنوان : <a href="/MajorProductDetail/@product.ProductId">@product.Product.Title</a></h4>
+                        }
+                        else
+                        {
+                            <h4 style="text-align: center;margin-top: 10px">عنوان : <a href="/ProductDetail/@product.ProductId">@product.Product.Title</a></h4>
+                        }
+                    </div>
+                    <div class="col-md-9">
+                        <div class="col-md-9 pull-right">
+
+
+                            <p>شناسـه : @product.Product.ProductCode</p>
+                            @foreach (var item in product.OrderSelectedFeatures)
+                            {
+                                <p class="text-bold">@item.ProductSelectedFeatures.ProductFeatures.FeatureTitle : @item.ProductSelectedFeatures.Value</p>
+                            }
+                            <p>قیمت : @((ViewBag.TotalCount > ViewBag.MinimumCount) ? product.Product.PublicPrice : product.Product.SinglePrice)</p>
+                            <p>تعداد : @product.Count</p>
+                            <p>مجموع : @((ViewBag.TotalCount > ViewBag.MinimumCount) ? product.Product.PublicPrice * product.Count : product.Product.SinglePrice * product.Count)</p>
+
+                        </div>
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+</div>
+
+<div class="remodal" data-remodal-id="modal">
+    <button data-remodal-action="close" class="remodal-close"></button>
+    <h1>احتیاط</h1>
+    <p>
+        آیا از عملیات مورد نظر اطمینان دارید؟
+    </p>
+    <br>
+    <button data-remodal-action="confirm" class="remodal-confirm">بله</button>
+    <button data-remodal-action="cancel" class="remodal-cancel">خیر</button>
+</div>
+
+

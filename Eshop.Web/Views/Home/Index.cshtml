@@ -1,0 +1,14 @@
+﻿@{
+    ViewBag.Title = "صفحه اصلی";
+}
+
+@Html.Action("ShowSlider")
+<section>
+    <div class="container">
+        @Html.Action("MostSellProducts", "Home", new { area = "" })
+        <div class="col-sm-12 padding-right">
+            @Html.Action("SingleProducts", "Home", new { area = "" })
+            @Html.Action("PublicProducts", "Home", new { area = "" })
+        </div>
+    </div>
+</section>

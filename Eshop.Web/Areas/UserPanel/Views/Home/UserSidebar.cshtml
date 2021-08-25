@@ -1,0 +1,31 @@
+﻿@using Eshop.Business.StaticTools
+@model Eshop.DomainClass.User.User
+
+<div class="col-sm-3">
+    <div class="left-sidebar">
+        <table class="user-access">
+            <tbody>
+                <tr>
+                    <td colspan="2" style="height: 80px; text-align: center; background-color: #fafafa;">
+                        <div class="user-image">
+                            <img src="@PathTools.UserAvatar" alt="" class="border-radius-50percent width-100percent" style="border-radius: 50% !important;width: 100px">
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="user-name">
+                        <span>@Model.UserName</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="user-actions pass">
+                        <a href="/User/ChangePassword" rel="">تغییـر رمـز</a>
+                    </td>
+                    <td class="user-actions">
+                        <a href="/SignOut">خـروج</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,39 @@
+﻿@model Eshop.ViewModel.User.VerifyPasswordViewModel
+@{
+    ViewBag.Title = "تایید کد";
+}
+
+<div class="container">
+    <section id="form">
+        <div class="row">
+            <div class="col-sm-4 col-sm-offset-1">
+                <h2>
+                    کد ارسال شده را در قسمت زیر وارد کنید
+                </h2>
+                <p>
+                    در صورت تطابق ، یک رمز عبور جدید برای شما ارسال خواهد شد
+                    <br/>
+                    لطفا در اولین فرصت از طریق پنل کاربری رمز عبور خود را تغییر دهید
+                </p>
+            </div>
+            <div class="col-sm-6">
+                <div class="signup-form">
+                    <h2> تایید کد ارسال شده </h2>
+                    @using (Html.BeginRouteForm("VerifyCodePost", FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken()
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                @Html.EditorFor(model => model.MobileActiveCode, new { htmlAttributes = new { @class = "form-control", PlaceHolder = "کد تاییدی" } })
+                                <span>@Html.ValidationMessageFor(model => model.MobileActiveCode, "", new { @class = "text-danger" })</span>
+                            </div>
+                            <button type="submit" class="btn btn-default" id="submitBottom">بازیابی</button>
+                        </div>
+                    }
+                </div>
+            </div>
+
+        </div>
+    </section>
+</div>
+

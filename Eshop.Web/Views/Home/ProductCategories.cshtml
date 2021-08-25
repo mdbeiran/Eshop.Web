@@ -1,0 +1,31 @@
+﻿@using Eshop.Business.StaticTools
+@model Eshop.ViewModel.Products.CategoriesInHomeViewModel
+@{
+    int groupCount = 1;
+    int groupSecondCount = 1;
+}
+
+<div class="category-tab">
+    <!--category-tab-->
+    <div class="col-sm-12">
+        <ul class="nav nav-tabs">
+            @foreach (var group in Model.ProductGroups.Where(s => s.MainProducts.Any(m => !m.IsDelete && m.IsActive)))
+            {
+                <li class="@((groupCount==1)?"active":"")"><a href="#Tab_@group.GroupId" data-toggle="tab">@group.GroupTitle</a></li>
+                groupCount++;
+            }
+        </ul>
+    </div>
+    <div class="tab-content">
+        @foreach (var group in Model.ProductGroups.Where(s => s.MainProducts.Any(m => !m.IsDelete && m.IsActive)))
+        {
+            <div class="tab-pane fade @((groupSecondCount==1)?"active in":"")" id="Tab_@group.GroupId">
+                @foreach (var product in group.MainProducts.OrderByDescending(s => Guid.NewGuid()).Take(4))
+                {
+                    @Html.Partial("ProductCategoryBox", product)
+                }
+            </div>
+            groupSecondCount++;
+        }
+    </div>
+</div>

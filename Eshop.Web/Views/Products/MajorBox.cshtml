@@ -1,0 +1,26 @@
+﻿@using Eshop.Business.StaticTools
+@model Eshop.DomainClass.Product.Product
+
+<div class="col-sm-4">
+    <div class="product-image-wrapper">
+        <div class="single-products">
+            <div class="productinfo text-center">
+                <a href="@Url.RouteUrl("MajorProductDetail", new {id =Model.ProductId})">
+                    <img src="@PathTools.ProductImagePath@Model.PUblicProductImageName" alt="@Model.Title" title="@Model.Title">
+                </a>
+                <p>@Model.Title</p>
+            </div>
+        </div>
+        <div class="choose">
+            <ul class="nav nav-pills nav-justified">
+                <li>
+                    <a onclick="AddProductToPublicWishList(@Model.ProductId)" class="cursur-pointer" data-remodal-target="modal">
+                        <i class="fa fa-plus-square"></i>افزودن به علاقه مندی
+                    </a>
+                </li>
+                <li><a href="@Url.RouteUrl("MajorProductDetail", new {id =Model.ProductId})"><i class="fa fa-plus-square"></i>مشاهده محصول</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+

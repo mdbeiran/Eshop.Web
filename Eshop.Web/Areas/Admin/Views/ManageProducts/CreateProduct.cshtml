@@ -1,0 +1,317 @@
+﻿@using Eshop.Business.StaticTools
+@model Eshop.ViewModel.Products.CreateProductViewModel
+
+@{
+    ViewBag.Title = "افزودن محصول";
+}
+
+<!-- Page Breadcrumb -->
+<div class="page-breadcrumbs">
+    <ul class="breadcrumb">
+        <li>
+            <i class="fa fa-home"></i>
+            <a href="#">خانه</a>
+        </li>
+        <li>مدیریت محصولات</li>
+        <li class="active">افزودن محصول</li>
+    </ul>
+</div>
+<!-- /Page Breadcrumb -->
+<!-- Page Header -->
+<div class="page-header position-relative">
+    <div class="header-title">
+        <h1>
+            افزودن
+        </h1>
+    </div>
+    <!--Header Buttons-->
+    <div class="header-buttons">
+        <a class="sidebar-toggler" href="#">
+            <i class="fa fa-arrows-h"></i>
+        </a>
+        <a class="refresh" id="refresh-toggler" href="">
+            <i class="glyphicon glyphicon-refresh"></i>
+        </a>
+        <a class="fullscreen" id="fullscreen-toggler" href="#">
+            <i class="glyphicon glyphicon-fullscreen"></i>
+        </a>
+    </div>
+    <!--Header Buttons End-->
+</div>
+<!-- /Page Header -->
+
+<div class="page-body">
+    <div class="col-lg-12 col-sm-12 col-xs-12">
+        @using (Html.BeginForm("CreateProduct", "ManageProducts", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="widget flat radius-bordered">
+                        <div class="widget-header bg-green">
+                            <span class="widget-caption">فرم افزودن محصول</span>
+                        </div>
+                        <div class="widget-body">
+                            <div class="widget-main ">
+                                <div class="tabbable">
+                                    <ul class="nav nav-tabs tabs-flat" id="myTab11">
+                                        <li class="active">
+                                            <a data-toggle="tab" href="#Main" aria-expanded="true">
+                                                اطلاعات اصلی
+                                            </a>
+                                        </li>
+
+                                        <li class="">
+                                            <a data-toggle="tab" href="#Features" aria-expanded="false">
+                                                ویژگی ها
+                                            </a>
+                                        </li>
+                                        <li class="">
+                                            <a data-toggle="tab" href="#SingleProduct" aria-expanded="false">
+                                                محصول خرده
+                                            </a>
+                                        </li>
+
+                                        <li class="">
+                                            <a data-toggle="tab" href="#PublicProduct" aria-expanded="false">
+                                                محصول عمده
+                                            </a>
+                                        </li>
+
+                                        <li class="">
+                                            <a data-toggle="tab" href="#Gallery" aria-expanded="false">
+                                               گالری تصاویر
+                                            </a>
+                                        </li>
+
+                                    </ul>
+                                    <div class="tab-content tabs-flat">
+
+                                        <div id="Main" class="tab-pane active">
+                                            <div class="form-group col-md-6">
+                                                <label>
+                                                    @Html.LabelFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+                                                </label>
+                                                <span class="input-icon icon-right">
+                                                    @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control", PlaceHolder = Html.DisplayNameFor(m => m.Title) } })
+                                                    @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+                                                </span>
+                                            </div>
+
+                                            <div class="form-group col-md-6">
+                                                <label>
+                                                    @Html.LabelFor(model => model.ProductCode, new { htmlAttributes = new { @class = "form-control" } })
+                                                </label>
+                                                <span class="input-icon icon-right">
+                                                    @Html.EditorFor(model => model.ProductCode, new { htmlAttributes = new { @class = "form-control", PlaceHolder = Html.DisplayNameFor(m => m.ProductCode) } })
+                                                    @Html.ValidationMessageFor(model => model.ProductCode, "", new { @class = "text-danger" })
+                                                </span>
+                                            </div>
+                                            <div class="clearfix"></div>
+
+                                            <div class="form-group col-md-6">
+                                                <label>
+                                                    @Html.LabelFor(model => model.MainGroupId, new { htmlAttributes = new { @class = "form-control" } })
+                                                </label>
+                                                <span class="input-icon icon-right">
+                                                    @Html.DropDownList("MainGroupId", null, new { @class = "form-control" })
+                                                </span>
+                                            </div>
+
+                                            <div class="form-group col-md-6">
+                                                <label>
+                                                    @Html.LabelFor(model => model.SubGroupId, new { htmlAttributes = new { @class = "form-control" } })
+                                                </label>
+                                                <span class="input-icon icon-right">
+                                                    @Html.DropDownList("SubGroupId", null, new { @class = "form-control" })
+                                                </span>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                            <div class="form-group col-md-12">
+                                                <label>
+                                                    @Html.LabelFor(model => model.ShortDescription, new { htmlAttributes = new { @class = "form-control" } })
+                                                </label>
+                                                <span class="input-icon icon-right">
+                                                    @Html.EditorFor(model => model.ShortDescription, new { htmlAttributes = new { @class = "form-control animated", PlaceHolder = Html.DisplayNameFor(m => m.ShortDescription) } })
+                                                    @Html.ValidationMessageFor(model => model.ShortDescription, "", new { @class = "text-danger" })
+                                                </span>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                            <div class="form-group col-md-12">
+                                                <label>
+                                                    @Html.LabelFor(model => model.Text, new { htmlAttributes = new { @class = "form-control" } })
+                                                </label>
+                                                <span class="input-icon icon-right cke_rtl">
+                                                    @Html.TextAreaFor(model => model.Text)
+                                                </span>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                            <div id="ProjectTags" class="tab-pane">
+                                                <div class="alert alert-info">
+                                                    تگ ها را با فشردن اینتر از هم جدا کنید
+                                                </div>
+                                                <input type="text" value="@Model.Tags" name="@nameof(Model.Tags)" data-role="tagsinput" placeholder="تگ ها را وارد کنید" id="Tags" />
+                                            </div>
+
+                                            <div class="clearfix"></div>
+                                        </div>
+
+                                        <div id="Features" class="tab-pane">
+                                            <fieldset>
+                                                <div class="row">
+                                                    <div class="col-md-5">
+                                                        @Html.DropDownList("Features", null, htmlAttributes: new { @class = "form-control" })
+                                                    </div>
+                                                    <div class="col-md-5">
+                                                        <input type="text" class="form-control" id="txtValue" />
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <a class="btn btn-success" onclick="addFeature()">
+                                                            +
+                                                        </a>
+                                                    </div>
+                                                    <div class="clearfix"></div>
+                                                    <hr />
+                                                    <div class="col-md-12" id="listfeature">
+                                                   0     @Html.Action("ListFeatures")
+                                                    </div>
+                                                </div>
+
+
+                                            </fieldset>
+                                            <div class="clearfix"></div>
+                                        </div>
+
+                                        <div id="SingleProduct" class="tab-pane">
+                                            <div class="row">
+                                                <div id="SingleProductImageBox" class="tab-pane col-md-5">
+                                                    <div class="form-group col-md-12 UserAvatar">
+                                                        <img id="SingleProductImage" src="@(PathTools.NoPhoto)" alt="your image" class="Input-picture" />
+                                                    </div>
+                                                    <div class="clearfix"></div>
+                                                    <div class="form-group col-md-12">
+                                                        <span class="file-input btn btn-azure btn-file btn-block">
+                                                            تصویر <input type="file" id="SingleProductImageInput" name="singleProductImage">
+                                                        </span>
+                                                    </div>
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group col-md-7">
+                                                        <label>
+                                                            @Html.LabelFor(model => model.SinglePrice, new { htmlAttributes = new { @class = "form-control" } })
+                                                        </label>
+                                                        <span class="input-icon icon-right">
+                                                            @Html.EditorFor(model => model.SinglePrice, new { htmlAttributes = new { @class = "form-control", PlaceHolder = Html.DisplayNameFor(m => m.SinglePrice) } })
+                                                            @Html.ValidationMessageFor(model => model.SinglePrice, "", new { @class = "text-danger" })
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                        
+                                        <div id="PublicProduct" class="tab-pane">
+                                            <div class="row">
+                                                <div id="PublicProductImageBox" class="tab-pane col-md-5">
+                                                    <div class="form-group col-md-12 UserAvatar">
+                                                        <img id="PublicProductImage" src="@(PathTools.NoPhoto)" alt="your image" class="Input-picture" />
+                                                    </div>
+                                                    <div class="clearfix"></div>
+                                                    <div class="form-group col-md-12">
+                                                        <span class="file-input btn btn-azure btn-file btn-block">
+                                                            تصویر <input type="file" id="PublicProductImageInput" name="publicProductImage">
+                                                        </span>
+                                                    </div>
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group col-md-7">
+                                                        <label>
+                                                            @Html.LabelFor(model => model.PublicPrice, new { htmlAttributes = new { @class = "form-control" } })
+                                                        </label>
+                                                        <span class="input-icon icon-right">
+                                                            @Html.EditorFor(model => model.PublicPrice, new { htmlAttributes = new { @class = "form-control", PlaceHolder = Html.DisplayNameFor(m => m.PublicPrice) } })
+                                                            @Html.ValidationMessageFor(model => model.PublicPrice, "", new { @class = "text-danger" })
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                        
+                                        <div id="Gallery" class="tab-pane">
+                                            <div class="row">
+                                                <div id="ProductGallery" class="tab-pane col-md-5">
+                                                    <div class="form-group col-md-12">
+                                                        <span>
+                                                            تصویر <input type="file" id="ProductGalleryInput" name="productGallery" multiple>
+                                                        </span>
+                                                    </div>
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                                <div class="col-md-7">
+                                                    
+                                                </div>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                    <hr />
+                                    <div>
+                                        <div class="form-group col-md-3">
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input type="checkbox" class="colored-success" name="@nameof(Model.IsExist)" value="true" checked="checked">
+                                                    <span class="text" id="IsActiveSpan">@Html.DisplayNameFor(model => model.IsExist)</span>
+                                                </label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group col-md-3">
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input type="checkbox" class="colored-success" name="@nameof(Model.IsActive)" value="true" checked="checked">
+                                                    <span class="text" id="IsActiveSpan">@Html.DisplayNameFor(model => model.IsActive)</span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <span class="input-icon icon-right">
+                                            <button type="submit" class="btn btn-block btn-success">ثبت محصول</button>
+                                            <i class="glyphicon glyphicon-plus"></i>
+                                        </span>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+@section Scripts
+{
+    <script src="~/Areas/Admin/Content/CustomJs/Product.js"></script>
+    <script src="~/Areas/Admin/Content/TagInput/bootstrap-tagsinput.js"></script>
+    <script src="~/Areas/Admin/Content/CustomJs/ResizeTextArea.js"></script>
+    <script src="https://cdn.ckeditor.com/4.9.2/standard/ckeditor.js"></script>
+    <script src="~/Scripts/jquery.js"></script>
+    <script>
+        $(function () {
+            CKEDITOR.replace('Text', {
+                customConfig: '/Content/js/config.js'
+            });
+        });
+    </script>
+}
+
+@section Styles
+{
+    <link href="~/Areas/Admin/Content/TagInput/bootstrap-tagsinput.css" rel="stylesheet" />
+}

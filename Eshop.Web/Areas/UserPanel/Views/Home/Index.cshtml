@@ -1,0 +1,44 @@
+﻿@using Eshop.Business.StaticTools
+@model Eshop.ViewModel.User.UserPanelIndexViewModel
+@{
+    ViewBag.Title = "پنل کاربری";
+}
+
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-9 padding-right" style="overflow-x:auto;">
+                <h2 class="title text-center">اطلاعات شخصی</h2>
+                <table class="table table-condensed user-info">
+                    <tbody>
+                    <tr class="first-row">
+                        <td>
+                            <p>نام کاربری</p>
+                            <h4>@Model.User.UserName</h4>
+                        </td>
+                        <td>
+                            <p>تلفن همراه</p>
+                            <h4>@Model.User.Mobile</h4>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <p>آدرس</p>
+                            <p>
+                                @((!string.IsNullOrEmpty(Model.User.Address)?Model.User.Address : "--"))
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="edit-account" colspan="2">
+                            <a href="/User/EditInformation">ویرایش اطلاعات</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+          @Html.Action("UserSidebar")
+        </div>
+    </div>
+</section>

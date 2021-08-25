@@ -1,0 +1,99 @@
+﻿
+@model Eshop.DomainClass.Setting.ContactUs
+@{
+    ViewBag.Title = "پاسخ";
+}
+<!-- Page Breadcrumb -->
+<div class="page-breadcrumbs">
+    <ul class="breadcrumb">
+        <li>
+            <i class="fa fa-home"></i>
+            <a href="#">خانه</a>
+        </li>
+        <li> تماس با ما</li>
+        <li class="active">پاسخ به پیام های دریافتی  </li>
+    </ul>
+</div>
+<!-- /Page Breadcrumb -->
+<!-- Page Header -->
+<div class="page-header position-relative">
+    <div class="header-title">
+        <h1>
+            پاسخ به پیام
+        </h1>
+    </div>
+    <!--Header Buttons-->
+    <div class="header-buttons">
+        <a class="sidebar-toggler" href="#">
+            <i class="fa fa-arrows-h"></i>
+        </a>
+        <a class="refresh" id="refresh-toggler" href="">
+            <i class="glyphicon glyphicon-refresh"></i>
+        </a>
+        <a class="fullscreen" id="fullscreen-toggler" href="#">
+            <i class="glyphicon glyphicon-fullscreen"></i>
+        </a>
+    </div>
+    <!--Header Buttons End-->
+</div>
+<!-- /Page Header -->
+<!-- Page Body -->
+<div class="page-body">
+    <div>
+        <div class="row">
+            <div class="col-lg-12 col-sm-12 col-xs-12">
+
+                <div class="display-email mail-body">
+                    <div class="mail-reply">
+                        <div class="row">
+                            <div class="col-lg-12 col-sm-12 col-xs-12">
+                                @using (Html.BeginForm("AnswerContact", "ManageSite", FormMethod.Post))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    @Html.HiddenFor(model => model.ContactId)
+                                    @Html.HiddenFor(model => model.Name)
+                                    @Html.HiddenFor(model => model.CreateDate)
+                                    @Html.HiddenFor(model => model.IsRead)
+                                    @Html.HiddenFor(model => model.Message)
+                                    @Html.HiddenFor(model => model.Mobile)
+                                    @Html.HiddenFor(model => model.UserId)
+                                    @Html.HiddenFor(model => model.UserIP)
+                                    @Html.HiddenFor(model => model.Subject)
+                                    <div class="row">
+                                        <div class="col-lg-12 col-sm-12 col-xs-12">
+                                            <div class="widget flat radius-bordered">
+                                                <div class="widget-header bg-green">
+                                                    <span class="widget-caption"> پاسخ</span>
+                                                </div>
+                                                <div class="widget-body">
+                                                    <div id="registration-form">
+                                                        <div class="form-group">
+                                                            <span class="input-icon icon-right">
+                                                                @Html.EditorFor(model => model.Answer, new { htmlAttributes = new { @class = "form-control animated", PlaceHolder = Html.DisplayNameFor(m => m.Answer) } })
+                                                                @Html.ValidationMessageFor(model => model.Answer, "", new { @class = "text-danger" })
+                                                                <i class="fa fa-comment circular"></i>
+                                                            </span>
+                                                        </div>
+                                                        <div class="form-group col-md-3">
+                                                            <button type="submit" class="btn btn-block btn-success">ارسال پاسخ </button>
+                                                        </div>
+                                                        <div class="clearfix"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts
+{
+    <script src="~/Areas/Admin/Content/CustomJs/ResizeTextArea.js"></script>
+}

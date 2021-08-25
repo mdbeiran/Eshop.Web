@@ -1,0 +1,197 @@
+﻿@using Eshop.Business.StaticTools
+@using Eshop.Business.Users
+@using Eshop.Utilitiy.Convertor
+@model IEnumerable<Eshop.DomainClass.Articles.ArticleComment>
+@{
+    ViewBag.Title = "کامنت های کاربران";
+}
+<a href="#" id="scroll" style="display: none;"><span></span></a>
+<!-- Page Breadcrumb -->
+<div class="page-breadcrumbs">
+    <ul class="breadcrumb">
+        <li>
+            <i class="fa fa-home"></i>
+            <a href="#">خانه</a>
+        </li>
+        <li>مدیریت مقالات</li>
+        <li class="active">لیست نظرات مربوط به مقاله</li>
+    </ul>
+</div>
+<!-- /Page Breadcrumb -->
+<!-- Page Header -->
+<div class="page-header position-relative">
+    <div class="header-title">
+        <h1>
+            لیست نظرات
+        </h1>
+    </div>
+    <!--Header Buttons-->
+    <div class="header-buttons">
+        <a class="sidebar-toggler" href="#">
+            <i class="fa fa-arrows-h"></i>
+        </a>
+        <a class="refresh" id="refresh-toggler" href="">
+            <i class="glyphicon glyphicon-refresh"></i>
+        </a>
+        <a class="fullscreen" id="fullscreen-toggler" href="#">
+            <i class="glyphicon glyphicon-fullscreen"></i>
+        </a>
+    </div>
+    <!--Header Buttons End-->
+</div>
+<!-- /Page Header -->
+<!-- Page Body -->
+<div class="page-body">
+    <input type="number" value="@ViewBag.ArticleId" id="ArticleID" hidden/>
+    <div class="row">
+        <input type="number" value="2" id="pageId" style="display: none" hidden />
+        <div class="col-md-12">
+            @if (Model.Any())
+            {
+                <div class="row">
+                    <div class="col-md-3">
+                        <a href="/Admin/ManageArticles" class="btn btn-success btn-block">
+                            لیست مقالات
+                        </a>
+                    </div>
+                    <div class="clearfix"></div>
+                    <br/>
+                    <div class="col-lg-12">
+                        <div class="widget">
+                            <div class="widget-header bordered-bottom bordered-green">
+                                <i class="widget-icon fa fa-tags green"></i>
+                                <span class="widget-caption green">لیست نظرات</span>
+                            </div><!--Widget Header-->
+                            <div class="widget-body  no-padding">
+                                <div class="tickets-container">
+                                    <ul class="tickets-list">
+                                        @foreach (var comment in Model.Where(s => s.ParentID == null))
+                                        {
+                                            <li class="ticket-item well" id="Comment_Box_@comment.CommantID">
+                                                <div class="row">
+                                                    <div class="ticket-user col-lg-9 col-sm-12">
+                                                        <a href="/Admin/ManageUsers/GoToUserPanel/@comment.UserID" title="پنل ادمین">
+                                                            <img src="@PathTools.UserAvatarDefaultPathWithImage" class="user-avatar">
+                                                        </a>
+                                                        <a href="/Profile/@UserManager.FixetTextForUrl(comment.User.UserName)" title="پنل کاربری">
+                                                            <span class="user-name">@comment.User.UserName</span>
+                                                        </a>
+                                                    </div>
+                                                    <div class="ticket-time  col-lg-3 col-sm-6 col-xs-12">
+                                                        <div class="divider hidden-md hidden-sm hidden-xs"></div>
+                                                        <i class="fa fa-clock-o"></i>
+                                                        <span class="time">@comment.CreateDate.ToStringShamsiDate()</span>
+                                                    </div>
+                                                    <div class="ticket-type height-auto col-lg-12 col-sm-6 col-xs-12">
+                                                        <p>
+                                                            @Html.Raw(comment.Comment)
+                                                        </p>
+                                                        <hr/>
+                                                        <a href="/Admin/ManageArticles/EditComment/@comment.CommantID" class="btn btn-warning">ویرایش</a>
+                                                        <div class="btn btn-danger" onclick="DeleteArticleComment(@comment.CommantID)">
+                                                            حذف
+                                                        </div>
+                                                    </div>
+                                                    <div class="clearfix"></div>
+                                                    <br/>
+                                                    <div class="ticket-state bg-palegreen">
+                                                        <i class="fa fa-check"></i>
+                                                    </div>
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                                @if (comment.ArticleComments.Any())
+                                                {
+                                                    <ul>
+                                                        @foreach (var sub in comment.ArticleComments)
+                                                        {
+                                                            <li class="ticket-item well" id="Comment_Box_@sub.CommantID" style="list-style-type: none">
+                                                                <div class="row">
+                                                                    <div class="ticket-user col-lg-9 col-sm-12">
+                                                                        <a href="/Admin/ManageUsers/GoToUserPanel/@comment.UserID" title="پنل ادمین">
+                                                                            <img src="@PathTools.UserAvatarDefaultPathWithImage" class="user-avatar">
+                                                                        </a>
+                                                                        <a href="/Profile/@UserManager.FixetTextForUrl(comment.User.UserName)" title="پنل کاربری">
+                                                                            <span class="user-name">@sub.User.UserName</span>
+                                                                        </a>
+                                                                    </div>
+                                                                    <div class="ticket-time  col-lg-3 col-sm-6 col-xs-12">
+                                                                        <div class="divider hidden-md hidden-sm hidden-xs"></div>
+                                                                        <i class="fa fa-clock-o"></i>
+                                                                        <span class="time">@sub.CreateDate.ToStringShamsiDate()</span>
+                                                                    </div>
+                                                                    <div class="ticket-type height-auto col-lg-12 col-sm-6 col-xs-12">
+                                                                        <p>
+                                                                            @Html.Raw(sub.Comment)
+                                                                        </p>
+                                                                        <hr/>
+                                                                        <a href="/Admin/ManageArticles/EditComment/@sub.CommantID" class="btn btn-warning">ویرایش</a>
+                                                                        <div class="btn btn-danger" onclick="DeleteArticleComment(@sub.CommantID)">
+                                                                            حذف
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="clearfix"></div>
+                                                                    <br/>
+                                                                    <div class="ticket-state bg-palegreen">
+                                                                        <i class="fa fa-check"></i>
+                                                                    </div>
+                                                                    <div class="clearfix"></div>
+                                                                </div>
+                                                            </li>
+                                                        }
+                                                    </ul>
+                                                    <div class="clearfix"></div>
+                                                    <br/>
+                                                }
+                                            </li>
+                                        }
+                                    </ul>
+                                    <br/>
+                                    <ul  class="tickets-list" id="comment-list-2"></ul>
+                                    <br/>
+                                    <div class="clearfix"></div>
+                                    <div class="col-md-4 col-md-offset-4 align-center">
+                                        <a id="pagingLayer" class="btn btn-info" onclick="GetMoreComments()">
+                                            بیش تر
+                                        </a>
+                                        <img src="~/Content/images/91.svg" id="waiting" class=" active CursorPointer waiting-image"/><span class="sr-only">(current)</span>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="alert alert-warning">
+                    نظری برای این مقاله ثبت نشده است
+                </div>
+            }
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+@section Scripts
+{
+    <script src="~/Areas/Admin/Content/CustomJs/jquery.blockUI.js"></script>
+    <script src="~/Areas/Admin/Content/CustomJs/ManageArticles.js"></script>
+    <script src="~/Areas/Admin/Content/CustomJs/ScrollToTop.js"></script>
+    <script>
+        $("#pageId").val("2");
+    </script>
+}
+
+@section Styles
+{
+    <link href="~/Areas/Admin/Content/CustomStyle/ScrollToTop.css" rel="stylesheet" />
+}

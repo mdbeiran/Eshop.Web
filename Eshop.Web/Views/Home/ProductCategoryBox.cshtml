@@ -1,0 +1,16 @@
+﻿@using Eshop.Business.StaticTools
+@model Eshop.DomainClass.Product.Product
+
+<div class="col-sm-3">
+    <div class="product-image-wrapper">
+        <div class="single-products">
+            <div class="productinfo text-center">
+                <a href="@Url.RouteUrl("ProductDetail",new{id =Model.ProductId})">
+                    <img src="@PathTools.ProductImageThumbPath@Model.SingleProductImageName" alt="@Model.Title" title="@Model.Title">
+                </a>
+                <p>@Model.Title</p>
+                <a href="@Url.RouteUrl("ProductDetail", new {id =Model.ProductId})" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>مشاهده</a>
+            </div>
+        </div>
+    </div>
+</div>

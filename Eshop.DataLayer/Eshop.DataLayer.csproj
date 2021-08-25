@@ -1,0 +1,286 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{DED7BB1B-1763-4418-9B5C-3D03EBB34498}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Eshop.DataLayer</RootNamespace>
+    <AssemblyName>Eshop.DataLayer</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Contexts\EshopDbContext.cs" />
+    <Compile Include="Migrations\201808041809081_mig-initial.cs" />
+    <Compile Include="Migrations\201808041809081_mig-initial.Designer.cs">
+      <DependentUpon>201808041809081_mig-initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808121914162_mig-slider.cs" />
+    <Compile Include="Migrations\201808121914162_mig-slider.Designer.cs">
+      <DependentUpon>201808121914162_mig-slider.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808141813560_mig-articles.cs" />
+    <Compile Include="Migrations\201808141813560_mig-articles.Designer.cs">
+      <DependentUpon>201808141813560_mig-articles.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808161800409_mig-changeSlider.cs" />
+    <Compile Include="Migrations\201808161800409_mig-changeSlider.Designer.cs">
+      <DependentUpon>201808161800409_mig-changeSlider.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808161802273_mig-changeSlider-second.cs" />
+    <Compile Include="Migrations\201808161802273_mig-changeSlider-second.Designer.cs">
+      <DependentUpon>201808161802273_mig-changeSlider-second.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808220749043_mig-changeuser.cs" />
+    <Compile Include="Migrations\201808220749043_mig-changeuser.Designer.cs">
+      <DependentUpon>201808220749043_mig-changeuser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808220858387_mig-changesitesetting.cs" />
+    <Compile Include="Migrations\201808220858387_mig-changesitesetting.Designer.cs">
+      <DependentUpon>201808220858387_mig-changesitesetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808220930398_mig-changecontactus.cs" />
+    <Compile Include="Migrations\201808220930398_mig-changecontactus.Designer.cs">
+      <DependentUpon>201808220930398_mig-changecontactus.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808221012586_mig-changecontactus-second.cs" />
+    <Compile Include="Migrations\201808221012586_mig-changecontactus-second.Designer.cs">
+      <DependentUpon>201808221012586_mig-changecontactus-second.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808221033214_mig-changecontactus-third.cs" />
+    <Compile Include="Migrations\201808221033214_mig-changecontactus-third.Designer.cs">
+      <DependentUpon>201808221033214_mig-changecontactus-third.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808221445125_mig-productmodels.cs" />
+    <Compile Include="Migrations\201808221445125_mig-productmodels.Designer.cs">
+      <DependentUpon>201808221445125_mig-productmodels.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808221450356_mig-productmodels-second.cs" />
+    <Compile Include="Migrations\201808221450356_mig-productmodels-second.Designer.cs">
+      <DependentUpon>201808221450356_mig-productmodels-second.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808221501055_mig-productmodels-third.cs" />
+    <Compile Include="Migrations\201808221501055_mig-productmodels-third.Designer.cs">
+      <DependentUpon>201808221501055_mig-productmodels-third.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808221511564_mig-productmodels-forth.cs" />
+    <Compile Include="Migrations\201808221511564_mig-productmodels-forth.Designer.cs">
+      <DependentUpon>201808221511564_mig-productmodels-forth.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808221521548_mig-productmodels-fifth.cs" />
+    <Compile Include="Migrations\201808221521548_mig-productmodels-fifth.Designer.cs">
+      <DependentUpon>201808221521548_mig-productmodels-fifth.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808221625538_mig-productmodels-six.cs" />
+    <Compile Include="Migrations\201808221625538_mig-productmodels-six.Designer.cs">
+      <DependentUpon>201808221625538_mig-productmodels-six.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808221645241_mig-productmodels-seven.cs" />
+    <Compile Include="Migrations\201808221645241_mig-productmodels-seven.Designer.cs">
+      <DependentUpon>201808221645241_mig-productmodels-seven.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808221856275_mig-productmodels-eight.cs" />
+    <Compile Include="Migrations\201808221856275_mig-productmodels-eight.Designer.cs">
+      <DependentUpon>201808221856275_mig-productmodels-eight.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808230806212_mig-deleteprand.cs" />
+    <Compile Include="Migrations\201808230806212_mig-deleteprand.Designer.cs">
+      <DependentUpon>201808230806212_mig-deleteprand.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808230825008_mig-deleteprand-id.cs" />
+    <Compile Include="Migrations\201808230825008_mig-deleteprand-id.Designer.cs">
+      <DependentUpon>201808230825008_mig-deleteprand-id.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808240411240_mig-changeproduct.cs" />
+    <Compile Include="Migrations\201808240411240_mig-changeproduct.Designer.cs">
+      <DependentUpon>201808240411240_mig-changeproduct.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808240925092_mig-changeproductcomment.cs" />
+    <Compile Include="Migrations\201808240925092_mig-changeproductcomment.Designer.cs">
+      <DependentUpon>201808240925092_mig-changeproductcomment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808241525247_mig-change-model.cs" />
+    <Compile Include="Migrations\201808241525247_mig-change-model.Designer.cs">
+      <DependentUpon>201808241525247_mig-change-model.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809091153099_mig-user-order-wish.cs" />
+    <Compile Include="Migrations\201809091153099_mig-user-order-wish.Designer.cs">
+      <DependentUpon>201809091153099_mig-user-order-wish.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809091827504_mig-deleteuserwish.cs" />
+    <Compile Include="Migrations\201809091827504_mig-deleteuserwish.Designer.cs">
+      <DependentUpon>201809091827504_mig-deleteuserwish.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809191924548_mig-final.cs" />
+    <Compile Include="Migrations\201809191924548_mig-final.Designer.cs">
+      <DependentUpon>201809191924548_mig-final.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809281606411_mig-ChangeProductSelectedFeatures.cs" />
+    <Compile Include="Migrations\201809281606411_mig-ChangeProductSelectedFeatures.Designer.cs">
+      <DependentUpon>201809281606411_mig-ChangeProductSelectedFeatures.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809281635558_mig-createSiteRules.cs" />
+    <Compile Include="Migrations\201809281635558_mig-createSiteRules.Designer.cs">
+      <DependentUpon>201809281635558_mig-createSiteRules.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811291555404_mig-UpdateOrder.cs" />
+    <Compile Include="Migrations\201811291555404_mig-UpdateOrder.Designer.cs">
+      <DependentUpon>201811291555404_mig-UpdateOrder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811301010428_mig-updateordersecond.cs" />
+    <Compile Include="Migrations\201811301010428_mig-updateordersecond.Designer.cs">
+      <DependentUpon>201811301010428_mig-updateordersecond.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Eshop.DomainClass\Eshop.DomainClass.csproj">
+      <Project>{31e1c2c2-34c5-4548-8652-74ec51464438}</Project>
+      <Name>Eshop.DomainClass</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201808041809081_mig-initial.resx">
+      <DependentUpon>201808041809081_mig-initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808121914162_mig-slider.resx">
+      <DependentUpon>201808121914162_mig-slider.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808141813560_mig-articles.resx">
+      <DependentUpon>201808141813560_mig-articles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808161800409_mig-changeSlider.resx">
+      <DependentUpon>201808161800409_mig-changeSlider.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808161802273_mig-changeSlider-second.resx">
+      <DependentUpon>201808161802273_mig-changeSlider-second.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808220749043_mig-changeuser.resx">
+      <DependentUpon>201808220749043_mig-changeuser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808220858387_mig-changesitesetting.resx">
+      <DependentUpon>201808220858387_mig-changesitesetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808220930398_mig-changecontactus.resx">
+      <DependentUpon>201808220930398_mig-changecontactus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808221012586_mig-changecontactus-second.resx">
+      <DependentUpon>201808221012586_mig-changecontactus-second.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808221033214_mig-changecontactus-third.resx">
+      <DependentUpon>201808221033214_mig-changecontactus-third.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808221445125_mig-productmodels.resx">
+      <DependentUpon>201808221445125_mig-productmodels.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808221450356_mig-productmodels-second.resx">
+      <DependentUpon>201808221450356_mig-productmodels-second.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808221501055_mig-productmodels-third.resx">
+      <DependentUpon>201808221501055_mig-productmodels-third.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808221511564_mig-productmodels-forth.resx">
+      <DependentUpon>201808221511564_mig-productmodels-forth.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808221521548_mig-productmodels-fifth.resx">
+      <DependentUpon>201808221521548_mig-productmodels-fifth.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808221625538_mig-productmodels-six.resx">
+      <DependentUpon>201808221625538_mig-productmodels-six.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808221645241_mig-productmodels-seven.resx">
+      <DependentUpon>201808221645241_mig-productmodels-seven.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808221856275_mig-productmodels-eight.resx">
+      <DependentUpon>201808221856275_mig-productmodels-eight.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808230806212_mig-deleteprand.resx">
+      <DependentUpon>201808230806212_mig-deleteprand.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808230825008_mig-deleteprand-id.resx">
+      <DependentUpon>201808230825008_mig-deleteprand-id.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808240411240_mig-changeproduct.resx">
+      <DependentUpon>201808240411240_mig-changeproduct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808240925092_mig-changeproductcomment.resx">
+      <DependentUpon>201808240925092_mig-changeproductcomment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808241525247_mig-change-model.resx">
+      <DependentUpon>201808241525247_mig-change-model.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809091153099_mig-user-order-wish.resx">
+      <DependentUpon>201809091153099_mig-user-order-wish.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809091827504_mig-deleteuserwish.resx">
+      <DependentUpon>201809091827504_mig-deleteuserwish.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809191924548_mig-final.resx">
+      <DependentUpon>201809191924548_mig-final.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809281606411_mig-ChangeProductSelectedFeatures.resx">
+      <DependentUpon>201809281606411_mig-ChangeProductSelectedFeatures.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809281635558_mig-createSiteRules.resx">
+      <DependentUpon>201809281635558_mig-createSiteRules.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811291555404_mig-UpdateOrder.resx">
+      <DependentUpon>201811291555404_mig-UpdateOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811301010428_mig-updateordersecond.resx">
+      <DependentUpon>201811301010428_mig-updateordersecond.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Scripts\2-sql-script-eshop.sql" />
+    <Content Include="Scripts\1-sql-script-eshop.sql" />
+    <Content Include="Scripts\3-sql-script-eshop.sql" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

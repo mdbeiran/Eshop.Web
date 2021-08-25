@@ -1,0 +1,59 @@
+﻿@using Eshop.Business.StaticTools
+@using Eshop.Business.Users
+@using Eshop.Utilitiy.Convertor
+@model Eshop.ViewModel.Article.AllArticlesViewModel
+@{
+    ViewBag.Title = "مقالات";
+}
+
+<section>
+    <div class="container">
+        <div class="row">
+
+            <div class="col-sm-9">
+                <div class="blog-post-area">
+                    <h2 class="title text-center">آخریـن اخبـار</h2>
+                    @foreach (var article in Model.Articles)
+                    {
+                        <div class="single-blog-post">
+                            <h3>@article.ArticleTitle</h3>
+                            <div class="post-meta">
+                                <ul>
+                                    <li><i class="fa fa-user"></i> @article.User.UserName</li>
+                                    <li><i class="fa fa-clock-o"></i> @article.CreateDate.ToString("HH:mm")</li>
+                                    <li><i class="fa fa-calendar"></i>@article.CreateDate.ToStringShamsiDate()</li>
+                                </ul>
+                            </div>
+                            <a href="@Url.RouteUrl("SingleArticle",new {articleTitle=UserManager.DecodeUrl(article.ArticleTitle) })">
+                                <img src="@PathTools.ArticleImagePath@article.ArticleImageName" alt="@article.ArticleTitle" title="@article.ArticleTitle">
+                            </a>
+                            @Html.Raw(article.ShortDescription)
+                            <div class="clearfix"></div>
+                            <a class="btn btn-primary" href="@Url.RouteUrl("SingleArticle",new {articleTitle=UserManager.DecodeUrl(article.ArticleTitle) })">ادامـه مطلب</a>
+                        </div>
+                    }
+
+                    @if (Model.PageCount >= 1)
+                    {
+                        <div class="pagination-area">
+                            <ul class="pagination">
+                                
+                                @for (int i = Model.StartPage; i <= Model.EndPage; i++)
+                                {
+                                    <li><a href="@Url.RouteUrl("ArticleIndex", new {pageId = @i,search=Model.Search})" class="@((i == Model.ActivePage) ? "active" : "")">1</a></li>
+                                }
+                            </ul>
+                        </div>
+                    }
+
+                </div>
+            </div>
+
+            <div class="col-sm-3">
+                <div class="left-sidebar">
+                    @Html.Action("CategorySection","Articles")
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

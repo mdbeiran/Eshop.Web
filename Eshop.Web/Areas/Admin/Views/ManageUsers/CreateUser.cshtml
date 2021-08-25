@@ -1,0 +1,200 @@
+﻿@model Eshop.ViewModel.User.CreateUserViewModel
+@{
+    ViewBag.Title = "افزودن کاربر";
+}
+
+<!-- Page Breadcrumb -->
+<div class="page-breadcrumbs">
+    <ul class="breadcrumb">
+        <li>
+            <i class="fa fa-home"></i>
+            <a href="#">خانه</a>
+        </li>
+        <li class="active">مدیریت کاربران</li>
+        @if (Model.SelectedRoles != null)
+        {
+            <li class="active">افزودن کاربر</li>
+        }
+        else
+        {
+            <li class="active">ویرایش کاربر</li>
+        }
+    </ul>
+</div>
+<!-- /Page Breadcrumb -->
+<!-- Page Header -->
+<div class="page-header position-relative">
+    <div class="header-title">
+        <h1>
+            @((Model.SelectedRoles != null) ? "افزودن کاربر" : "ویرایش کاربر")
+        </h1>
+    </div>
+    <!--Header Buttons-->
+    <div class="header-buttons">
+        <a class="sidebar-toggler" href="#">
+            <i class="fa fa-arrows-h"></i>
+        </a>
+        <a class="refresh" id="refresh-toggler" href="">
+            <i class="glyphicon glyphicon-refresh"></i>
+        </a>
+        <a class="fullscreen" id="fullscreen-toggler" href="#">
+            <i class="glyphicon glyphicon-fullscreen"></i>
+        </a>
+    </div>
+    <!--Header Buttons End-->
+</div>
+<!-- /Page Header -->
+<!-- Page Body -->
+<div class="page-body">
+    @if (ViewBag.SelectedRoles)
+    {
+        <div class="alert alert-warning">
+            لطفا نقش کاربر مورد نظر را وارد کنید
+        </div>
+    }
+    <div class="col-lg-12 col-sm-12 col-xs-12">
+        @using (Html.BeginForm("CreateUser", "ManageUsers", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.HiddenFor(p => p.UserId)
+            @Html.AntiForgeryToken()
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="widget flat radius-bordered">
+                        <div class="widget-header bg-green">
+                            <span class="widget-caption">
+                                @((Model.SelectedRoles != null) ? "فرم افزودن کاربر" : "فرم ویرایش کاربر")
+                            </span>
+                        </div>
+                        <div class="widget-body">
+                            <div class="widget-main ">
+                                <div class="tabbable">
+                                    <ul class="nav nav-tabs tabs-flat" id="myTab11">
+                                        <li class="active">
+                                            <a data-toggle="tab" href="#Main" aria-expanded="true">
+                                                اطلاعات اصلی
+                                            </a>
+                                        </li>
+
+                                        <li class="">
+                                            <a data-toggle="tab" href="#Roles" aria-expanded="false">
+                                                نقش های کاربر
+                                            </a>
+                                        </li>
+
+                                    </ul>
+                                    <div class="tab-content tabs-flat">
+
+                                        <div id="Main" class="tab-pane active">
+                                            <div class="form-group col-md-4">
+                                                <label>
+                                                    @Html.LabelFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control" } })
+                                                </label>
+                                                <span class="input-icon icon-right">
+                                                    @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control", PlaceHolder = Html.DisplayNameFor(m => m.UserName) } })
+                                                    @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+                                                    <i class="fa fa-user circular"></i>
+                                                </span>
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label>
+                                                    @Html.LabelFor(model => model.Mobile, new { htmlAttributes = new { @class = "form-control" } })
+                                                </label>
+                                                <span class="input-icon icon-right">
+                                                    @Html.EditorFor(model => model.Mobile, new { htmlAttributes = new { @class = "form-control", PlaceHolder = Html.DisplayNameFor(m => m.Mobile) } })
+                                                    @Html.ValidationMessageFor(model => model.Mobile, "", new { @class = "text-danger" })
+                                                    <i class="fa fa-phone circular"></i>
+                                                </span>
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label>
+                                                    @Html.LabelFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                                                </label>
+                                                <span class="input-icon icon-right">
+                                                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", PlaceHolder = Html.DisplayNameFor(m => m.Password) } })
+                                                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                                                    <i class="fa fa-user circular"></i>
+                                                </span>
+                                            </div>
+                                            <div class="form-group col-md-12">
+                                                <label>
+                                                    @Html.LabelFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
+                                                </label>
+                                                <span class="input-icon icon-right">
+                                                    @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control animated", PlaceHolder = Html.DisplayNameFor(m => m.Address) } })
+                                                    @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                                                    <i class="fa fa-phone circular"></i>
+                                                </span>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+
+                                        <div id="Roles" class="tab-pane">
+                                            @if (Model.SelectedRoles != null)
+                                            {
+                                                foreach (var item in Model.Roles)
+                                                {
+
+                                                    <div class="col-md-12">
+                                                        <div class="checkbox">
+                                                            <label>
+                                                                <input type="checkbox" class="colored-success" @((Model.SelectedRoles.Any(r => r == item.RoleId)) ? "checked" : "") value="@item.RoleId" name="@nameof(Model.SelectedRoles)">
+                                                                <span class="text">@item.RoleTitle</span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                }
+                                            }
+                                            else
+                                            {
+                                                foreach (var item in Model.Roles)
+                                                {
+
+                                                    <div class="col-md-12">
+                                                        <div class="checkbox">
+                                                            <label>
+                                                                <input type="checkbox" class="colored-success" value="@item.RoleId" name="@nameof(Model.SelectedRoles)">
+                                                                <span class="text">@item.RoleTitle</span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                }
+                                            }
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                    <hr />
+                                    <div>
+
+                                        <div class="form-group col-md-3">
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input type="checkbox" class="colored-success" name="@nameof(Model.IsActive)" id="IsActive" value="true" checked="checked">
+                                                    <span class="text" id="IsActiveSpan">@Html.DisplayNameFor(model => model.IsActive)</span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <span class="input-icon icon-right">
+                                            <button type="submit" class="btn btn-block btn-success">ثبت کاربر</button>
+                                            <i class="glyphicon glyphicon-plus"></i>
+                                        </span>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        }
+    </div>
+</div>
+
+@section Scripts
+{
+    <script src="~/Areas/Admin/Content/CustomJs/ResizeTextArea.js"></script>
+}
+

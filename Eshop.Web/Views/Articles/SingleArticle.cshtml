@@ -1,0 +1,192 @@
+﻿@using Eshop.Business.StaticTools
+@using Eshop.Business.Users
+@using Eshop.DomainClass.Articles
+@using Eshop.Utilitiy.Convertor
+@model Eshop.ViewModel.Article.SingleArticleViewModel
+
+@{
+    ViewBag.Title = Model.Article.ArticleTitle;
+    ArticleComment replyComment = new ArticleComment() { ArticleID = Model.Article.ArticleID };
+}
+
+<input type="hidden" value="2" id="pageId" />
+<a href="#" id="scroll" style="display: none;"><span></span></a>
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-9">
+                <div class="blog-post-area">
+                    <h2 class="title text-center">@Model.Article.ArticleTitle</h2>
+                    <div class="single-blog-post">
+                        <h3>@Model.Article.ArticleTitle</h3>
+                        <div class="post-meta">
+                            <ul>
+                                <li><i class="fa fa-user"></i>@Model.Article.User.UserName</li>
+                                <li><i class="fa fa-clock-o"></i> @Model.Article.CreateDate.ToString("HH:mm")</li>
+                                <li><i class="fa fa-calendar"></i>@Model.Article.CreateDate.ToStringShamsiDate()</li>
+                            </ul>
+                        </div>
+                        <p>
+                            @Html.Raw(Model.Article.ShortDescription)
+                        </p>
+                        <br />
+                        <img src="@PathTools.ArticleImagePath@Model.Article.ArticleImageName" title="@Model.Article.ArticleTitle" alt="@Model.Article.ArticleTitle" style="width: 100%" />
+                        <br />
+                        <br />
+                        @Html.Raw(Model.Article.ArticleText)
+
+                        <br />
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <br />
+                <br />
+                <div class="rating-area">
+                    <ul class="tag">
+                        <li class="color">@Model.CommentsCount نظر</li>
+                    </ul>
+                    <ul class=" ratings">
+                        <li>برچسب :</li>
+                        @foreach (var tag in Model.Article.ArticleTags)
+                        {
+                            <li><a class="color" href="@Url.RouteUrl("ArticleIndex",new {search=tag.Tag })">@tag.Tag<span>/</span></a></li>
+                        }
+                    </ul>
+                </div>
+                <div class="socials-share">
+                </div>
+                @if (Model.Article.CanInsertComment)
+                {
+                    if (User.Identity.IsAuthenticated)
+                    {
+                        <div class="replay-box">
+                            <p>
+                                نظر خود را وارد کنید
+                            </p>
+                            @using (Html.BeginRouteForm("CreateCommnet", FormMethod.Post))
+                            {
+                                <input name="articleTitle" type="text" value="@Model.Article.ArticleTitle" hidden>
+                                <input name="replyComment.ArticleID" type="number" value="@Model.Article.ArticleID" hidden id="ArticleID">
+                                <input name="replyComment.ParentID" type="number" value="" hidden>
+                                <div class="col-sm-12 text-area">
+                                    <div class="form-group col-md-12">
+                                        @Html.EditorFor(model => replyComment.Comment, new { htmlAttributes = new { @class = "form-control Comment-Text animated", @id = "reply-comment-text", PlaceHolder = "متن نظر شما" } })
+                                        @Html.ValidationMessageFor(model => replyComment.Comment, "", new { @class = "text-danger" })
+                                    </div>
+                                    <button class="btn btn-primary" type="submit">ارسـال نظـر</button>
+                                </div>
+                            }
+                            <div class="clearfix"></div>
+                        </div>
+
+                        if (Model.ArticleComments.Any())
+                        {
+                            <div class="response-area">
+                                <h2>نظرات</h2>
+                                <ul class="media-list">
+                                    @foreach (var mainComment in Model.ArticleComments.Where(c => c.ParentID == null))
+                                    {
+                                        <li class="media">
+                                            <a class="pull-right" href="#">
+                                                <img class="media-object user-avatar-image" src="@PathTools.UserAvatar" alt="User">
+                                            </a>
+                                            <div class="media-body">
+                                                <ul class="sinlge-post-meta">
+                                                    <li><i class="fa fa-user"></i>@mainComment.User.UserName</li>
+                                                    <li><i class="fa fa-clock-o"></i> @mainComment.CreateDate.ToString("HH:mm")</li>
+                                                    <li><i class="fa fa-calendar"></i>@mainComment.CreateDate.ToStringShamsiDate()</li>
+                                                </ul>
+                                                @Html.Raw(mainComment.Comment)
+                                                <a class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong" onclick="FillCommentParentId('@mainComment.CommantID')"><i class="fa fa-reply"></i>پاسـخ</a>
+                                            </div>
+                                        </li>
+                                        foreach (var subComment in Model.ArticleComments.Where(s => s.ParentID == mainComment.CommantID))
+                                        {
+                                            <li class="media second-media">
+                                                <a class="pull-right">
+                                                    <img class="media-object user-avatar-image" src="@PathTools.UserAvatar" alt="User">
+                                                </a>
+                                                <div class="media-body">
+                                                    <ul class="sinlge-post-meta">
+                                                        <li><i class="fa fa-user"></i>@subComment.User.UserName</li>
+                                                        <li><i class="fa fa-clock-o"></i> @subComment.CreateDate.ToString("HH:mm")</li>
+                                                        <li><i class="fa fa-calendar"></i>@subComment.CreateDate.ToStringShamsiDate()</li>
+                                                    </ul>
+                                                    @Html.Raw(subComment.Comment)
+                                                </div>
+                                            </li>
+                                        }
+                                    }
+                                </ul>
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        <div class="alert alert-warning">
+                            <p>
+                                برای مشاهده و ثبت نظر ابتدا باید <a href="/Login">وارد</a> سایت شوید
+                            </p>
+                        </div>
+                    }
+
+                }
+            </div>
+            <div class="col-sm-3">
+                <div class="left-sidebar">
+                    @Html.Action("CategorySection", "Articles")
+                </div>
+            </div>
+        </div>
+
+
+
+        @using (Html.BeginForm("CreateCommnet", "Articles", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle">ارسال پاسخ شما</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <input name="articleTitle" type="text" value="@Model.Article.ArticleTitle" hidden>
+                            <input name="replyComment.ArticleID" type="number" value="@Model.Article.ArticleID" hidden>
+                            <input name="replyComment.ParentID" id="reply-comment-id" type="number" value="" hidden>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group col-md-12">
+                                        @Html.EditorFor(model => replyComment.Comment, new { htmlAttributes = new { @class = "form-control Comment-Text animated", @id = "reply-comment-text", PlaceHolder = "متن نظر شما" } })
+                                        @Html.ValidationMessageFor(model => replyComment.Comment, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <div class="col-md-12">
+                                <button type="submit" class="btn btn-block btn-success"> ارسال نظر ارزشمند شما </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>
+</section>
+
+@section CustomScripts
+{
+    <script src="~/Content/CustomJs/ResizeTextArea.js"></script>
+    <script src="~/Content/CustomJs/Articles.js"></script>
+    <script>
+        $(function () {
+            $("#pageId").val("2");
+        });
+    </script>
+}

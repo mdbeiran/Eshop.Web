@@ -1,0 +1,88 @@
+﻿@using Eshop.Utilitiy.Convertor
+@model Eshop.DomainClass.Setting.ContactUs
+
+@{
+    ViewBag.Title = "پاسخ";
+}
+<!-- Page Breadcrumb -->
+<div class="page-breadcrumbs">
+    <ul class="breadcrumb">
+        <li>
+            <i class="fa fa-home"></i>
+            <a href="#">خانه</a>
+        </li>
+        <li> تماس با ما</li>
+        <li class="active">متن پیغام کاربر</li>
+    </ul>
+</div>
+<!-- /Page Breadcrumb -->
+<!-- Page Header -->
+<div class="page-header position-relative">
+    <div class="header-title">
+        <h1>
+            متن پیغام کاربر
+        </h1>
+    </div>
+    <!--Header Buttons-->
+    <div class="header-buttons">
+        <a class="sidebar-toggler" href="#">
+            <i class="fa fa-arrows-h"></i>
+        </a>
+        <a class="refresh" id="refresh-toggler" href="">
+            <i class="glyphicon glyphicon-refresh"></i>
+        </a>
+        <a class="fullscreen" id="fullscreen-toggler" href="#">
+            <i class="glyphicon glyphicon-fullscreen"></i>
+        </a>
+    </div>
+    <!--Header Buttons End-->
+</div>
+<!-- /Page Header -->
+<!-- Page Body -->
+<div class="page-body">
+    <div>
+        <div class="row">
+            <div class="col-lg-12 col-sm-12 col-xs-12">
+                <div class="col-lg-12 col-sm-12 col-xs-12">
+                    <div class="widget flat radius-bordered">
+                        <div class="widget-header bg-green">
+                            <span class="widget-caption">پیام</span>
+                        </div>
+                        <div class="databox-top bg-whitesmoke no-padding">
+                            <div class="databox-row row-4">
+                                <div class="databox-cell cell-4 no-padding padding-10 text-align-left">
+                                    <span class="databox-number green  no-margin">عنوان</span>
+                                    <span class="databox-header margin-left-10">@Model.Subject</span>
+                                </div>
+                                <div class="databox-cell cell-4 no-padding padding-10 text-align-left">
+                                    <span class="databox-number green  no-margin">تاریخ ثبت</span>
+                                    <span class="databox-header margin-left-10">@Model.CreateDate.ToStringShamsiDate()</span>
+                                </div>
+                                <hr />
+                                <div class="databox-cell cell-6 no-padding padding-10 padding-left-20 text-align-left">
+                                    <span class="databox-number green  margin-bottom-10">متن پیام</span>
+                                    <br />
+                                    <br />
+                                    <p class="databox-header no-margin">@Html.Raw(Model.Message)</p>
+                                    <hr />
+                                    @if (!string.IsNullOrEmpty(Model.Answer))
+                                    {
+                                        <span class="databox-number green  margin-bottom-10">متن پاسخ</span>
+                                        <br />
+                                        <br />
+                                        <p class="databox-header no-margin">@Html.Raw(Model.Answer)</p>
+                                    }
+                                    else
+                                    {
+                                        <a href="/Admin/ManageSite/AnswerContact/@Model.ContactId" class="btn btn-success col-md-4" title="پاسخ به پیام">ارسال پاسخ</a>
+                                    }
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

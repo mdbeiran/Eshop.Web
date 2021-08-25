@@ -1,0 +1,101 @@
+﻿@model Eshop.ViewModel.Products.SearchProductsViewModel
+@{
+    ViewBag.Title = "محصولات خرده";
+}
+
+<section>
+    <div class="container">
+        @using (Html.BeginRouteForm("CrumbsProducts", FormMethod.Get, new { id = "filter-search" }))
+        {
+            <input type="hidden" name="@nameof(Model.PageId)" value="@Model.ActivePage" id="pageId" />
+            <input type="hidden" name="@nameof(Model.GroupId)" value="@Model.GroupId" id="groupId" />
+            <input type="hidden" name="@nameof(Model.SinglePrice)" value="@Model.SinglePrice" id="SinglePrice" />
+            <input type="hidden" name="@nameof(Model.Title)" value="@((!string.IsNullOrEmpty(Request.QueryString["Title"]))?Request.QueryString["Title"]:"")" id="SinglePrice" />
+
+            <div class="row">
+                <div class="col-sm-9 padding-right">
+                   @if (Model.Products.Any())
+                   {
+                       <div class="features_items">
+                           <!--features_items-->
+                           <h2 class="title text-center">محصولات خرده</h2>
+
+                           @foreach (var product in Model.Products)
+                           {
+                               @Html.Partial("SearchProductBox", product)
+                           }
+
+                           <div class="clearfix"></div>
+                           <ul class="pagination">
+                               @if (Model.ActivePage > 1)
+                               {
+                                   <li><a class="cursur-pointer" onclick="FillPageId(@(Model.ActivePage-1))"><<</a></li>
+                               }
+
+                               @for (int i = 1; i <= Model.PageCount; i++)
+                               {
+                                   <li class="@((Model.ActivePage==i)?"active":"") cursur-pointer"><a onclick="FillPageId(@i)">@i</a></li>
+                               }
+
+                               @if (Model.ActivePage < Model.PageCount)
+                               {
+                                   <li><a class="cursur-pointer" onclick="FillPageId(@(Model.ActivePage+1))">>></a></li>
+                               }
+
+                           </ul>
+                       </div><!--features_items-->
+                   }
+                   else
+                   {
+                       <div class="alert alert-warning">
+                           محصولی پیدا نشد
+                       </div>
+                   }
+                </div>
+
+                <div class="col-sm-3">
+                    <div class="left-sidebar">
+                        <h2>دسته بندی محصولات</h2>
+                        <div class="panel-group category-products" id="accordian">
+                            <!--category-productsr-->
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a href="/CrumbsProducts" class="collapsed">
+                                            <span class="badge pull-right"><i class="fa fa-plus"></i></span>
+                                            همه
+                                        </a>
+                                    </h4>
+                                </div>
+                                @foreach (var mainGroup in Model.ProductGroups.Where(s => s.ParentId == null))
+                                {
+
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a data-toggle="collapse" data-parent="#accordian" href="#Group_@mainGroup.GroupId" class="collapsed">
+                                                <span class="badge pull-right"><i class="fa fa-plus"></i></span>
+                                                @mainGroup.GroupTitle
+                                            </a>
+                                        </h4>
+                                    </div>
+                                    <div id="Group_@mainGroup.GroupId" class="panel-collapse collapse" style="height: 0px;">
+                                        <div class="panel-body">
+                                            <ul>
+                                                @foreach (var subGroup in Model.ProductGroups.Where(s => s.ParentId == mainGroup.GroupId))
+                                                {
+                                                    <li><a onclick="FillGroupId(@subGroup.GroupId)" class="cursur-pointer">@subGroup.GroupTitle </a></li>
+                                                }
+
+                                            </ul>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div><!--/category-productsr-->
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</section>
+

@@ -1,0 +1,32 @@
+﻿@model Eshop.DomainClass.Articles.ArticleComment
+
+@if (Model != null)
+{
+    <li class="ticket-item CursorPointer" id="Comment_Box_@Model.CommantID">
+        <div class="row">
+            <div class="ticket-user col-lg-12 col-sm-12 col-xs-12" onclick="OpenArticleComment('@Model.CommantID')">
+                <span class="user-at">نظر</span>
+                <span class="user-name">@Model.User.UserName</span>
+                <span class="user-at">در رابطه با</span>
+                <span class="user-name">@Model.Article.ArticleTitle</span>
+            </div>
+            <div class="ticket-time ArticleCommentsText col-lg-12 col-sm-12 col-xs-12" id="Comment_Text_@Model.CommantID">
+                <div class="divider hidden-md hidden-sm hidden-xs"></div>
+                <p class="">
+                    @Html.Raw(Model.Comment)
+                </p>
+                <hr />
+                <div class="btn btn-success" onclick="ReadArticleComment(@Model.CommantID)">
+                    دیدم
+                </div>
+                <div class="btn btn-danger" onclick="DeleteArticleComment(@Model.CommantID)">
+                    حذف
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="ticket-state bg-palethemeprimary">
+                <i class="fa fa-check"></i>
+            </div>
+        </div>
+    </li>
+}

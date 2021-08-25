@@ -1,0 +1,32 @@
+﻿@model IEnumerable<Eshop.DomainClass.Articles.ArticleCategory>
+<h2>گروه مقالات</h2>
+<div class="panel-group category-products" id="accordian">
+
+    @foreach (var mainCategory in Model.Where(s => s.ParentID == null))
+    {
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordian" href="#@mainCategory.NameInUrl">
+                        <span class="badge pull-right"><i class="fa fa-plus"></i></span>
+                        @mainCategory.Title
+                    </a>
+                </h4>
+            </div>
+
+            @if (Model.Any(s => s.ParentID == mainCategory.CategoryID))
+                {
+                <div id="@mainCategory.NameInUrl" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <ul>
+                            @foreach (var sub in Model.Where(s => s.ParentID == mainCategory.CategoryID))
+                            {
+                                <li><a href="@Url.RouteUrl("GetArticleCategory", new {categoryName = sub.NameInUrl})">@sub.Title</a></li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</div>

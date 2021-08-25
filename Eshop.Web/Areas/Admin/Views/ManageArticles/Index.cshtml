@@ -1,0 +1,275 @@
+﻿
+@using Eshop.Utilitiy.Convertor
+@model Eshop.ViewModel.Article.AllArticlesViewModel
+@{
+    ViewBag.Title = "لیست مقالات";
+}
+
+
+<!-- Page Breadcrumb -->
+<div class="page-breadcrumbs">
+    <ul class="breadcrumb">
+        <li>
+            <i class="fa fa-home"></i>
+            <a href="#">خانه</a>
+        </li>
+        <li>مدیریت مقالات</li>
+        <li class="active">لیست مقالات</li>
+    </ul>
+</div>
+<!-- /Page Breadcrumb -->
+<!-- Page Header -->
+<div class="page-header position-relative">
+    <div class="header-title">
+        <h1>
+            لیست مقالات
+        </h1>
+    </div>
+    <!--Header Buttons-->
+    <div class="header-buttons">
+        <a class="sidebar-toggler" href="#">
+            <i class="fa fa-arrows-h"></i>
+        </a>
+        <a class="refresh" id="refresh-toggler" href="">
+            <i class="glyphicon glyphicon-refresh"></i>
+        </a>
+        <a class="fullscreen" id="fullscreen-toggler" href="#">
+            <i class="glyphicon glyphicon-fullscreen"></i>
+        </a>
+    </div>
+    <!--Header Buttons End-->
+</div>
+<!-- /Page Header -->
+<!-- Page Body -->
+<div class="page-body">
+
+    <div class="row">
+        <div class="col-sm-4 col-md-3">
+            @using (Html.BeginForm("Index", "ManageArticles", FormMethod.Get, new { id = "filter-search" }))
+            {
+                <input type="number" name="@nameof(Model.PageId)" value="@Model.PageId" hidden id="pageId" />
+                <div class="widget flat radius-bordered">
+                    <div class="widget-header bordered-bottom bordered-blue">
+                        <span class="widget-caption">فیلتر جستجو </span>
+                    </div>
+                    <div class="widget-body bordered-bottom bordered-darkorange">
+
+                        <h5>وضعیت مقاله</h5>
+                        <div class="control-group">
+                            <div class="radio">
+                                <label>
+                                    <input name="@nameof(Model.State)" type="radio" class="colored-blue" @((Model.State == "All" ? "checked" : "")) value="All">
+                                    <span class="text">همه</span>
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input name="@nameof(Model.State)" type="radio" class="colored-blue" @((Model.State == "Active" ? "checked" : "")) value="Active">
+                                    <span class="text">فعال</span>
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input name="@nameof(Model.State)" type="radio" class="colored-success" value="Deleted" @((Model.State == "Deleted" ? "checked" : ""))>
+                                    <span class="text"> حذف شده</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <hr class="wide" />
+                        <h5>براساس گروه :</h5>
+                        @if (Model.SelectedCategories != null && Model.SelectedCategories.Any())
+                        {
+                            foreach (var item in Model.SearchCategories.Where(p => p.ParentID == null))
+                            {
+                                <ul class="UlList">
+                                    <li id="C_@item.CategoryID">
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox" class="colored-success" value="@item.CategoryID" name="@nameof(Model.SelectedCategories)" id="@item.CategoryID" onchange="LoadSubCategory(@item.CategoryID)" @((Model.SelectedCategories.Any(p => p == item.CategoryID)) ? "checked" : "")>
+                                                <span class="text">@item.Title</span>
+                                            </label>
+                                        </div>
+                                        @if (Model.SelectedCategories.Any(p => p == item.CategoryID))
+                                        {
+                                            foreach (var sub in Model.SearchCategories.Where(p => p.ParentID == item.CategoryID))
+                                            {
+                                                <ul class="UlList">
+                                                    <li>
+                                                        <div class="checkbox">
+                                                            <label>
+                                                                <input type="checkbox" class="colored-success" value="@sub.CategoryID" name="@nameof(Model.SelectedCategories)" @((Model.SelectedCategories.Any(p => p == sub.CategoryID)) ? "checked" : "")>
+                                                                <span class="text">@sub.Title</span>
+                                                            </label>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            }
+                                        }
+
+                                    </li>
+                                </ul>
+                            }
+                        }
+                        else
+                        {
+                            foreach (var item in Model.SearchCategories.Where(s => s.ParentID == null))
+                            {
+                                <ul class="UlList">
+                                    <li id="C_@item.CategoryID">
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox" class="colored-success" value="@item.CategoryID" name="@nameof(Model.SelectedCategories)" id="@item.CategoryID" onchange="LoadSubCategory(@item.CategoryID)">
+                                                <span class="text">@item.Title</span>
+                                            </label>
+                                        </div>
+                                    </li>
+                                </ul>
+                            }
+                        }
+                        <hr class="wide" />
+                        <h5>براساس :</h5>
+                        <div class="control-group">
+                            <div class="form-group col-md-12">
+                                <input type="text" class="form-control" name="@nameof(Model.Title)" placeholder="عنوان" value="@Model.Title">
+                            </div>
+                            <div class="form-group col-md-12">
+                                <input type="text" class="form-control" name="@nameof(Model.fromDate)" id="fromDate" placeholder="از تاریخ" value="@((Model.fromDate!=null)?Model.fromDate.Value.ToString("yyyy/MM/dd"):"")">
+                            </div>
+                            <div class="form-group col-md-12">
+                                <input type="text" class="form-control" name="@nameof(Model.toDate)" id="toDate" placeholder="تا تاریخ" value="@((Model.toDate!=null)?Model.toDate.Value.ToString("yyyy/MM/dd"):"")">
+                            </div>
+                            <div class="form-group col-md-12">
+                                <input type="submit" class="btn btn-primary btn-block" value="جستجو">
+                            </div>
+                            <div class="form-group col-md-12">
+                                <a href="/Admin/ManageArticles/CreateArticle" class="btn btn-success btn-block">
+                                    افزودن مقاله
+                                </a>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="col-sm-8 col-md-9">
+            @if (Model.Articles.Any())
+            {
+                <div class="well with-header with-footer">
+                    <div class="header bordered-green">
+                        لیست مقالات
+                    </div>
+                    <div class="clearfix"></div>
+                    <br>
+                    <div class="table-responsive col-md-12">
+                        <table class="table table-striped table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        <i class="fa fa-lg fa-user"></i> نویسنده
+                                    </th>
+                                    <th>
+                                        <i class="fa fa-lg fa-envelope"></i> عنوان
+                                    </th>
+                                    <th>
+                                        <i class="fa fa-lg fa-envelope"></i> تاریخ ثبت
+                                    </th>
+                                    <th>
+                                        <i class="fa fa-lg fa-mobile-phone"></i> قابلیت نظردهی
+                                    </th>
+                                    <th>
+                                        <i class="fa fa-lg fa-cog"></i> وضعیت
+                                    </th>
+                                    <th>
+                                        <i class="fa fa-lg fa-shopping-cart"></i> دستورات
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.Articles)
+                                {
+                                    <tr id="ArticleBox_@item.ArticleID">
+                                        <td>
+                                            <a class="btn btn-link" href="/Admin/ManageUsers/GoToUserPanel/@item.AuthorID">@item.User.UserName</a>
+                                        </td>
+                                        <td>
+                                            @item.ArticleTitle
+                                        </td>
+                                        <td>
+                                            @item.CreateDate.ToStringShamsiDate()
+                                        </td>
+                                        <td>
+                                            @((item.CanInsertComment) ? "بله" : "خیر")
+                                        </td>
+                                        <td>
+                                            @((item.IsActive) ? "فعال" : "غیر فعال")
+                                        </td>
+                                        <td>
+                                            <a href="/Admin/ManageArticles/EditArticle/@item.ArticleID" class="btn btn-warning btn-circle btn-xs" title="ویرایش">
+                                                <i class="glyphicon glyphicon-edit"></i>
+                                            </a>
+                                            <a href="/Admin/ManageArticles/VisitArticleComments/@item.ArticleID" class="btn btn-info btn-circle btn-xs" title="نظرات کاربران">
+                                                <i class="glyphicon glyphicon-align-right"></i>
+                                            </a>
+                                            @if (!item.IsDelete)
+                                            {
+                                                <a onclick="DeleteArticle('@item.ArticleID')" class="btn btn-danger btn-circle btn-xs" title="حذف" data-remodal-target="modal">
+                                                    <i class="glyphicon glyphicon-trash"></i>
+                                                </a>
+                                            }
+                                            else
+                                            {
+                                                <a onclick="ReturndArticle(@item.ArticleID)" data-remodal-target="modal">
+                                                    <span class="btn btn-success btn-circle btn-xs" title="بازگرداندن">
+                                                        <i class="glyphicon glyphicon-repeat "></i>
+                                                    </span>
+                                                </a>
+                                            }
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                        <div class="clearfix"></div>
+                    </div>
+                    <br />
+                    <div class="footer">
+                        <ul class="pagination">
+                            @for (int i = 1; i <= Model.PageCount; i++)
+                            {
+                                <li class="@((i == Model.ActivePage) ? "active" : "")">
+                                    <a class="hover-img" onclick="FillPageId(@i)">@i <span class="sr-only">(current)</span></a>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                    <div class="clearfix"></div>
+                    <br />
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<div class="remodal" data-remodal-id="modal">
+    <button data-remodal-action="close" class="remodal-close"></button>
+    <h1>احتیاط</h1>
+    <p>
+        آیا از عملیات مورد نظر اطمینان دارید؟
+    </p>
+    <br>
+    <button data-remodal-action="confirm" class="remodal-confirm">بله</button>
+    <button data-remodal-action="cancel" class="remodal-cancel">خیر</button>
+</div>
+
+
+@section Scripts
+{
+    <link href="~/Areas/Admin/Content/Percian-Calender/style/kamadatepicker.min.css" rel="stylesheet" />
+    <script src="~/Areas/Admin/Content/Percian-Calender/src/kamadatepicker.min.js"></script>
+    <script src="~/Areas/Admin/Content/CustomJs/jquery.blockUI.js"></script>
+    <script src="~/Areas/Admin/Content/CustomJs/ManageArticles.js"></script>
+}
+
+

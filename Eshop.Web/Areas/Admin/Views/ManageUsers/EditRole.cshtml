@@ -1,0 +1,159 @@
+﻿@model Eshop.ViewModel.User.EditRoleViewModel
+
+@{
+    ViewBag.Title = "ویرایش نقش";
+}
+
+
+<!-- Page Breadcrumb -->
+<div class="page-breadcrumbs">
+    <ul class="breadcrumb">
+        <li>
+            <i class="fa fa-home"></i>
+            <a href="#">خانه</a>
+        </li>
+        <li class="active">مدیریت کاربران</li>
+        <li class="active">ویرایش نقش</li>
+    </ul>
+</div>
+<!-- /Page Breadcrumb -->
+<!-- Page Header -->
+<div class="page-header position-relative">
+    <div class="header-title">
+        <h1>
+            ویرایش
+        </h1>
+    </div>
+    <!--Header Buttons-->
+    <div class="header-buttons">
+        <a class="sidebar-toggler" href="#">
+            <i class="fa fa-arrows-h"></i>
+        </a>
+        <a class="refresh" id="refresh-toggler" href="">
+            <i class="glyphicon glyphicon-refresh"></i>
+        </a>
+        <a class="fullscreen" id="fullscreen-toggler" href="#">
+            <i class="glyphicon glyphicon-fullscreen"></i>
+        </a>
+    </div>
+    <!--Header Buttons End-->
+</div>
+<!-- /Page Header -->
+<!-- Page Body -->
+<div class="page-body">
+    @if (ViewBag.Success == "yes")
+    {
+        <div class="alert alert-success">
+            نقش با موفقیت ثبت شد
+        </div>
+    }
+    <div class="row">
+        <div class="col-lg-12 col-sm-12 col-xs-12">
+            @using (Html.BeginForm("EditRole", "ManageUsers", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                <input type="number" value="@ViewBag.roleId" name="@nameof(Model.RoleId)" hidden />
+                <input type="checkbox" value="@Model.IsDelete" name="@nameof(Model.IsDelete)" hidden />
+                <div class="row">
+                    <div class="col-lg-8 col-sm-8 col-xs-12">
+                        <div class="widget flat radius-bordered">
+                            <div class="widget-header bg-yellow">
+                                <span class="widget-caption">فرم ثبت کاربر</span>
+                            </div>
+                            <div class="widget-body">
+                                <div id="registration-form">
+                                    <div class="form-group col-md-9">
+                                        <span class="input-icon icon-right">
+                                            @Html.EditorFor(model => model.RoleTitle, new { htmlAttributes = new { @class = "form-control", PlaceHolder = Html.DisplayNameFor(m => m.RoleTitle) } })
+                                            @Html.ValidationMessageFor(model => model.RoleTitle, "", new { @class = "text-danger" })
+                                            <i class="fa fa-user circular"></i>
+                                        </span>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox" class="colored-success" name="@nameof(Model.IsDefaultRole)" @((Model.IsDefaultRole) ? "checked" : "") value="true">
+                                                <span class="text">@Html.DisplayNameFor(model => model.IsDefaultRole)</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                    <div class="form-group col-md-3">
+                                        <button type="submit" class="btn btn-block btn-warning">ویرایش</button>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-4 col-xs-12">
+                        <div class="widget flat radius-bordered">
+                            <div class="widget-header bg-yellow">
+                                <span class="widget-caption">دسترسی ها</span>
+                            </div>
+                            <div class="widget-body">
+                                <div id="registration-form">
+                                    @if (Model.SelectedPermissions != null)
+                                    {
+                                        foreach (var item in Model.Permissions.Where(p => p.ParentId == 1))
+                                        {
+                                            <ul class="UlList">
+                                                <li id="P_@item.PermissionId">
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" class="colored-success" value="@item.PermissionId" name="@nameof(Model.EditedPermissions)" @((Model.SelectedPermissions.Any(p => p.PermissionId == item.PermissionId)) ? "checked" : "") id="@item.PermissionId" onchange="LoadSubPermission(@item.PermissionId)">
+                                                            <span class="text">@item.Title</span>
+                                                        </label>
+                                                    </div>
+                                                    @if (Model.SelectedPermissions.Any(p => p.PermissionId == item.PermissionId))
+                                                    {
+                                                        foreach (var sub in Model.Permissions.Where(p => p.ParentId == item.PermissionId))
+                                                        {
+                                                            <ul class="UlList">
+                                                                <li>
+                                                                    <div class="checkbox">
+                                                                        <label>
+                                                                            <input type="checkbox" class="colored-success" value="@sub.PermissionId" name="@nameof(Model.EditedPermissions)" @((Model.SelectedPermissions.Any(p => p.PermissionId == sub.PermissionId)) ? "checked" : "")>
+                                                                            <span class="text">@sub.Title</span>
+                                                                        </label>
+                                                                    </div>
+                                                                </li>
+                                                            </ul>
+                                                        }
+                                                    }
+
+                                                </li>
+                                            </ul>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        foreach (var item in Model.Permissions)
+                                        {
+                                            <ul>
+                                                <li id="P_@item.PermissionId">
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" class="colored-success" value="@item.PermissionId" name="@nameof(Model.SelectedPermissions)" id="@item.PermissionId" onchange="LoadSubPermission(@item.PermissionId)">
+                                                            <span class="text">@item.Title</span>
+                                                        </label>
+                                                    </div>
+                                                </li>
+                                            </ul>
+
+                                        }
+                                    }
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+@section Scripts
+{
+    <script src="~/Areas/Admin/Content/CustomJs/EditRole.js"></script>
+}

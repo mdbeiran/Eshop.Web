@@ -1,0 +1,122 @@
+﻿@using Eshop.Business.StaticTools
+@model Tuple<List<Eshop.DomainClass.Product.Product>, List<Eshop.DomainClass.Product.Product>, List<Eshop.DomainClass.Product.ProductGroup>>
+@{
+    ViewBag.Title = "لیست علاقه مندی ها";
+    int scrollcount = 1;
+    int skip = 0;
+}
+
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-9 padding-right">
+
+                <h3 class="wish-list-title">لیست علاقه منـدی ها</h3>
+                <div class="wish-list">
+                    @if (Model.Item1 != null && Model.Item1.Any() || (Model.Item2.Any() && Model.Item2 != null))
+                    {
+                        <div class="table-responsive cart_info">
+                            <table class="table table-condensed">
+                                <tbody>
+                                    @foreach (var product in Model.Item1)
+                                    {
+                                        <tr id="PublicWishBox_@product.ProductId">
+                                            <td class="cart_product">
+                                                <a href="@Url.RouteUrl("MajorProductDetail",new{id =product.ProductId})"><img src="@PathTools.ProductImageThumbPath@product.PUblicProductImageName" alt="@product.Title" class="width-75"></a>
+                                            </td>
+                                            <td class="cart_description">
+                                                <h4><a href="@Url.RouteUrl("MajorProductDetail",new{id =product.ProductId})">@product.Title</a></h4>
+                                                <p>کالای عمده</p>
+                                                <p>شناسـه : @product.ProductCode</p>
+                                            </td>
+                                            <td class="cart_price">
+                                                <p>@product.PublicPrice.ToString("#,0") تومان</p>
+                                            </td>
+                                            <td class="cart_delete">
+                                                <a class="cart_quantity_delete CursorPointer" onclick="DeletePublicWish(@product.ProductId)"><i class="fa fa-times"></i></a>
+                                            </td>
+                                        </tr>
+                                    }
+                                    @foreach (var product in Model.Item2)
+                                    {
+                                        <tr id="SingleWishBox_@product.ProductId">
+                                            <td class="cart_product">
+                                                <a href="@Url.RouteUrl("ProductDetail",new{id =product.ProductId})"><img src="@PathTools.ProductImageThumbPath@product.SingleProductImageName" alt="@product.Title" class="width-75"></a>
+                                            </td>
+                                            <td class="cart_description">
+                                                <h4><a href="@Url.RouteUrl("ProductDetail",new{id =product.ProductId})">@product.Title</a></h4>
+                                                <p>کالای خرده</p>
+                                                <p>شناسـه : @product.ProductCode</p>
+                                            </td>
+                                            <td class="cart_price">
+                                                <p>@product.SinglePrice.ToString("#,0") تومان</p>
+                                            </td>
+                                            <td class="cart_delete">
+                                                <a class="cart_quantity_delete CursorPointer" onclick="DeleteSingleWish(@product.ProductId)"><i class="fa fa-times"></i></a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="alert alert-warning">
+                            محصول مورد علاقه ای وجود ندارد
+                        </div>
+                    }
+                </div>
+
+
+            </div>
+            <div class="col-sm-3">
+                <div class="left-sidebar">
+                    <h2>دسته بندی محصولات</h2>
+                    <div class="panel-group category-products" id="accordian">
+                        <!--category-productsr-->
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a href="/CrumbsProducts" class="collapsed">
+                                        <span class="badge pull-right"><i class="fa fa-plus"></i></span>
+                                        همه
+                                    </a>
+                                </h4>
+                            </div>
+                            @foreach (var mainGroup in Model.Item3.Where(s => s.ParentId == null))
+                            {
+
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#accordian" href="#Group_@mainGroup.GroupId" class="collapsed">
+                                            <span class="badge pull-right"><i class="fa fa-plus"></i></span>
+                                            @mainGroup.GroupTitle
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="Group_@mainGroup.GroupId" class="panel-collapse collapse" style="height: 0px;">
+                                    <div class="panel-body">
+                                        <ul>
+                                            @foreach (var subGroup in Model.Item3.Where(s => s.ParentId == mainGroup.GroupId))
+                                            {
+                                                <li><a href="@Url.RouteUrl("CrumbsProducts",new {GroupId=subGroup.GroupId})" class="cursur-pointer">@subGroup.GroupTitle </a></li>
+                                            }
+
+                                        </ul>
+                                    </div>
+                                </div>
+                                skip++;
+                            }
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <br />
+    </div>
+</section>
+

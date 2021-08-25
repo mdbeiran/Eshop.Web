@@ -1,0 +1,50 @@
+﻿@using Eshop.Business.StaticTools
+@model IEnumerable<Eshop.DomainClass.Public.Slider>
+@{
+    int count = Model.Count();
+    int sliderCount = 1;
+}
+@if (Model.Any())
+{
+    <section id="slider">
+        <!--slider-->
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div id="slider-carousel" class="carousel slide" data-ride="carousel">
+                        <ol class="carousel-indicators">
+                            @for (int i = 0; i < count; i++)
+                            {
+                                <li data-target="#slider-carousel" data-slide-to="0" class="@((i==0)?"active":"")"></li>
+                            }
+                        </ol>
+                        <div class="carousel-inner">
+                            @foreach (var slider in Model)
+                            {
+                                <div class="item @((sliderCount==1) ? "active" : "")">
+                                    <div class="col-sm-6">
+                                        <h2>@slider.Title</h2>
+                                        @Html.Raw(slider.Text)
+
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <a href="@slider.Url" onclick="AddSliderVisit(@slider.ID)">
+                                            <img src="@PathTools.ThumbSliderImagePath@slider.ImageName" class="girl img-responsive" alt="">
+                                        </a>
+                                    </div>
+                                </div>
+                                sliderCount++;
+                            }
+                        </div>
+                        <a href="#slider-carousel" class="left control-carousel hidden-xs" data-slide="prev">
+                            <i class="fa fa-angle-left"></i>
+                        </a>
+                        <a href="#slider-carousel" class="right control-carousel hidden-xs" data-slide="next">
+                            <i class="fa fa-angle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+}

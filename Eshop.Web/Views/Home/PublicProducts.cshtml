@@ -1,0 +1,46 @@
+﻿@model IEnumerable<Eshop.DomainClass.Product.Product>
+
+@if (Model.Any())
+{
+    <div class="features_items">
+        <!--WholeSale_items-->
+        <a href="/MajorProducts"><h2 class="title text-center">فـروش عـمده</h2></a>
+        <div id="major-item-carousel" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+                
+                @if (Model.Count() % 4 == 0)
+                {
+                    for (int i = 1; i <= Model.Count() / 4; i++)
+                    {
+                        int count = i;
+                        <div class="item @((count == 1) ? "active" : "")">
+                            @foreach (var item in Model.Skip((i - 1) * 4).Take(4))
+                            {
+                                @Html.Partial("PublicProductBox", item)
+                            }
+                        </div>
+                    }
+                }
+                else if (Model.Count() % 4 > 0)
+                {
+                    for (int i = 1; i <= (Model.Count() / 4) + 1; i++)
+                    {
+                        int count = i;
+                        <div class="item @((count == 1) ? "active" : "")">
+                            @foreach (var item in Model.Skip((i - 1) * 4).Take(4))
+                            {
+                                @Html.Partial("PublicProductBox", item)
+                            }
+                        </div>
+                    }
+                }
+            </div>
+            <a class="left recommended-item-control" href="#major-item-carousel" data-slide="prev">
+                <i class="fa fa-angle-left"></i>
+            </a>
+            <a class="right recommended-item-control" href="#major-item-carousel" data-slide="next">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        </div>
+    </div>
+}

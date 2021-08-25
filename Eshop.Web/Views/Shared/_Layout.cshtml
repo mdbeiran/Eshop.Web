@@ -1,0 +1,264 @@
+﻿@using System.Web.Optimization
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="mohammad1375ordo">
+    <meta name="google-site-verification" content="XYoAo-NNUePg5YJqMoE3oUmBzrIGjZXz6mSH5KrW6F0"/>
+    <title>@ViewBag.title</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/Content/images/home/logo.png"/>
+    <link href="/Content/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/Content/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/Content/css/prettyPhoto.css" rel="stylesheet">
+    <link href="/Content/css/price-range.css" rel="stylesheet">
+    <link href="/Content/css/animate.css" rel="stylesheet">
+    <link href="/Content/css/main.css" rel="stylesheet">
+    <link href="/Content/css/responsive.css" rel="stylesheet">
+    <link href="~/Content/SweetAlert/dist/sweetalert.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="/Content/css/slider.css">
+    <style>
+        .mySlides { display: none }
+
+        .NewSlider-left, .NewSlider-right, .NewSlider-badge { cursor: pointer }
+
+        .NewSlider-badge {
+            height: 13px;
+            width: 13px;
+            padding: 0
+        }
+    </style>
+
+    @RenderSection("CustomStyles", false)
+
+    <link href="~/Content/lightbox/dist/css/lightbox.min.css" rel="stylesheet"/>
+    <!--[if lt IE 9]>
+        <script src="/Content/js/html5shiv.js"></script>
+        <script src="/Content/js/respond.min.js"></script>
+    <![endif]-->
+</head>
+<!--/head-->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=GA_TRACKING_ID"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() { dataLayer.push(arguments); }
+
+    gtag('js', new Date());
+
+    gtag('config', 'UA-112740798-2');
+</script>
+<body>
+<header id="header">
+    <!--header-->
+    <div class="header_top">
+        <!--header_top-->
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="contactinfo">
+                        <ul class="nav nav-pills">
+                            <li>
+                                <a href="#"><i class="fa fa-phone"></i> 80 21 24 36 98+ </a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="fa fa-envelope"></i> info@domain.com</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="social-icons pull-right">
+                        <ul class="nav navbar-nav">
+                            <li>
+                                <a href="#">
+                                    <i class="fa fa-facebook"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="fa fa-twitter"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="fa fa-linkedin"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="fa fa-dribbble"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="fa fa-google-plus"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/header_top-->
+
+    <div class="header-middle">
+        <!--header-middle-->
+        <div class="container">
+            <div class="row">
+                <!-- <div class="col-sm-4 header-middle-menu">
+                    <div class="shop-menu pull-left">
+                        <ul class="nav navbar-nav">
+                            <li><a href="checkout.html"><i class="fa fa-crosshairs"></i> پرداخت</a></li>
+                        </ul>
+                    </div>
+                </div> -->
+
+                <div class="col-sm-4" style="text-align: left;">
+                    <div class="logo">
+                        <a href="/">
+                            <span style="color: orange; font-size: 1.5em">کار</span><span style="color: darkgray; font-size: 1.5em">زیبا</span>
+                            <img src="/Content/images/home/logo.png" alt="Logo" style="text-align: center; width: 75px; height: 75px"/>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-sm-8 header-middle-menu">
+                    <div class="shop-menu pull-right">
+                        <ul class="nav navbar-nav">
+                            <li>
+                                <a href="/Home/WishList"><i class="fa fa-star"></i> لیست علاقه مندی ها</a>
+                            </li>
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <li>
+                                    <a href="/User/ShopCart"><i class="fa fa-shopping-cart"></i> سبد خریـد</a>
+                                </li>
+                                <li>
+                                    <a href="/User"><i class="fa fa-user"></i> پنل کاربری </a>
+                                </li>
+                                <li>
+                                    <a href="/SignOut"><i class="fa fa-sign-out"></i> خروج </a>
+                                </li>
+                            }
+                            else
+                            {
+                                <li>
+                                    <a href="/Register"><i class="fa fa-lock"></i> ثبت نام</a>
+                                </li>
+                                <li>
+                                    <a href="/Login"><i class="fa fa-lock"></i> ورود</a>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/header-middle-->
+
+    <div class="header-bottom">
+        <!--header-bottom-->
+        <div class="container">
+            <div class="row">
+
+                    <div class="col-sm-3">
+                        <div class="search_box pull-left">
+                            <form action="/CrumbsProducts" method="get">
+                                <input type="text" name="Title" value="@((!string.IsNullOrEmpty(Request.QueryString["Title"]))?Request.QueryString["Title"]:"")" placeholder="جستـجو" />
+                            </form>
+                        </div>
+                    </div>
+
+                <div class="col-sm-9">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                    </div>
+                    <div class="mainmenu pull-right">
+                        <ul class="nav navbar-nav collapse navbar-collapse">
+                            <li>
+                                <a href="/" class="">خـانه</a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#">فروشگـاه<i class="fa fa-angle-down"></i></a>
+                                <ul role="menu" class="sub-menu">
+                                    <li>
+                                        <a href="/CrumbsProducts">محصولات خرده</a>
+                                    </li>
+                                    <li>
+                                        <a href="/MajorProducts">محصولات عمده</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="/Articles">اخبـار</a>
+                            </li>
+                            <li>
+                                <a href="/AboutUs">درباره مـا</a>
+                            </li>
+                            <li>
+                                <a href="/ContactUs">تماس با مـا</a>
+                            </li>
+                            <li>
+                                <a href="/SiteRules">قوانین سایت</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!--/header-bottom-->
+
+</header>
+<!--/header-->
+
+@RenderBody()
+
+@Html.Action("Footer", "Home", new {area = ""})
+@Scripts.Render("~/bundles/MainJs")
+<script>
+    var slideIndex = 1;
+    showDivs(slideIndex);
+
+    function plusDivs(n) {
+        showDivs(slideIndex += n);
+    }
+
+    function currentDiv(n) {
+        showDivs(slideIndex = n);
+    }
+
+    function showDivs(n) {
+        var i;
+        var x = document.getElementsByClassName("mySlides");
+        var dots = document.getElementsByClassName("demo");
+        if (n > x.length) {
+            slideIndex = 1;
+        }
+        if (n < 1) {
+            slideIndex = x.length;
+        }
+        for (i = 0; i < x.length; i++) {
+            x[i].style.display = "none";
+        }
+        for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" NewSlider-white", "");
+        }
+        x[slideIndex - 1].style.display = "block";
+        dots[slideIndex - 1].className += " NewSlider-white";
+    }
+</script>
+@RenderSection("CustomScripts", false)
+</body>
+</html>

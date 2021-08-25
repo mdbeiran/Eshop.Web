@@ -1,0 +1,154 @@
+﻿@using Eshop.Business.StaticTools
+@model Eshop.DomainClass.Order.Order
+@{
+    ViewBag.Title = "سبد خرید کاربر";
+}
+
+<section id="cart_items">
+    <div class="container">
+        <div class="breadcrumbs">
+            <ol class="breadcrumb">
+                <li><a href="#">خانـه</a></li>
+                <li class="active">سبد خرید</li>
+            </ol>
+        </div><!--/breadcrums-->
+
+        @if (Model != null)
+        {
+            if (Model.OrderDetails != null && Model.OrderDetails.Any())
+            {
+                <div class="alert alert-warning">
+                    <p class="text-bold">
+                        در صورت نیاز به تغییر، گزینه مورد نظر خود را تغییر داده و روی دکمه ویرایش همان محصول کلیک کنید
+                    </p>
+                </div>
+                <div>
+                    @foreach (var product in Model.OrderDetails)
+                    {
+                        <div id="DetailBox_@product.DetailId">
+                            @using (Ajax.BeginForm("EditOrderDetail", "MyProducts", new AjaxOptions { HttpMethod = "POST", OnSuccess = "EditOrderSuccess", OnFailure = "EditOrderFailur" }, new { id = "EditOrderForm_" + product.DetailId }))
+                            {
+                                @Html.AntiForgeryToken()
+                                <input type="number" name="order" value="@product.OrderId" hidden/>
+                                <input type="hidden" Name="DetailId" value="@product.DetailId" id="Detail_@product.DetailId" />
+                                <div class="col-md-12 well">
+
+                                    <div class="col-md-2 pull-right">
+                                        @if (ViewBag.TotalCount > ViewBag.MinimumCount)
+                                        {
+                                            <img src="@PathTools.ProductImageThumbPath@product.Product.PUblicProductImageName" alt="" style="width: 100%" class="img-thumbnail">
+                                        }
+                                        else
+                                        {
+                                            <img src="@PathTools.ProductImageThumbPath@product.Product.SingleProductImageName" alt="" style="width: 100%" class="img-thumbnail">
+                                        }
+                                    </div>
+
+                                    <div class="col-md-2 pull-right">
+                                        
+                                        @if (ViewBag.TotalCount > ViewBag.MinimumCount)
+                                        {
+                                            <h4>عنوان : <a href="/MajorProductDetail/@product.ProductId">@product.Product.Title</a></h4>
+                                        }
+                                        else
+                                        {
+                                            <h4>عنوان : <a href="/ProductDetail/@product.ProductId">@product.Product.Title</a></h4>
+                                        }
+                                        <p>شناسـه : @product.Product.ProductCode</p>
+                                        <p>قیمت : @((ViewBag.TotalCount > ViewBag.MinimumCount) ? product.Product.PublicPrice : product.Product.SinglePrice)</p>
+                                        <p>مجموع : @((ViewBag.TotalCount > ViewBag.MinimumCount) ? product.Product.PublicPrice * product.Count : product.Product.SinglePrice * product.Count)</p>
+
+                                    </div>
+
+                                    <div class="col-md-8 pull-right">
+                                        <div class="col-md-12">
+                                            <label>تعداد :</label>
+                                            <input class="form-control" name="count" size="2" value="@product.Count" autocomplete="off" type="number">
+                                          
+                                            @foreach (var item in product.Product.ProductSelectedFeatures.GroupBy(s => s.FeatureId).Select(s => s.First()))
+                                            {
+                                                <label>@item.ProductFeatures.FeatureTitle :</label>
+
+                                                <select name="selectedFeatures">
+                                                    @foreach (var selected in product.Product.ProductSelectedFeatures.Where(s => s.FeatureId == item.FeatureId && !s.IsDelete))
+                                                    {
+                                                        <option value="@selected.PF_Id" @((product.OrderSelectedFeatures.Any(s => s.PF_Id == selected.PF_Id)) ? "selected" : "")>@selected.Value</option>
+                                                    }
+                                                </select>
+                                            }
+                                        </div>
+                                        <div class="clearfix"></div>
+                                        <br />
+
+                                        <div class="col-md-3 col-xs-12 col-sm-12">
+                                            <a class="btn btn-danger btn-block" onclick="DeleteOrderDetail(@product.DetailId)">حذف کردن</a>
+                                        </div>
+                                        <div class="col-md-3 col-xs-12 col-sm-12">
+                                            <a class="btn btn-warning btn-block" onclick="SubmitFrom(@product.DetailId)">ویرایش محصول</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                            <div class="clearfix"></div>
+                        </div>
+                    }
+                </div>
+            }
+            else
+            {
+                <div class="alert alert-warning">
+                    <p>
+                        سبد خرید شما خالیست
+                    </p>
+                </div>
+            }
+        }
+        else
+        {
+            <div class="alert alert-warning">
+                <p>
+                    سبد خرید شما خالیست
+                </p>
+            </div>
+        }
+    </div>
+</section>
+@if (Model != null)
+{
+    if (Model.OrderDetails != null && Model.OrderDetails.Any())
+    {
+        <section id="do_action">
+            <div class="container">
+                <div class="heading">
+                    <h3>نهایی کردن سفارش! </h3>
+                    <p>با کلیک بر روی پرداخت ، به درگاه بانکی انتقال خواهید یافت و پس از تایید ، کالا برای شما ارسال خواهد شد</p>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="total_area">
+                            <ul>
+                                <li>مجمـوع سبـد خریـد <span>@ViewBag.Sum.ToString("#,0") تومان</span></li>
+                                <li>هزینـه حمل و نقـل <span>رایـگان</span></li>
+                                <li>مجمـوع <span>@ViewBag.Final.ToString("#,0") تومان</span></li>
+                            </ul>
+                            @if (!string.IsNullOrEmpty(Model.User.Address))
+                            {
+                                <a class="btn btn-default check_out" href="/User/Payment">پرداخت</a>
+                            }
+                            else
+                            {
+                                <div class="alert alert-warning">
+                                    <p>
+                                        لطفا آدرس خود را وارد نمایید
+                                    </p>
+                                </div>
+                                <a class="btn btn-default check_out" href="/User/EditInformation">افزودن آدرس جدید</a>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    }
+}
+

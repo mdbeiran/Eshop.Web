@@ -1,0 +1,1154 @@
+﻿<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="..\packages\Microsoft.Net.Compilers.1.3.2\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.1.3.2\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{D1981441-06F4-4BBB-A523-ABE2C223B144}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Eshop.Web</RootNamespace>
+    <AssemblyName>Eshop.Web</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <Use64BitIISExpress />
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Antlr3.Runtime, Version=3.5.0.2, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Kavenegar, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Kavenegar.1.1.2\lib\net40\Kavenegar.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.6\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.6\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.6\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.6\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.6\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.6\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="WebGrease, Version=1.6.5135.21930, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Web.Infrastructure">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Content\91.svg" />
+    <Content Include="Areas\Admin\Content\css\4095-rtl.css" />
+    <Content Include="Areas\Admin\Content\css\4095-rtl.min.css" />
+    <Content Include="Areas\Admin\Content\css\4095.css" />
+    <Content Include="Areas\Admin\Content\css\4095.min.css" />
+    <Content Include="Areas\Admin\Content\css\animate.css" />
+    <Content Include="Areas\Admin\Content\css\animate.min.css" />
+    <Content Include="Areas\Admin\Content\css\beyond-rtl.css" />
+    <Content Include="Areas\Admin\Content\css\beyond-rtl.min.css" />
+    <Content Include="Areas\Admin\Content\css\beyond.css" />
+    <Content Include="Areas\Admin\Content\css\beyond.min.css" />
+    <Content Include="Areas\Admin\Content\css\bootstrap-rtl-less\bootstrap-rtl.css" />
+    <Content Include="Areas\Admin\Content\css\bootstrap-rtl-less\bootstrap-rtl.min.css" />
+    <Content Include="Areas\Admin\Content\css\bootstrap-rtl-less\mixins-rtl.css" />
+    <Content Include="Areas\Admin\Content\css\bootstrap-rtl-less\mixins-rtl.min.css" />
+    <Content Include="Areas\Admin\Content\css\bootstrap-rtl.css" />
+    <Content Include="Areas\Admin\Content\css\bootstrap-rtl.min.css" />
+    <Content Include="Areas\Admin\Content\css\bootstrap.css" />
+    <Content Include="Areas\Admin\Content\css\bootstrap.min.css" />
+    <Content Include="Areas\Admin\Content\css\dataTables.bootstrap.css" />
+    <Content Include="Areas\Admin\Content\css\dataTables.bootstrap.rtl.css" />
+    <Content Include="Areas\Admin\Content\css\demo.css" />
+    <Content Include="Areas\Admin\Content\css\demo.min.css" />
+    <Content Include="Areas\Admin\Content\css\font-awesome.css" />
+    <Content Include="Areas\Admin\Content\css\font-awesome.min.css" />
+    <Content Include="Areas\Admin\Content\css\other-less\LessHat.css" />
+    <Content Include="Areas\Admin\Content\css\other-less\lesshat.min.css" />
+    <Content Include="Areas\Admin\Content\css\skins\azure.css" />
+    <Content Include="Areas\Admin\Content\css\skins\azure.min.css" />
+    <Content Include="Areas\Admin\Content\css\skins\black.css" />
+    <Content Include="Areas\Admin\Content\css\skins\black.min.css" />
+    <Content Include="Areas\Admin\Content\css\skins\blue.css" />
+    <Content Include="Areas\Admin\Content\css\skins\blue.min.css" />
+    <Content Include="Areas\Admin\Content\css\skins\darkblue.css" />
+    <Content Include="Areas\Admin\Content\css\skins\darkblue.min.css" />
+    <Content Include="Areas\Admin\Content\css\skins\darkred.css" />
+    <Content Include="Areas\Admin\Content\css\skins\darkred.min.css" />
+    <Content Include="Areas\Admin\Content\css\skins\deepblue.css" />
+    <Content Include="Areas\Admin\Content\css\skins\deepblue.min.css" />
+    <Content Include="Areas\Admin\Content\css\skins\gray.css" />
+    <Content Include="Areas\Admin\Content\css\skins\gray.min.css" />
+    <Content Include="Areas\Admin\Content\css\skins\green.css" />
+    <Content Include="Areas\Admin\Content\css\skins\green.min.css" />
+    <Content Include="Areas\Admin\Content\css\skins\orange.css" />
+    <Content Include="Areas\Admin\Content\css\skins\orange.min.css" />
+    <Content Include="Areas\Admin\Content\css\skins\pink.css" />
+    <Content Include="Areas\Admin\Content\css\skins\pink.min.css" />
+    <Content Include="Areas\Admin\Content\css\skins\purple.css" />
+    <Content Include="Areas\Admin\Content\css\skins\purple.min.css" />
+    <Content Include="Areas\Admin\Content\css\skins\skins-mixins.css" />
+    <Content Include="Areas\Admin\Content\css\skins\skins-mixins.min.css" />
+    <Content Include="Areas\Admin\Content\css\skins\teal.css" />
+    <Content Include="Areas\Admin\Content\css\skins\teal.min.css" />
+    <Content Include="Areas\Admin\Content\css\typicons.css" />
+    <Content Include="Areas\Admin\Content\css\typicons.min.css" />
+    <Content Include="Areas\Admin\Content\css\weather-icons.css" />
+    <Content Include="Areas\Admin\Content\css\weather-icons.min.css" />
+    <Content Include="Areas\Admin\Content\CustomJs\config.js" />
+    <Content Include="Areas\Admin\Content\CustomJs\Custom.js" />
+    <Content Include="Areas\Admin\Content\CustomJs\jquery.blockUI.js" />
+    <Content Include="Areas\Admin\Content\CustomJs\ManageArticles.js" />
+    <Content Include="Areas\Admin\Content\CustomJs\Product.js" />
+    <Content Include="Areas\Admin\Content\CustomJs\ResizeTextArea.js" />
+    <Content Include="Areas\Admin\Content\CustomJs\ScrollToTop.js" />
+    <Content Include="Areas\Admin\Content\CustomStyle\Custom.css" />
+    <Content Include="Areas\Admin\Content\CustomStyle\ScrollToTop.css" />
+    <Content Include="Areas\Admin\Content\fonts\fontawesome-webfont.svg" />
+    <Content Include="Areas\Admin\Content\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Areas\Admin\Content\fonts\typicons.svg" />
+    <Content Include="Areas\Admin\Content\fonts\weathericons-regular-webfont.svg" />
+    <Content Include="Areas\Admin\Content\img\angle-down.png" />
+    <Content Include="Areas\Admin\Content\img\app-45616.png" />
+    <Content Include="Areas\Admin\Content\img\app.png" />
+    <Content Include="Areas\Admin\Content\img\attach-blue.png" />
+    <Content Include="Areas\Admin\Content\img\attach-green.png" />
+    <Content Include="Areas\Admin\Content\img\attach-red.png" />
+    <Content Include="Areas\Admin\Content\img\attach-yellow.png" />
+    <Content Include="Areas\Admin\Content\img\avatars\adam-jansen.jpg" />
+    <Content Include="Areas\Admin\Content\img\avatars\bing.png" />
+    <Content Include="Areas\Admin\Content\img\avatars\divyia.jpg" />
+    <Content Include="Areas\Admin\Content\img\avatars\Javi-Jimenez.jpg" />
+    <Content Include="Areas\Admin\Content\img\avatars\John-Smith.jpg" />
+    <Content Include="Areas\Admin\Content\img\avatars\Lee-Munroe.jpg" />
+    <Content Include="Areas\Admin\Content\img\avatars\Matt-Cheuvront.jpg" />
+    <Content Include="Areas\Admin\Content\img\avatars\Nicolai-Larson.jpg" />
+    <Content Include="Areas\Admin\Content\img\avatars\Osvaldus-Valutis.jpg" />
+    <Content Include="Areas\Admin\Content\img\avatars\Sergey-Azovskiy.jpg" />
+    <Content Include="Areas\Admin\Content\img\avatars\Stephanie-Walter.jpg" />
+    <Content Include="Areas\Admin\Content\img\favicon.png" />
+    <Content Include="Areas\Admin\Content\img\jquery.minicolors.png" />
+    <Content Include="Areas\Admin\Content\img\logo-inverted.png" />
+    <Content Include="Areas\Admin\Content\img\logo-rtl.png" />
+    <Content Include="Areas\Admin\Content\img\logo-solo.png" />
+    <Content Include="Areas\Admin\Content\img\logo.png" />
+    <Content Include="Areas\Admin\Content\img\sort_asc.png" />
+    <Content Include="Areas\Admin\Content\img\sort_asc_disabled.png" />
+    <Content Include="Areas\Admin\Content\img\sort_both.png" />
+    <Content Include="Areas\Admin\Content\img\sort_desc.png" />
+    <Content Include="Areas\Admin\Content\img\sort_desc_disabled.png" />
+    <Content Include="Areas\Admin\Content\img\temp1.png" />
+    <Content Include="Areas\Admin\Content\img\tree-icons.png" />
+    <Content Include="Areas\Admin\Content\js\beyond.js" />
+    <Content Include="Areas\Admin\Content\js\beyond.min.js" />
+    <Content Include="Areas\Admin\Content\js\bootstrap.js" />
+    <Content Include="Areas\Admin\Content\js\bootstrap.min.js" />
+    <Content Include="Areas\Admin\Content\js\charts\bootbox\bootbox.js" />
+    <Content Include="Areas\Admin\Content\js\charts\bootbox\bootbox.min.js" />
+    <Content Include="Areas\Admin\Content\js\charts\chartjs\Chart.js" />
+    <Content Include="Areas\Admin\Content\js\charts\chartjs\Chart.min.js" />
+    <Content Include="Areas\Admin\Content\js\charts\chartjs\chartjs-init.js" />
+    <Content Include="Areas\Admin\Content\js\charts\easypiechart\easypiechart-init.js" />
+    <Content Include="Areas\Admin\Content\js\charts\easypiechart\jquery.easypiechart.js" />
+    <Content Include="Areas\Admin\Content\js\charts\easypiechart\jquery.easypiechart.min.js" />
+    <Content Include="Areas\Admin\Content\js\charts\flot\flot-init.js" />
+    <Content Include="Areas\Admin\Content\js\charts\flot\jquery.flot.axislabels.js" />
+    <Content Include="Areas\Admin\Content\js\charts\flot\jquery.flot.categories.js" />
+    <Content Include="Areas\Admin\Content\js\charts\flot\jquery.flot.categories.min.js" />
+    <Content Include="Areas\Admin\Content\js\charts\flot\jquery.flot.crosshair.js" />
+    <Content Include="Areas\Admin\Content\js\charts\flot\jquery.flot.crosshair.min.js" />
+    <Content Include="Areas\Admin\Content\js\charts\flot\jquery.flot.fillbetween.js" />
+    <Content Include="Areas\Admin\Content\js\charts\flot\jquery.flot.fillbetween.min.js" />
+    <Content Include="Areas\Admin\Content\js\charts\flot\jquery.flot.js" />
+    <Content Include="Areas\Admin\Content\js\charts\flot\jquery.flot.min.js" />
+    <Content Include="Areas\Admin\Content\js\charts\flot\jquery.flot.orderBars.js" />
+    <Content Include="Areas\Admin\Content\js\charts\flot\jquery.flot.pie.js" />
+    <Content Include="Areas\Admin\Content\js\charts\flot\jquery.flot.pie.min.js" />
+    <Content Include="Areas\Admin\Content\js\charts\flot\jquery.flot.resize.js" />
+    <Content Include="Areas\Admin\Content\js\charts\flot\jquery.flot.resize.min.js" />
+    <Content Include="Areas\Admin\Content\js\charts\flot\jquery.flot.selection.js" />
+    <Content Include="Areas\Admin\Content\js\charts\flot\jquery.flot.selection.min.js" />
+    <Content Include="Areas\Admin\Content\js\charts\flot\jquery.flot.stack.js" />
+    <Content Include="Areas\Admin\Content\js\charts\flot\jquery.flot.stack.min.js" />
+    <Content Include="Areas\Admin\Content\js\charts\flot\jquery.flot.time.js" />
+    <Content Include="Areas\Admin\Content\js\charts\flot\jquery.flot.time.min.js" />
+    <Content Include="Areas\Admin\Content\js\charts\flot\jquery.flot.tooltip.js" />
+    <Content Include="Areas\Admin\Content\js\charts\flot\jquery.flot.tooltip.min.js" />
+    <Content Include="Areas\Admin\Content\js\charts\morris\morris-init.js" />
+    <Content Include="Areas\Admin\Content\js\charts\morris\morris.js" />
+    <Content Include="Areas\Admin\Content\js\charts\morris\raphael-2.0.2.min.js" />
+    <Content Include="Areas\Admin\Content\js\charts\sparkline\jquery.sparkline.js" />
+    <Content Include="Areas\Admin\Content\js\charts\sparkline\sparkline-init.js" />
+    <Content Include="Areas\Admin\Content\js\colorpicker\jquery.minicolors.js" />
+    <Content Include="Areas\Admin\Content\js\colorpicker\jquery.minicolors.min.js" />
+    <Content Include="Areas\Admin\Content\js\datatable\datatables-init.js" />
+    <Content Include="Areas\Admin\Content\js\datatable\dataTables.bootstrap.js" />
+    <Content Include="Areas\Admin\Content\js\datatable\dataTables.bootstrap.min.js" />
+    <Content Include="Areas\Admin\Content\js\datatable\dataTables.tableTools.js" />
+    <Content Include="Areas\Admin\Content\js\datatable\dataTables.tableTools.min.js" />
+    <Content Include="Areas\Admin\Content\js\datatable\jquery.dataTables.js" />
+    <Content Include="Areas\Admin\Content\js\datatable\jquery.dataTables.min.js" />
+    <Content Include="Areas\Admin\Content\js\datatable\ZeroClipboard.js" />
+    <Content Include="Areas\Admin\Content\js\datetime\bootstrap-datepicker.js" />
+    <Content Include="Areas\Admin\Content\js\datetime\bootstrap-timepicker.js" />
+    <Content Include="Areas\Admin\Content\js\datetime\bootstrap-timepicker.min.js" />
+    <Content Include="Areas\Admin\Content\js\datetime\daterangepicker.js" />
+    <Content Include="Areas\Admin\Content\js\datetime\moment.js" />
+    <Content Include="Areas\Admin\Content\js\datetime\moment.min.js" />
+    <Content Include="Areas\Admin\Content\js\dropzone\dropzone.js" />
+    <Content Include="Areas\Admin\Content\js\dropzone\dropzone.min.js" />
+    <Content Include="Areas\Admin\Content\js\editors\summernote\summernote.js" />
+    <Content Include="Areas\Admin\Content\js\editors\summernote\summernote.min.js" />
+    <Content Include="Areas\Admin\Content\js\editors\wysiwyg\bootstrap-wysiwyg.js" />
+    <Content Include="Areas\Admin\Content\js\editors\wysiwyg\jquery.hotkeys.js" />
+    <Content Include="Areas\Admin\Content\js\editors\wysiwyg\prettify.js" />
+    <Content Include="Areas\Admin\Content\js\fuelux\spinbox\fuelux.spinbox.js" />
+    <Content Include="Areas\Admin\Content\js\fuelux\spinbox\fuelux.spinbox.min.js" />
+    <Content Include="Areas\Admin\Content\js\fuelux\treeview\tree-custom.js" />
+    <Content Include="Areas\Admin\Content\js\fuelux\treeview\tree-custom.min.js" />
+    <Content Include="Areas\Admin\Content\js\fuelux\treeview\treeview-init.js" />
+    <Content Include="Areas\Admin\Content\js\fuelux\wizard\wizard-custom.js" />
+    <Content Include="Areas\Admin\Content\js\fuelux\wizard\wizard-custom.min.js" />
+    <Content Include="Areas\Admin\Content\js\fullcalendar\fullcalendar.js" />
+    <Content Include="Areas\Admin\Content\js\fullcalendar\fullcalendar.min.js" />
+    <Content Include="Areas\Admin\Content\js\fullcalendar\jquery-ui.custom.min.js" />
+    <Content Include="Areas\Admin\Content\js\fullcalendar\moment.min.js" />
+    <Content Include="Areas\Admin\Content\js\inputmask\jasny-bootstrap.js" />
+    <Content Include="Areas\Admin\Content\js\inputmask\jasny-bootstrap.min.js" />
+    <Content Include="Areas\Admin\Content\js\jquery-ui-1.10.4.custom.js" />
+    <Content Include="Areas\Admin\Content\js\jquery-ui-1.10.4.custom.min.js" />
+    <Content Include="Areas\Admin\Content\js\jquery.min.js" />
+    <Content Include="Areas\Admin\Content\js\knob\jquery.knob.js" />
+    <Content Include="Areas\Admin\Content\js\nestable\jquery.nestable.min.js" />
+    <Content Include="Areas\Admin\Content\js\select2\select2.full.js" />
+    <Content Include="Areas\Admin\Content\js\select2\select2.full.min.js" />
+    <Content Include="Areas\Admin\Content\js\select2\select2.js" />
+    <Content Include="Areas\Admin\Content\js\select2\select2.min.js" />
+    <Content Include="Areas\Admin\Content\js\skins.js" />
+    <Content Include="Areas\Admin\Content\js\skins.min.js" />
+    <Content Include="Areas\Admin\Content\js\slider\jQRangeSlider\jQAllRangeSliders-withRuler-min.js" />
+    <Content Include="Areas\Admin\Content\js\slider\jQRangeSlider\jquery.mousewheel.min.js" />
+    <Content Include="Areas\Admin\Content\js\slider\jquery.nouislider.js" />
+    <Content Include="Areas\Admin\Content\js\slimscroll\jquery.slimscroll.js" />
+    <Content Include="Areas\Admin\Content\js\slimscroll\jquery.slimscroll.min.js" />
+    <Content Include="Areas\Admin\Content\js\tagsinput\bootstrap-tagsinput.js" />
+    <Content Include="Areas\Admin\Content\js\tagsinput\bootstrap-tagsinput.min.js" />
+    <Content Include="Areas\Admin\Content\js\TemplateScripts.js" />
+    <Content Include="Areas\Admin\Content\js\textarea\jquery.autosize.js" />
+    <Content Include="Areas\Admin\Content\js\textarea\jquery.autosize.min.js" />
+    <Content Include="Areas\Admin\Content\js\toastr\toastr.js" />
+    <Content Include="Areas\Admin\Content\js\toastr\toastr.min.js" />
+    <Content Include="Areas\Admin\Content\js\validation\bootstrapValidator.js" />
+    <Content Include="Areas\Admin\Content\js\validation\bootstrapValidator.min.js" />
+    <Content Include="Areas\Admin\Content\lightbox\dist\css\lightbox.css" />
+    <Content Include="Areas\Admin\Content\lightbox\dist\css\lightbox.min.css" />
+    <Content Include="Areas\Admin\Content\lightbox\dist\images\close.png" />
+    <Content Include="Areas\Admin\Content\lightbox\dist\images\loading.gif" />
+    <Content Include="Areas\Admin\Content\lightbox\dist\images\next.png" />
+    <Content Include="Areas\Admin\Content\lightbox\dist\images\prev.png" />
+    <Content Include="Areas\Admin\Content\lightbox\dist\js\lightbox-plus-jquery.js" />
+    <Content Include="Areas\Admin\Content\lightbox\dist\js\lightbox-plus-jquery.min.js" />
+    <Content Include="Areas\Admin\Content\lightbox\dist\js\lightbox.js" />
+    <Content Include="Areas\Admin\Content\lightbox\dist\js\lightbox.min.js" />
+    <Content Include="Areas\Admin\Content\lightbox\examples\index.html" />
+    <Content Include="Areas\Admin\Content\lightbox\src\css\lightbox.css" />
+    <Content Include="Areas\Admin\Content\lightbox\src\images\close.png" />
+    <Content Include="Areas\Admin\Content\lightbox\src\images\loading.gif" />
+    <Content Include="Areas\Admin\Content\lightbox\src\images\next.png" />
+    <Content Include="Areas\Admin\Content\lightbox\src\images\prev.png" />
+    <Content Include="Areas\Admin\Content\lightbox\src\js\lightbox.js" />
+    <Content Include="Areas\Admin\Content\CustomJs\ManageRoles.js" />
+    <Content Include="Areas\Admin\Content\Modal\remodal-default-theme.css" />
+    <Content Include="Areas\Admin\Content\Modal\remodal.css" />
+    <Content Include="Areas\Admin\Content\Modal\remodal.js" />
+    <Content Include="Areas\Admin\Content\Modal\remodal.min.js" />
+    <Content Include="Areas\Admin\Content\Percian-Calender\src\kamadatepicker.js" />
+    <Content Include="Areas\Admin\Content\Percian-Calender\src\kamadatepicker.min.js" />
+    <Content Include="Areas\Admin\Content\Percian-Calender\src\PageKamaDatePicker.js" />
+    <Content Include="Areas\Admin\Content\Percian-Calender\src\Walletkamadatepicker.js" />
+    <Content Include="Areas\Admin\Content\Percian-Calender\style\kamadatepicker.css" />
+    <Content Include="Areas\Admin\Content\Percian-Calender\style\kamadatepicker.min.css" />
+    <Content Include="Areas\Admin\Content\ScrollBar\jquery.classyscroll.css" />
+    <Content Include="Areas\Admin\Content\ScrollBar\jquery.classyscroll.js" />
+    <Content Include="Areas\Admin\Content\ScrollBar\jquery.mousewheel.js" />
+    <Content Include="Areas\Admin\Content\sound\alert.mp3" />
+    <Content Include="Areas\Admin\Content\swf\copy_csv_xls.swf" />
+    <Content Include="Areas\Admin\Content\swf\copy_csv_xls_pdf.swf" />
+    <Content Include="Areas\Admin\Content\TagInput\bootstrap-tagsinput.css" />
+    <Content Include="Areas\Admin\Content\TagInput\bootstrap-tagsinput.js" />
+    <Content Include="Areas\Admin\Views\ManageProducts\ShowNewBuys.cshtml" />
+    <Content Include="Areas\Admin\Views\ManageProducts\ShowOrderDetail.cshtml" />
+    <None Include="Connected Services\ZarinPal_Test\configuration91.svcinfo" />
+    <None Include="Connected Services\ZarinPal_Test\configuration.svcinfo" />
+    <Content Include="Connected Services\ZarinPal_Test\Eshop.Web.ZarinPal_Test.GetUnverifiedTransactionsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ZarinPal_Test\Eshop.Web.ZarinPal_Test.PaymentRequestResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ZarinPal_Test\Eshop.Web.ZarinPal_Test.PaymentRequestWithExtraResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ZarinPal_Test\Eshop.Web.ZarinPal_Test.PaymentVerificationResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ZarinPal_Test\Eshop.Web.ZarinPal_Test.PaymentVerificationWithExtraResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ZarinPal_Test\Eshop.Web.ZarinPal_Test.RefreshAuthorityResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Connected Services\ZarinPal_Test\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\css\animate.css" />
+    <Content Include="Content\css\bootstrap.min.css" />
+    <Content Include="Content\css\font-awesome.min.css" />
+    <Content Include="Content\css\main.css" />
+    <Content Include="Content\css\prettyPhoto.css" />
+    <Content Include="Content\css\price-range.css" />
+    <Content Include="Content\css\responsive.css" />
+    <Content Include="Content\css\slider.css" />
+    <Content Include="Content\CustomJs\Articles.js" />
+    <Content Include="Content\CustomJs\Custom.js" />
+    <Content Include="Content\CustomJs\jquery.blockUI.js" />
+    <Content Include="Content\CustomJs\Product.js" />
+    <Content Include="Content\CustomJs\ResizeTextArea.js" />
+    <Content Include="Content\fonts\BYekan.svg" />
+    <Content Include="Content\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\images\404\404.png" />
+    <Content Include="Content\images\blog\blog-one.jpg" />
+    <Content Include="Content\images\blog\Customer.jpg" />
+    <Content Include="Content\images\blog\socials.png" />
+    <Content Include="Content\images\cart\one.png" />
+    <Content Include="Content\images\cart\three.png" />
+    <Content Include="Content\images\cart\two.png" />
+    <Content Include="Content\images\home\About-Logo.jpg" />
+    <Content Include="Content\images\home\bg_border.png" />
+    <Content Include="Content\images\home\Gallery.jpg" />
+    <Content Include="Content\images\home\girl2.jpg" />
+    <Content Include="Content\images\home\girl3.jpg" />
+    <Content Include="Content\images\home\logo.png" />
+    <Content Include="Content\images\home\logo2.png" />
+    <Content Include="Content\images\home\Map1.jpg" />
+    <Content Include="Content\images\home\map.png" />
+    <Content Include="Content\images\home\Map2.png" />
+    <Content Include="Content\images\home\new.png" />
+    <Content Include="Content\images\home\NewMap.png" />
+    <Content Include="Content\images\home\partner1.png" />
+    <Content Include="Content\images\home\partner2.png" />
+    <Content Include="Content\images\home\partner3.png" />
+    <Content Include="Content\images\home\partner4.png" />
+    <Content Include="Content\images\home\pricing.png" />
+    <Content Include="Content\images\home\product.jpg" />
+    <Content Include="Content\images\home\sale.png" />
+    <Content Include="Content\images\home\searchicon.png" />
+    <Content Include="Content\images\home\shipping.jpg" />
+    <Content Include="Content\images\home\Slider-01.jpg" />
+    <Content Include="Content\images\home\Tabs.png" />
+    <Content Include="Content\images\home\Logo1.png" />
+    <Content Include="Content\images\product-details\1.jpg" />
+    <Content Include="Content\images\product-details\Bale.png" />
+    <Content Include="Content\images\product-details\Instagram.png" />
+    <Content Include="Content\images\product-details\new.jpg" />
+    <Content Include="Content\images\product-details\new.png" />
+    <Content Include="Content\images\product-details\rating.png" />
+    <Content Include="Content\images\product-details\share.png" />
+    <Content Include="Content\images\product-details\similar1.jpg" />
+    <Content Include="Content\images\product-details\similar2.jpg" />
+    <Content Include="Content\images\product-details\similar3.jpg" />
+    <Content Include="Content\images\product-details\Soroush.png" />
+    <Content Include="Content\images\product-details\Telegram.png" />
+    <Content Include="Content\images\samandehi.png" />
+    <Content Include="Content\images\shop\advertisement.jpg" />
+    <Content Include="Content\images\shop\product.jpg" />
+    <Content Include="Content\js\bootstrap.min.js" />
+    <Content Include="Content\js\config.js" />
+    <Content Include="Content\js\contact.js" />
+    <Content Include="Content\js\gmaps.js" />
+    <Content Include="Content\js\html5shiv.js" />
+    <Content Include="Content\js\jquery.js" />
+    <Content Include="Content\js\jquery.prettyPhoto.js" />
+    <Content Include="Content\js\jquery.scrollUp.min.js" />
+    <Content Include="Content\js\main.js" />
+    <Content Include="Content\js\price-range.js" />
+    <Content Include="Content\lightbox\dist\css\lightbox.css" />
+    <Content Include="Content\lightbox\dist\css\lightbox.min.css" />
+    <Content Include="Content\lightbox\dist\images\close.png" />
+    <Content Include="Content\lightbox\dist\images\loading.gif" />
+    <Content Include="Content\lightbox\dist\images\next.png" />
+    <Content Include="Content\lightbox\dist\images\prev.png" />
+    <Content Include="Content\lightbox\dist\js\lightbox-plus-jquery.js" />
+    <Content Include="Content\lightbox\dist\js\lightbox-plus-jquery.min.js" />
+    <Content Include="Content\lightbox\dist\js\lightbox.js" />
+    <Content Include="Content\lightbox\dist\js\lightbox.min.js" />
+    <Content Include="Content\lightbox\examples\index.html" />
+    <Content Include="Content\lightbox\src\css\lightbox.css" />
+    <Content Include="Content\lightbox\src\images\close.png" />
+    <Content Include="Content\lightbox\src\images\loading.gif" />
+    <Content Include="Content\lightbox\src\images\next.png" />
+    <Content Include="Content\lightbox\src\images\prev.png" />
+    <Content Include="Content\lightbox\src\js\lightbox.js" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Content\sound\alert.mp3" />
+    <Content Include="Content\SweetAlert\assets\bootstrap-sweetalert.png" />
+    <Content Include="Content\SweetAlert\assets\docs.css" />
+    <Content Include="Content\SweetAlert\assets\thumbs-up.jpg" />
+    <Content Include="Content\SweetAlert\dev\gulpfile-wrap-template.js" />
+    <Content Include="Content\SweetAlert\dev\ie9.css" />
+    <Content Include="Content\SweetAlert\dev\loader-animation.css" />
+    <Content Include="Content\SweetAlert\dev\modules\default-params.js" />
+    <Content Include="Content\SweetAlert\dev\modules\handle-click.js" />
+    <Content Include="Content\SweetAlert\dev\modules\handle-dom.js" />
+    <Content Include="Content\SweetAlert\dev\modules\handle-key.js" />
+    <Content Include="Content\SweetAlert\dev\modules\handle-swal-dom.js" />
+    <Content Include="Content\SweetAlert\dev\modules\injected-html.js" />
+    <Content Include="Content\SweetAlert\dev\modules\set-params.js" />
+    <Content Include="Content\SweetAlert\dev\modules\utils.js" />
+    <Content Include="Content\SweetAlert\dev\sweetalert.es6.js" />
+    <Content Include="Content\SweetAlert\dist\sweetalert.css" />
+    <Content Include="Content\SweetAlert\dist\sweetalert.js" />
+    <Content Include="Content\SweetAlert\dist\sweetalert.min.js" />
+    <Content Include="Content\SweetAlert\index.html" />
+    <Content Include="Content\SweetAlert\test\index.html" />
+    <Content Include="Content\SweetAlert\test\tests.js" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Images\Articles\Origin\testbullets-3840x2160-4k-15821.jpg" />
+    <Content Include="Images\Articles\Origin\testcbrps-bullpup-saiga-12-2707x1800-shotgun-custom-13515.jpg" />
+    <Content Include="Images\Articles\Origin\لورم-ایپسوم-متن-ساختگی-با-تولید.cbrps-bullpup-saiga-12-2707x1800-shotgun-custom-13515.jpg" />
+    <Content Include="Images\Articles\Thumb\testbullets-3840x2160-4k-15821.jpg" />
+    <Content Include="Images\Articles\Thumb\testcbrps-bullpup-saiga-12-2707x1800-shotgun-custom-13515.jpg" />
+    <Content Include="Images\Articles\Thumb\لورم-ایپسوم-متن-ساختگی-با-تولید.cbrps-bullpup-saiga-12-2707x1800-shotgun-custom-13515.jpg" />
+    <Content Include="Images\DefaultImages\Default.jpg" />
+    <Content Include="Images\DefaultImages\no-photo.png" />
+    <Content Include="Images\DefaultImages\UserAvatarDefault.jpg" />
+    <Content Include="Images\ProductGallery\Origin\04104b80c40d44918889bf4e36a88f9a.jpg" />
+    <Content Include="Images\ProductGallery\Origin\3fb8549a975d47aeb77b44fe64ff82f1.jpg" />
+    <Content Include="Images\ProductGallery\Origin\426f25c677a244d7aabacd3de0ca7f3f.jpg" />
+    <Content Include="Images\ProductGallery\Origin\613eefa844f64b388615c854e5eeb363.jpg" />
+    <Content Include="Images\ProductGallery\Thumb\04104b80c40d44918889bf4e36a88f9a.jpg" />
+    <Content Include="Images\ProductGallery\Thumb\3fb8549a975d47aeb77b44fe64ff82f1.jpg" />
+    <Content Include="Images\ProductGallery\Thumb\426f25c677a244d7aabacd3de0ca7f3f.jpg" />
+    <Content Include="Images\ProductGallery\Thumb\613eefa844f64b388615c854e5eeb363.jpg" />
+    <Content Include="Images\Products\Origin\1ec23455c40c415d95fca8a45ee66e3d.jpg" />
+    <Content Include="Images\Products\Origin\5f443646016c46a8aa1babea28ebe65c.jpg" />
+    <Content Include="Images\Products\Origin\6b2293a543f64c95b3646e0f4743b05a.jpg" />
+    <Content Include="Images\Products\Origin\8152b176096e4d61a1af91deddc1e627.jpg" />
+    <Content Include="Images\Products\Origin\988951a3e42c4db3873be07b4c7a050d.jpg" />
+    <Content Include="Images\Products\Origin\afdd35cf2921479580f53ff921099c8b.jpg" />
+    <Content Include="Images\Products\Origin\cd9449d449be411a915b8161b99baa67.jpg" />
+    <Content Include="Images\Products\Origin\ea9f9b6274ac4c78b3737bf255641a6d.jpg" />
+    <Content Include="Images\Products\Thumb\1ec23455c40c415d95fca8a45ee66e3d.jpg" />
+    <Content Include="Images\Products\Thumb\5f443646016c46a8aa1babea28ebe65c.jpg" />
+    <Content Include="Images\Products\Thumb\6b2293a543f64c95b3646e0f4743b05a.jpg" />
+    <Content Include="Images\Products\Thumb\8152b176096e4d61a1af91deddc1e627.jpg" />
+    <Content Include="Images\Products\Thumb\988951a3e42c4db3873be07b4c7a050d.jpg" />
+    <Content Include="Images\Products\Thumb\afdd35cf2921479580f53ff921099c8b.jpg" />
+    <Content Include="Images\Products\Thumb\cd9449d449be411a915b8161b99baa67.jpg" />
+    <Content Include="Images\Products\Thumb\ea9f9b6274ac4c78b3737bf255641a6d.jpg" />
+    <Content Include="Images\Slider\Origin\1d836d89-d803-4d9e-add7-4d6a071f87e0.jpg" />
+    <Content Include="Images\Slider\Thumb\1d836d89-d803-4d9e-add7-4d6a071f87e0.jpg" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ManageUsers\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ManageUsers\CreateUser.cshtml" />
+    <Content Include="Areas\Admin\Views\ManageUsers\EditUser.cshtml" />
+    <Content Include="Content\fonts\BYekan.eot" />
+    <Content Include="Content\fonts\BYekan.ttf" />
+    <Content Include="Content\fonts\BYekan.woff" />
+    <Content Include="Content\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\fonts\FontAwesome.otf" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\images\blog\blog-one.psd" />
+    <Content Include="Content\images\cart\Card.psd" />
+    <Content Include="Content\images\home\Gallery.psd" />
+    <Content Include="Content\images\home\product1.psd" />
+    <Content Include="Content\images\home\Slider.psd" />
+    <Content Include="Content\images\home\Tabs.psd" />
+    <Content Include="Content\images\product-details\Main.psd" />
+    <Content Include="Content\images\product-details\Similar.psd" />
+    <Content Include="Content\images\product-details\Socials.psd" />
+    <Content Include="Areas\Admin\Views\ManageSlider\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\ManageSlider\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\ManageSlider\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\ManageSlider\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ManageArticles\ArticleCategories.cshtml" />
+    <Content Include="Areas\Admin\Views\ManageArticles\CreateArticle.cshtml" />
+    <Content Include="Areas\Admin\Views\ManageArticles\CreateCategory.cshtml" />
+    <Content Include="Areas\Admin\Views\ManageArticles\EditArticle.cshtml" />
+    <Content Include="Areas\Admin\Views\ManageArticles\EditCategory.cshtml" />
+    <Content Include="Areas\Admin\Views\ManageArticles\EditComment.cshtml" />
+    <Content Include="Areas\Admin\Views\ManageArticles\GetMoreComments.cshtml" />
+    <Content Include="Areas\Admin\Views\ManageArticles\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ManageArticles\VisitArticleComments.cshtml" />
+    <Content Include="Areas\Admin\Views\Home\GetSingleArticleComment.cshtml" />
+    <Content Include="Areas\Admin\Views\ManageSite\AnswerContact.cshtml" />
+    <Content Include="Areas\Admin\Views\ManageSite\ContactUs.cshtml" />
+    <Content Include="Areas\Admin\Views\ManageSite\ShowMessage.cshtml" />
+    <Content Include="Areas\Admin\Views\ManageSite\EditSiteSetting.cshtml" />
+    <Content Include="Areas\Admin\Views\ManageProducts\ProductGroups.cshtml" />
+    <Content Include="Areas\Admin\Views\ManageProducts\CreateGroup.cshtml" />
+    <Content Include="Areas\Admin\Views\ManageProducts\EditGroup.cshtml" />
+    <Content Include="Areas\Admin\Views\ManageProducts\ProductFeatures.cshtml" />
+    <Content Include="Areas\Admin\Views\ManageProducts\CreateFeature.cshtml" />
+    <Content Include="Areas\Admin\Views\ManageProducts\EditFeature.cshtml" />
+    <Content Include="Areas\Admin\Views\ManageProducts\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ManageProducts\ListFeatures.cshtml" />
+    <Content Include="Areas\Admin\Views\ManageProducts\CreateProduct.cshtml" />
+    <Content Include="Areas\Admin\Views\ManageProducts\EditProduct.cshtml" />
+    <Content Include="Content\lightbox\.github\ISSUE_TEMPLATE.md" />
+    <Content Include="Content\lightbox\.github\PULL_REQUEST_TEMPLATE.md" />
+    <Content Include="Content\lightbox\dist\js\lightbox-plus-jquery.min.map" />
+    <Content Include="Content\lightbox\dist\js\lightbox.min.map" />
+    <Content Include="Areas\UserPanel\Views\web.config" />
+    <Content Include="Areas\UserPanel\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\UserPanel\Views\Shared\_LayoutPage1.cshtml" />
+    <Content Include="Areas\UserPanel\Views\Home\Index.cshtml" />
+    <Content Include="Areas\UserPanel\Views\Home\EditUserInformation.cshtml" />
+    <Content Include="Areas\UserPanel\Views\Home\UserSidebar.cshtml" />
+    <Content Include="Areas\UserPanel\Views\Home\ChangePassword.cshtml" />
+    <Content Include="Views\Articles\GetMoreComments.cshtml" />
+    <Content Include="Views\Home\WishList.cshtml" />
+    <Content Include="Content\SweetAlert\.editorconfig" />
+    <Content Include="Content\SweetAlert\.gitignore" />
+    <Content Include="Content\SweetAlert\.jshintrc" />
+    <Content Include="Content\SweetAlert\.travis.yml" />
+    <Content Include="Content\SweetAlert\bootstrap\mixins.less" />
+    <Content Include="Content\SweetAlert\bootstrap\variables.less" />
+    <Content Include="Content\SweetAlert\bower.json" />
+    <Content Include="Content\SweetAlert\Gruntfile.coffee" />
+    <Content Include="Content\SweetAlert\lib\sweet-alert-animations.less" />
+    <Content Include="Content\SweetAlert\lib\sweet-alert-combine.less" />
+    <Content Include="Content\SweetAlert\lib\sweet-alert.less" />
+    <Content Include="Content\SweetAlert\LICENSE" />
+    <Content Include="Content\SweetAlert\package.json" />
+    <Content Include="Content\SweetAlert\README.md" />
+    <Content Include="Areas\UserPanel\Views\MyProducts\ShopCart.cshtml" />
+    <Content Include="Images\ProductGallery\Origin\426a667e6cc549639720326df34208dc.rar" />
+    <Content Include="Images\ProductGallery\Thumb\426a667e6cc549639720326df34208dc.rar" />
+    <Content Include="Areas\Admin\Views\ManageProducts\ListFeaturesForEdit.cshtml" />
+    <None Include="Connected Services\ZarinPal_Test\PaymentGatewayImplementationService.wsdl" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.3.1.js" />
+    <Content Include="Scripts\jquery-3.3.1.min.js" />
+    <Content Include="Scripts\jquery-3.3.1.slim.js" />
+    <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
+    <Content Include="Scripts\jquery.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Views\Eshop_Template\404.html" />
+    <Content Include="Views\Eshop_Template\About.html" />
+    <Content Include="Views\Eshop_Template\blog-single.html" />
+    <Content Include="Views\Eshop_Template\blog.html" />
+    <Content Include="Views\Eshop_Template\cart.html" />
+    <Content Include="Views\Eshop_Template\checkout.html" />
+    <Content Include="Views\Eshop_Template\contact-us.html" />
+    <Content Include="Views\Eshop_Template\css\animate.css" />
+    <Content Include="Views\Eshop_Template\css\bootstrap.min.css" />
+    <Content Include="Views\Eshop_Template\css\font-awesome.min.css" />
+    <Content Include="Views\Eshop_Template\css\main.css" />
+    <Content Include="Views\Eshop_Template\css\prettyPhoto.css" />
+    <Content Include="Views\Eshop_Template\css\price-range.css" />
+    <Content Include="Views\Eshop_Template\css\responsive.css" />
+    <Content Include="Views\Eshop_Template\fonts\BYekan.svg" />
+    <Content Include="Views\Eshop_Template\fonts\fontawesome-webfont.svg" />
+    <Content Include="Views\Eshop_Template\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Views\Eshop_Template\forget-password.html" />
+    <Content Include="Views\Eshop_Template\images\404\404.png" />
+    <Content Include="Views\Eshop_Template\images\blog\blog-one.jpg" />
+    <Content Include="Views\Eshop_Template\images\blog\Customer.jpg" />
+    <Content Include="Views\Eshop_Template\images\blog\socials.png" />
+    <Content Include="Views\Eshop_Template\images\cart\one.png" />
+    <Content Include="Views\Eshop_Template\images\cart\three.png" />
+    <Content Include="Views\Eshop_Template\images\cart\two.png" />
+    <Content Include="Views\Eshop_Template\images\home\About-Logo.jpg" />
+    <Content Include="Views\Eshop_Template\images\home\bg_border.png" />
+    <Content Include="Views\Eshop_Template\images\home\Gallery.jpg" />
+    <Content Include="Views\Eshop_Template\images\home\girl2.jpg" />
+    <Content Include="Views\Eshop_Template\images\home\girl3.jpg" />
+    <Content Include="Views\Eshop_Template\images\home\logo.png" />
+    <Content Include="Views\Eshop_Template\images\home\Map.jpg" />
+    <Content Include="Views\Eshop_Template\images\home\map.png" />
+    <Content Include="Views\Eshop_Template\images\home\new.png" />
+    <Content Include="Views\Eshop_Template\images\home\partner1.png" />
+    <Content Include="Views\Eshop_Template\images\home\partner2.png" />
+    <Content Include="Views\Eshop_Template\images\home\partner3.png" />
+    <Content Include="Views\Eshop_Template\images\home\partner4.png" />
+    <Content Include="Views\Eshop_Template\images\home\pricing.png" />
+    <Content Include="Views\Eshop_Template\images\home\product.jpg" />
+    <Content Include="Views\Eshop_Template\images\home\sale.png" />
+    <Content Include="Views\Eshop_Template\images\home\searchicon.png" />
+    <Content Include="Views\Eshop_Template\images\home\shipping.jpg" />
+    <Content Include="Views\Eshop_Template\images\home\Slider-01.jpg" />
+    <Content Include="Views\Eshop_Template\images\home\Tabs.png" />
+    <Content Include="Views\Eshop_Template\images\product-details\1.jpg" />
+    <Content Include="Views\Eshop_Template\images\product-details\Bale.png" />
+    <Content Include="Views\Eshop_Template\images\product-details\Instagram.png" />
+    <Content Include="Views\Eshop_Template\images\product-details\new.jpg" />
+    <Content Include="Views\Eshop_Template\images\product-details\new.png" />
+    <Content Include="Views\Eshop_Template\images\product-details\rating.png" />
+    <Content Include="Views\Eshop_Template\images\product-details\share.png" />
+    <Content Include="Views\Eshop_Template\images\product-details\similar1.jpg" />
+    <Content Include="Views\Eshop_Template\images\product-details\similar2.jpg" />
+    <Content Include="Views\Eshop_Template\images\product-details\similar3.jpg" />
+    <Content Include="Views\Eshop_Template\images\product-details\Soroush.png" />
+    <Content Include="Views\Eshop_Template\images\product-details\Telegram.png" />
+    <Content Include="Views\Eshop_Template\images\shop\advertisement.jpg" />
+    <Content Include="Views\Eshop_Template\images\shop\product.jpg" />
+    <Content Include="Views\Eshop_Template\index.html" />
+    <Content Include="Views\Eshop_Template\js\bootstrap.min.js" />
+    <Content Include="Views\Eshop_Template\js\contact.js" />
+    <Content Include="Views\Eshop_Template\js\gmaps.js" />
+    <Content Include="Views\Eshop_Template\js\html5shiv.js" />
+    <Content Include="Views\Eshop_Template\js\jquery.js" />
+    <Content Include="Views\Eshop_Template\js\jquery.prettyPhoto.js" />
+    <Content Include="Views\Eshop_Template\js\jquery.scrollUp.min.js" />
+    <Content Include="Views\Eshop_Template\js\main.js" />
+    <Content Include="Views\Eshop_Template\js\price-range.js" />
+    <Content Include="Views\Eshop_Template\login.html" />
+    <Content Include="Views\Eshop_Template\product-details.html" />
+    <Content Include="Views\Eshop_Template\shop-2.html" />
+    <Content Include="Views\Eshop_Template\shop.html" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ManageArticlesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ManageProductsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ManageSiteController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ManageUsersController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ManageSliderController.cs" />
+    <Compile Include="Areas\UserPanel\Controllers\HomeController.cs" />
+    <Compile Include="Areas\UserPanel\Controllers\MyProductsController.cs" />
+    <Compile Include="Areas\UserPanel\UserPanelAreaRegistration.cs" />
+    <Compile Include="Connected Services\ZarinPal_Test\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ArticlesController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ProductsController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\web.config" />
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Areas\Admin\Views\web.config" />
+    <Content Include="Areas\Admin\Views\ManageUsers\EditRole.cshtml" />
+    <Content Include="Areas\Admin\Views\ManageUsers\Roles.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_AdminLayout.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_FooterRefrences.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_RefrenceFonts.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_RefrenceStyles.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_RefrenceTemplate.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_RightSideBar.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_SideBar.cshtml" />
+    <Content Include="Areas\Admin\Content\css\4095-rtl.css.map" />
+    <Content Include="Areas\Admin\Content\css\4095.css.map" />
+    <Content Include="Areas\Admin\Content\css\4095.less" />
+    <Content Include="Areas\Admin\Content\css\beyond-less\400-500.less" />
+    <Content Include="Areas\Admin\Content\css\beyond-less\accordions.less" />
+    <Content Include="Areas\Admin\Content\css\beyond-less\alerts.less" />
+    <Content Include="Areas\Admin\Content\css\beyond-less\animations.less" />
+    <Content Include="Areas\Admin\Content\css\beyond-less\body.less" />
+    <Content Include="Areas\Admin\Content\css\beyond-less\breadcrumbs.less" />
+    <Content Include="Areas\Admin\Content\css\beyond-less\buttons.less" />
+    <Content Include="Areas\Admin\Content\css\beyond-less\charts.less" />
+    <Content Include="Areas\Admin\Content\css\beyond-less\chat.less" />
+    <Content Include="Areas\Admin\Content\css\beyond-less\checkbox-radiobox.less" />
+    <Content Include="Areas\Admin\Content\css\beyond-less\colorpicker.less" />
+    <Content Include="Areas\Admin\Content\css\beyond-less\colors.less" />
+    <Content Include="Areas\Admin\Content\css\beyond-less\comment.less" />
+    <Content Include="Areas\Admin\Content\css\beyond-less\dashboard.less" />
+    <Content Include="Areas\Admin\Content\css\beyond-less\databoxes.less" />
+    <Content Include="Areas\Admin\Content\css\beyond-less\datepicker.less" />
+    <Content Include="Areas\Admin\Content\css\beyond-less\daterangepicker.less" />
+    <Content Include="Areas\Admin\Content\css\beyond-less\dropdowns.less" />
+    <Content Include="Areas\Admin\Content\css\beyond-less\dropzone.less" />
+    <Content Include="Areas\Admin\Content\css\beyond-less\editors.less" />
+    <Content Include="Areas\Admin\Content\css\beyond-less\fonts.less" />
+    <Content Include="Areas\Admin\Content\css\beyond-less\forms-inputs.less" />
+    <Content Include="Areas\Admin\Content\css\beyond-less\fullcalendar.less" />
+    <Content Include="Areas\Admin\Content\css\beyond-less\helpers.less" />
+    <Content Include="Areas\Admin\Content\css\beyond-less\invoice.less" />
+    <Content Include="Areas\Admin\Content\css\beyond-less\labels-badges.less" />
+    <Content Include="Areas\Admin\Content\css\beyond-less\loading.less" />
+    <Content Include="Areas\Admin\Content\css\beyond-less\lockscreen.less" />
+    <Content Include="Areas\Admin\Content\css\beyond-less\login.less" />
+    <Content Include="Areas\Admin\Content\css\beyond-less\mail.less" />
+    <Content Include="Areas\Admin\Content\css\beyond-less\main-container.less" />
+    <Content Include="Areas\Admin\Content\css\beyond-less\modals.less" />
+    <Content Include="Areas\Admin\Content\css\beyond-less\navbar.less" />
+    <Content Include="Areas\Admin\Content\css\beyond-less\nestable-lists.less" />
+    <Content Include="Areas\Admin\Content\css\beyond-less\notifications.less" />
+    <Content Include="Areas\Admin\Content\css\beyond-less\orders.less" />
+    <Content Include="Areas\Admin\Content\css\beyond-less\page-content.less" />
+    <Content Include="Areas\Admin\Content\css\beyond-less\page-header-body.less" />
+    <Content Include="Areas\Admin\Content\css\beyond-less\pagination.less" />
+    <Content Include="Areas\Admin\Content\css\beyond-less\popovers.less" />
+    <Content Include="Areas\Admin\Content\css\beyond-less\pricing.less" />
+    <Content Include="Areas\Admin\Content\css\beyond-less\profile.less" />
+    <Content Include="Areas\Admin\Content\css\beyond-less\progressbars.less" />
+    <Content Include="Areas\Admin\Content\css\beyond-less\register.less" />
+    <Content Include="Areas\Admin\Content\css\beyond-less\search-help-bar.less" />
+    <Content Include="Areas\Admin\Content\css\beyond-less\select2.less" />
+    <Content Include="Areas\Admin\Content\css\beyond-less\sidebar.less" />
+    <Content Include="Areas\Admin\Content\css\beyond-less\sliders.less" />
+    <Content Include="Areas\Admin\Content\css\beyond-less\spaces.less" />
+    <Content Include="Areas\Admin\Content\css\beyond-less\spinners.less" />
+    <Content Include="Areas\Admin\Content\css\beyond-less\switches.less" />
+    <Content Include="Areas\Admin\Content\css\beyond-less\tables.less" />
+    <Content Include="Areas\Admin\Content\css\beyond-less\tabs.less" />
+    <Content Include="Areas\Admin\Content\css\beyond-less\tagsinput.less" />
+    <Content Include="Areas\Admin\Content\css\beyond-less\tasks.less" />
+    <Content Include="Areas\Admin\Content\css\beyond-less\tickets.less" />
+    <Content Include="Areas\Admin\Content\css\beyond-less\timeline.less" />
+    <Content Include="Areas\Admin\Content\css\beyond-less\timepicker.less" />
+    <Content Include="Areas\Admin\Content\css\beyond-less\tooltips.less" />
+    <Content Include="Areas\Admin\Content\css\beyond-less\treeview.less" />
+    <Content Include="Areas\Admin\Content\css\beyond-less\typography.less" />
+    <Content Include="Areas\Admin\Content\css\beyond-less\validator.less" />
+    <Content Include="Areas\Admin\Content\css\beyond-less\variables.less" />
+    <Content Include="Areas\Admin\Content\css\beyond-less\wells.less" />
+    <Content Include="Areas\Admin\Content\css\beyond-less\widget.less" />
+    <Content Include="Areas\Admin\Content\css\beyond-less\wizards.less" />
+    <Content Include="Areas\Admin\Content\css\beyond-rtl.css.map" />
+    <Content Include="Areas\Admin\Content\css\beyond.css.map" />
+    <Content Include="Areas\Admin\Content\css\beyond.less" />
+    <Content Include="Areas\Admin\Content\css\bootstrap-less\.csscomb.json" />
+    <Content Include="Areas\Admin\Content\css\bootstrap-less\.csslintrc" />
+    <Content Include="Areas\Admin\Content\css\bootstrap-less\alerts.less" />
+    <Content Include="Areas\Admin\Content\css\bootstrap-less\badges.less" />
+    <Content Include="Areas\Admin\Content\css\bootstrap-less\bootstrap.less" />
+    <Content Include="Areas\Admin\Content\css\bootstrap-less\breadcrumbs.less" />
+    <Content Include="Areas\Admin\Content\css\bootstrap-less\button-groups.less" />
+    <Content Include="Areas\Admin\Content\css\bootstrap-less\buttons.less" />
+    <Content Include="Areas\Admin\Content\css\bootstrap-less\carousel.less" />
+    <Content Include="Areas\Admin\Content\css\bootstrap-less\close.less" />
+    <Content Include="Areas\Admin\Content\css\bootstrap-less\code.less" />
+    <Content Include="Areas\Admin\Content\css\bootstrap-less\component-animations.less" />
+    <Content Include="Areas\Admin\Content\css\bootstrap-less\dropdowns.less" />
+    <Content Include="Areas\Admin\Content\css\bootstrap-less\forms.less" />
+    <Content Include="Areas\Admin\Content\css\bootstrap-less\glyphicons.less" />
+    <Content Include="Areas\Admin\Content\css\bootstrap-less\grid.less" />
+    <Content Include="Areas\Admin\Content\css\bootstrap-less\input-groups.less" />
+    <Content Include="Areas\Admin\Content\css\bootstrap-less\jumbotron.less" />
+    <Content Include="Areas\Admin\Content\css\bootstrap-less\labels.less" />
+    <Content Include="Areas\Admin\Content\css\bootstrap-less\list-group.less" />
+    <Content Include="Areas\Admin\Content\css\bootstrap-less\media.less" />
+    <Content Include="Areas\Admin\Content\css\bootstrap-less\mixins.less" />
+    <Content Include="Areas\Admin\Content\css\bootstrap-less\mixins\alerts.less" />
+    <Content Include="Areas\Admin\Content\css\bootstrap-less\mixins\background-variant.less" />
+    <Content Include="Areas\Admin\Content\css\bootstrap-less\mixins\border-radius.less" />
+    <Content Include="Areas\Admin\Content\css\bootstrap-less\mixins\buttons.less" />
+    <Content Include="Areas\Admin\Content\css\bootstrap-less\mixins\center-block.less" />
+    <Content Include="Areas\Admin\Content\css\bootstrap-less\mixins\clearfix.less" />
+    <Content Include="Areas\Admin\Content\css\bootstrap-less\mixins\forms.less" />
+    <Content Include="Areas\Admin\Content\css\bootstrap-less\mixins\gradients.less" />
+    <Content Include="Areas\Admin\Content\css\bootstrap-less\mixins\grid-framework.less" />
+    <Content Include="Areas\Admin\Content\css\bootstrap-less\mixins\grid.less" />
+    <Content Include="Areas\Admin\Content\css\bootstrap-less\mixins\hide-text.less" />
+    <Content Include="Areas\Admin\Content\css\bootstrap-less\mixins\image.less" />
+    <Content Include="Areas\Admin\Content\css\bootstrap-less\mixins\labels.less" />
+    <Content Include="Areas\Admin\Content\css\bootstrap-less\mixins\list-group.less" />
+    <Content Include="Areas\Admin\Content\css\bootstrap-less\mixins\nav-divider.less" />
+    <Content Include="Areas\Admin\Content\css\bootstrap-less\mixins\nav-vertical-align.less" />
+    <Content Include="Areas\Admin\Content\css\bootstrap-less\mixins\opacity.less" />
+    <Content Include="Areas\Admin\Content\css\bootstrap-less\mixins\pagination.less" />
+    <Content Include="Areas\Admin\Content\css\bootstrap-less\mixins\panels.less" />
+    <Content Include="Areas\Admin\Content\css\bootstrap-less\mixins\progress-bar.less" />
+    <Content Include="Areas\Admin\Content\css\bootstrap-less\mixins\reset-filter.less" />
+    <Content Include="Areas\Admin\Content\css\bootstrap-less\mixins\reset-text.less" />
+    <Content Include="Areas\Admin\Content\css\bootstrap-less\mixins\resize.less" />
+    <Content Include="Areas\Admin\Content\css\bootstrap-less\mixins\responsive-visibility.less" />
+    <Content Include="Areas\Admin\Content\css\bootstrap-less\mixins\size.less" />
+    <Content Include="Areas\Admin\Content\css\bootstrap-less\mixins\tab-focus.less" />
+    <Content Include="Areas\Admin\Content\css\bootstrap-less\mixins\table-row.less" />
+    <Content Include="Areas\Admin\Content\css\bootstrap-less\mixins\text-emphasis.less" />
+    <Content Include="Areas\Admin\Content\css\bootstrap-less\mixins\text-overflow.less" />
+    <Content Include="Areas\Admin\Content\css\bootstrap-less\mixins\vendor-prefixes.less" />
+    <Content Include="Areas\Admin\Content\css\bootstrap-less\modals.less" />
+    <Content Include="Areas\Admin\Content\css\bootstrap-less\navbar.less" />
+    <Content Include="Areas\Admin\Content\css\bootstrap-less\navs.less" />
+    <Content Include="Areas\Admin\Content\css\bootstrap-less\normalize.less" />
+    <Content Include="Areas\Admin\Content\css\bootstrap-less\pager.less" />
+    <Content Include="Areas\Admin\Content\css\bootstrap-less\pagination.less" />
+    <Content Include="Areas\Admin\Content\css\bootstrap-less\panels.less" />
+    <Content Include="Areas\Admin\Content\css\bootstrap-less\popovers.less" />
+    <Content Include="Areas\Admin\Content\css\bootstrap-less\print.less" />
+    <Content Include="Areas\Admin\Content\css\bootstrap-less\progress-bars.less" />
+    <Content Include="Areas\Admin\Content\css\bootstrap-less\responsive-embed.less" />
+    <Content Include="Areas\Admin\Content\css\bootstrap-less\responsive-utilities.less" />
+    <Content Include="Areas\Admin\Content\css\bootstrap-less\scaffolding.less" />
+    <Content Include="Areas\Admin\Content\css\bootstrap-less\tables.less" />
+    <Content Include="Areas\Admin\Content\css\bootstrap-less\theme.less" />
+    <Content Include="Areas\Admin\Content\css\bootstrap-less\thumbnails.less" />
+    <Content Include="Areas\Admin\Content\css\bootstrap-less\tooltip.less" />
+    <Content Include="Areas\Admin\Content\css\bootstrap-less\type.less" />
+    <Content Include="Areas\Admin\Content\css\bootstrap-less\utilities.less" />
+    <Content Include="Areas\Admin\Content\css\bootstrap-less\variables.less" />
+    <Content Include="Areas\Admin\Content\css\bootstrap-less\wells.less" />
+    <Content Include="Areas\Admin\Content\css\bootstrap-rtl-less\alerts-rtl.less" />
+    <Content Include="Areas\Admin\Content\css\bootstrap-rtl-less\badges-rtl.less" />
+    <Content Include="Areas\Admin\Content\css\bootstrap-rtl-less\bootstrap-rtl.css.map" />
+    <Content Include="Areas\Admin\Content\css\bootstrap-rtl-less\bootstrap-rtl.less" />
+    <Content Include="Areas\Admin\Content\css\bootstrap-rtl-less\button-groups-rtl.less" />
+    <Content Include="Areas\Admin\Content\css\bootstrap-rtl-less\carousel-rtl.less" />
+    <Content Include="Areas\Admin\Content\css\bootstrap-rtl-less\close-rtl.less" />
+    <Content Include="Areas\Admin\Content\css\bootstrap-rtl-less\dropdowns-rtl.less" />
+    <Content Include="Areas\Admin\Content\css\bootstrap-rtl-less\forms-rtl.less" />
+    <Content Include="Areas\Admin\Content\css\bootstrap-rtl-less\grid-rtl.less" />
+    <Content Include="Areas\Admin\Content\css\bootstrap-rtl-less\input-groups-rtl.less" />
+    <Content Include="Areas\Admin\Content\css\bootstrap-rtl-less\list-group-rtl.less" />
+    <Content Include="Areas\Admin\Content\css\bootstrap-rtl-less\media-rtl.less" />
+    <Content Include="Areas\Admin\Content\css\bootstrap-rtl-less\merged-rtl.less" />
+    <Content Include="Areas\Admin\Content\css\bootstrap-rtl-less\mixins-rtl.less" />
+    <Content Include="Areas\Admin\Content\css\bootstrap-rtl-less\mixins\gradients-rtl.less" />
+    <Content Include="Areas\Admin\Content\css\bootstrap-rtl-less\mixins\grid-framework-rtl.less" />
+    <Content Include="Areas\Admin\Content\css\bootstrap-rtl-less\mixins\grid-rtl.less" />
+    <Content Include="Areas\Admin\Content\css\bootstrap-rtl-less\mixins\pagination-rtl.less" />
+    <Content Include="Areas\Admin\Content\css\bootstrap-rtl-less\modals-rtl.less" />
+    <Content Include="Areas\Admin\Content\css\bootstrap-rtl-less\navbar-rtl.less" />
+    <Content Include="Areas\Admin\Content\css\bootstrap-rtl-less\navs-rtl.less" />
+    <Content Include="Areas\Admin\Content\css\bootstrap-rtl-less\normalize-rtl.less" />
+    <Content Include="Areas\Admin\Content\css\bootstrap-rtl-less\pager-rtl.less" />
+    <Content Include="Areas\Admin\Content\css\bootstrap-rtl-less\pagination-rtl.less" />
+    <Content Include="Areas\Admin\Content\css\bootstrap-rtl-less\panels-rtl.less" />
+    <Content Include="Areas\Admin\Content\css\bootstrap-rtl-less\popovers-rtl.less" />
+    <Content Include="Areas\Admin\Content\css\bootstrap-rtl-less\progress-bars-rtl.less" />
+    <Content Include="Areas\Admin\Content\css\bootstrap-rtl-less\responsive-embed-rtl.less" />
+    <Content Include="Areas\Admin\Content\css\bootstrap-rtl-less\tables-rtl.less" />
+    <Content Include="Areas\Admin\Content\css\bootstrap-rtl-less\type-rtl.less" />
+    <Content Include="Areas\Admin\Content\css\bootstrap-rtl-less\utilities-rtl.less" />
+    <Content Include="Areas\Admin\Content\css\bootstrap-rtl-less\variables-rtl.less" />
+    <Content Include="Areas\Admin\Content\css\bootstrap-rtl.css.map" />
+    <Content Include="Areas\Admin\Content\css\bootstrap.css.map" />
+    <Content Include="Areas\Admin\Content\css\bootstrap.min.css.map" />
+    <Content Include="Areas\Admin\Content\css\demo.css.map" />
+    <Content Include="Areas\Admin\Content\css\demo.less" />
+    <Content Include="Areas\Admin\Content\css\other-less\lesshat.less" />
+    <Content Include="Areas\Admin\Content\css\skins\azure.css.map" />
+    <Content Include="Areas\Admin\Content\css\skins\azure.less" />
+    <Content Include="Areas\Admin\Content\css\skins\black.css.map" />
+    <Content Include="Areas\Admin\Content\css\skins\black.less" />
+    <Content Include="Areas\Admin\Content\css\skins\Blue.css.map" />
+    <Content Include="Areas\Admin\Content\css\skins\Blue.less" />
+    <Content Include="Areas\Admin\Content\css\skins\darkblue.css.map" />
+    <Content Include="Areas\Admin\Content\css\skins\darkblue.less" />
+    <Content Include="Areas\Admin\Content\css\skins\darkred.css.map" />
+    <Content Include="Areas\Admin\Content\css\skins\darkred.less" />
+    <Content Include="Areas\Admin\Content\css\skins\deepblue.css.map" />
+    <Content Include="Areas\Admin\Content\css\skins\deepblue.less" />
+    <Content Include="Areas\Admin\Content\css\skins\gray.css.map" />
+    <Content Include="Areas\Admin\Content\css\skins\gray.less" />
+    <Content Include="Areas\Admin\Content\css\skins\green.css.map" />
+    <Content Include="Areas\Admin\Content\css\skins\green.less" />
+    <Content Include="Areas\Admin\Content\css\skins\orange.css.map" />
+    <Content Include="Areas\Admin\Content\css\skins\orange.less" />
+    <Content Include="Areas\Admin\Content\css\skins\pink.css.map" />
+    <Content Include="Areas\Admin\Content\css\skins\pink.less" />
+    <Content Include="Areas\Admin\Content\css\skins\purple.css.map" />
+    <Content Include="Areas\Admin\Content\css\skins\purple.less" />
+    <Content Include="Areas\Admin\Content\css\skins\skins-mixins.css.map" />
+    <Content Include="Areas\Admin\Content\css\skins\skins-mixins.less" />
+    <Content Include="Areas\Admin\Content\css\skins\teal.css.map" />
+    <Content Include="Areas\Admin\Content\css\skins\teal.less" />
+    <Content Include="Areas\Admin\Content\fonts\BYekan.woff" />
+    <Content Include="Areas\Admin\Content\fonts\fontawesome-webfont.eot" />
+    <Content Include="Areas\Admin\Content\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Areas\Admin\Content\fonts\fontawesome-webfont.woff" />
+    <Content Include="Areas\Admin\Content\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Areas\Admin\Content\fonts\FontAwesome.otf" />
+    <Content Include="Areas\Admin\Content\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Areas\Admin\Content\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Areas\Admin\Content\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Areas\Admin\Content\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Areas\Admin\Content\fonts\typicons.eot" />
+    <Content Include="Areas\Admin\Content\fonts\typicons.ttf" />
+    <Content Include="Areas\Admin\Content\fonts\typicons.woff" />
+    <Content Include="Areas\Admin\Content\fonts\weathericons-regular-webfont.eot" />
+    <Content Include="Areas\Admin\Content\fonts\weathericons-regular-webfont.ttf" />
+    <Content Include="Areas\Admin\Content\fonts\weathericons-regular-webfont.woff" />
+    <Content Include="Areas\Admin\Content\fonts\WeatherIcons-Regular.otf" />
+    <Content Include="Areas\Admin\Content\fonts\YekanWeb-Bold.woff" />
+    <Content Include="Areas\Admin\Content\fonts\YekanWeb-Regular.woff" />
+    <Content Include="Areas\Admin\Content\js\beyond.min.js.map" />
+    <Content Include="Areas\Admin\Content\js\charts\bootbox\bootbox.min.js.map" />
+    <Content Include="Areas\Admin\Content\js\charts\easypiechart\jquery.easypiechart.min.js.map" />
+    <Content Include="Areas\Admin\Content\js\charts\flot\jquery.flot.min.js.map" />
+    <Content Include="Areas\Admin\Content\js\charts\flot\jquery.flot.tooltip.min.js.map" />
+    <Content Include="Areas\Admin\Content\js\datatable\dataTables.bootstrap.min.js.map" />
+    <Content Include="Areas\Admin\Content\js\datatable\dataTables.tableTools.min.js.map" />
+    <Content Include="Areas\Admin\Content\js\datatable\jquery.dataTables.min.js.map" />
+    <Content Include="Areas\Admin\Content\js\datetime\bootstrap-timepicker.min.js.map" />
+    <Content Include="Areas\Admin\Content\js\fuelux\spinbox\fuelux.spinbox.min.js.map" />
+    <Content Include="Areas\Admin\Content\js\fuelux\treeview\tree-custom.min.js.map" />
+    <Content Include="Areas\Admin\Content\js\fuelux\wizard\wizard-custom.min.js.map" />
+    <Content Include="Areas\Admin\Content\js\skins.min.js.map" />
+    <Content Include="Areas\Admin\Content\js\slimscroll\jquery.slimscroll.min.js.map" />
+    <Content Include="Areas\Admin\Content\js\tagsinput\bootstrap-tagsinput.min.js.map" />
+    <Content Include="Areas\Admin\Content\js\toastr\toastr.min.js.map" />
+    <Content Include="Areas\Admin\Content\js\validation\bootstrapValidator.min.js.map" />
+    <Content Include="Areas\Admin\Content\lightbox\.github\ISSUE_TEMPLATE.md" />
+    <Content Include="Areas\Admin\Content\lightbox\.github\PULL_REQUEST_TEMPLATE.md" />
+    <Content Include="Areas\Admin\Content\lightbox\dist\js\lightbox-plus-jquery.min.map" />
+    <Content Include="Areas\Admin\Content\lightbox\dist\js\lightbox.min.map" />
+    <Content Include="Areas\Admin\Content\Percian-Calender\LICENSE" />
+    <Content Include="Areas\Admin\Content\Percian-Calender\package.json" />
+    <Content Include="Areas\Admin\Content\Percian-Calender\README.md" />
+    <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
+    <Content Include="Scripts\jquery-3.3.1.min.map" />
+    <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
+    <Content Include="Views\Eshop_Template\fonts\BYekan.eot" />
+    <Content Include="Views\Eshop_Template\fonts\BYekan.ttf" />
+    <Content Include="Views\Eshop_Template\fonts\BYekan.woff" />
+    <Content Include="Views\Eshop_Template\fonts\fontawesome-webfont.woff" />
+    <Content Include="Views\Eshop_Template\fonts\FontAwesome.otf" />
+    <Content Include="Views\Eshop_Template\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Views\Eshop_Template\images\blog\blog-one.psd" />
+    <Content Include="Views\Eshop_Template\images\cart\Card.psd" />
+    <Content Include="Views\Eshop_Template\images\home\Gallery.psd" />
+    <Content Include="Views\Eshop_Template\images\home\product1.psd" />
+    <Content Include="Views\Eshop_Template\images\home\Slider.psd" />
+    <Content Include="Views\Eshop_Template\images\home\Tabs.psd" />
+    <Content Include="Views\Eshop_Template\images\product-details\Main.psd" />
+    <Content Include="Views\Eshop_Template\images\product-details\Similar.psd" />
+    <Content Include="Views\Eshop_Template\images\product-details\Socials.psd" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\ShowSlider.cshtml" />
+    <Content Include="Views\Articles\Index.cshtml" />
+    <Content Include="Views\Articles\ArticleGroups.cshtml" />
+    <Content Include="Views\Articles\CategorySection.cshtml" />
+    <Content Include="Views\Articles\SingleArticle.cshtml" />
+    <Content Include="Views\Home\ContactUs.cshtml" />
+    <Content Include="Views\Home\AboutUs.cshtml" />
+    <Content Include="Views\Home\Footer.cshtml" />
+    <Content Include="Views\Home\MostSellProducts.cshtml" />
+    <Content Include="Views\Home\MostSellBox.cshtml" />
+    <Content Include="Views\Home\SingleProducts.cshtml" />
+    <Content Include="Views\Home\SingleProductBox.cshtml" />
+    <Content Include="Views\Home\PublicProductBox.cshtml" />
+    <Content Include="Views\Home\PublicProducts.cshtml" />
+    <Content Include="Views\Home\ProductCategories.cshtml" />
+    <Content Include="Views\Home\ProductCategoryBox.cshtml" />
+    <Content Include="Views\Products\Index.cshtml" />
+    <Content Include="Views\Products\SearchProductBox.cshtml" />
+    <Content Include="Views\Products\Major.cshtml" />
+    <Content Include="Views\Products\MajorBox.cshtml" />
+    <Content Include="Views\Products\SingleProcutPage.cshtml" />
+    <Content Include="Views\Products\MajorProcutPage.cshtml" />
+    <Content Include="Views\Products\MajorProductBox.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Account\ActiveMobile.cshtml" />
+    <Content Include="Views\Account\Index.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\ResetPassword.cshtml" />
+    <Content Include="Views\Account\VerifyCode.cshtml" />
+    <Content Include="Views\Home\SiteRule.cshtml" />
+    <Content Include="Views\Home\Verify.cshtml" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Areas\Admin\Models\" />
+    <Folder Include="Areas\UserPanel\Models\" />
+    <Folder Include="Content\images\NewFolder1\" />
+    <Folder Include="Images\Pages\" />
+    <Folder Include="Images\User\UserAvatar\DefaultAvatar\" />
+    <Folder Include="Images\User\UserAvatar\Image\" />
+    <Folder Include="Images\User\UserAvatar\Thumb\" />
+    <Folder Include="Models\" />
+    <Folder Include="Upload\EditorUpload\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Eshop.Business\Eshop.Business.csproj">
+      <Project>{c32e29b7-de12-496d-8dd5-0cac973d951b}</Project>
+      <Name>Eshop.Business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Eshop.DataLayer\Eshop.DataLayer.csproj">
+      <Project>{ded7bb1b-1763-4418-9b5c-3d03ebb34498}</Project>
+      <Name>Eshop.DataLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Eshop.DomainClass\Eshop.DomainClass.csproj">
+      <Project>{31e1c2c2-34c5-4548-8652-74ec51464438}</Project>
+      <Name>Eshop.DomainClass</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Eshop.Ioc\Eshop.Ioc.csproj">
+      <Project>{d3928fa9-adc6-4d23-b0a5-6fb4aad6a0ca}</Project>
+      <Name>Eshop.Ioc</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Eshop.Services\Eshop.Services.csproj">
+      <Project>{23b6c678-bab9-4211-941a-918782e557cf}</Project>
+      <Name>Eshop.Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Eshop.Utilitiy\Eshop.Utilitiy.csproj">
+      <Project>{63417d5a-f465-478e-9bd6-0ff76ddeccb2}</Project>
+      <Name>Eshop.Utilitiy</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Eshop.ViewModel\Eshop.ViewModel.csproj">
+      <Project>{85310ef9-d7ca-47b0-8bfd-6520cd93dfe4}</Project>
+      <Name>Eshop.ViewModel</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Connected Services\ZarinPal_Test\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>13461</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:13461/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.1.3.2\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.1.3.2\build\Microsoft.Net.Compilers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
