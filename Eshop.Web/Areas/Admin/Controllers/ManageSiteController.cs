@@ -33,6 +33,7 @@ namespace Eshop.Web.Areas.Admin.Controllers
         {
             var contacts =
                 db.SiteRepository.GetContactUsList(pageId, contactState, fromDate, toDate, Name, FilterEmail, FilterMobile);
+            
             return View(contacts);
         }
 
@@ -103,6 +104,7 @@ namespace Eshop.Web.Areas.Admin.Controllers
 
             return View(siteSetting);
         }
+
 
         [HttpPost]
         [ValidateAntiForgeryToken]

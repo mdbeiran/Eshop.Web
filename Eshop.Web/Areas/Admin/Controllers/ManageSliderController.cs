@@ -70,17 +70,26 @@ namespace Eshop.Web.Areas.Admin.Controllers
 
         #endregion
 
+        #region CRUD
+
+        #region Index
+
         [EshopPermission("ManageSliders")]
         public ActionResult Index()
         {
             return View(db.SliderRepository.GetAllSliders());
         }
 
+        #endregion
+
+        #region Create
+
         [EshopPermission("CreateSlider")]
         public ActionResult Create()
         {
             return View();
         }
+
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -106,6 +115,9 @@ namespace Eshop.Web.Areas.Admin.Controllers
             return View(slider);
         }
 
+        #endregion
+
+        #region Edit
 
         [EshopPermission("EditSlider")]
         public ActionResult Edit(int? id)
@@ -122,6 +134,7 @@ namespace Eshop.Web.Areas.Admin.Controllers
             return View(slider);
         }
         
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ID,Title,Url,ImageName,Visit,IsActive,Text")] Slider slider, HttpPostedFileBase sliderImage)
@@ -141,6 +154,10 @@ namespace Eshop.Web.Areas.Admin.Controllers
             }
             return View(slider);
         }
+
+        #endregion
+
+        #region Delete
 
         [EshopPermission("DeleteSlider")]
         public ActionResult DeleteSlider(int id)
@@ -164,5 +181,9 @@ namespace Eshop.Web.Areas.Admin.Controllers
 
             return new HttpStatusCodeResult(HttpStatusCode.Accepted);
         }
+
+        #endregion
+
+        #endregion
     }
 }

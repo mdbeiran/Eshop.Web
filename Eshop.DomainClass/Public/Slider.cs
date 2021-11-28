@@ -13,23 +13,29 @@ namespace Eshop.DomainClass.Public
         [Key]
         public int ID { get; set; }
 
+
         [Display(Name = "عنوان")]
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
         public string Title { get; set; }
+
 
         [Display(Name = "آدرس")]
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
         [Url]
         public string Url { get; set; }
 
+
         [Display(Name = "تصویر")]
         public string ImageName { get; set; }
+
 
         [Display(Name = "بازدید")]
         public int Visit { get; set; }
 
+
         [Display(Name = "فعال / غیر فعال")]
         public bool IsActive { get; set; }
+
 
         [Display(Name = "متن")]
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]

@@ -17,20 +17,27 @@ namespace Eshop.ViewModel.Site
         [Display(Name = "ایمیل")]
         public string FilterEmail { get; set; }
 
+
         [Display(Name = "وضعیت")]
         public string ContactState { get; set; }
+
 
         [Display(Name = "تلفن همراه")]
         public string FilterMobile { get; set; }
 
+
         [Display(Name = "نام شخص")]
         public string Name { get; set; }
+
 
         [DisplayFormat(DataFormatString = "{0: yyyy/MM/dd}")]
         public DateTime? fromDate { get; set; }
 
+
         [DisplayFormat(DataFormatString = "{0: yyyy/MM/dd}")]
         public DateTime? toDate { get; set; }
+
+
         public IEnumerable<ContactUs> Contact { get; set; }
         
     }

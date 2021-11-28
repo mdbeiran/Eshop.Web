@@ -12,6 +12,8 @@ namespace Eshop.Services.Services
 {
     public class SiteRepository : ISiteRepository
     {
+        #region Ctor
+
         private EshopDbContext db;
 
         public SiteRepository(EshopDbContext db)
@@ -19,6 +21,7 @@ namespace Eshop.Services.Services
             this.db = db;
         }
 
+        #endregion
 
         #region Contact Us
 
@@ -163,6 +166,7 @@ namespace Eshop.Services.Services
 
                 return setting;
             }
+
             return new SiteSetting()
             {
                 SiteName = "Test",

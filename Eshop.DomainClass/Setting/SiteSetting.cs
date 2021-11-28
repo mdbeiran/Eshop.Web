@@ -21,11 +21,13 @@ namespace Eshop.DomainClass.Setting
         [MaxLength(100, ErrorMessage = "تعداد کاراکتر های {0} نمیتواند بیشتر از {1} باشد")]
         public string SiteName { get; set; }
 
+
         [Display(Name = "شرح سایت")]
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
         [DataType(DataType.MultilineText)]
         [AllowHtml]
         public string SiteDescription { get; set; }
+
 
         [Display(Name = "ایمیل سایت")]
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
@@ -33,13 +35,16 @@ namespace Eshop.DomainClass.Setting
         [EmailAddress(ErrorMessage = "ایمیل وارد شده معتبر نمی باشد")]
         public string SiteEmail { get; set; }
 
+
         [Display(Name = "تلفن سایت")]
         [MaxLength(250)]
         public string SiteTell { get; set; }
 
+
         [Display(Name = "موبایل سایت")]
         [MaxLength(200)]
         public string SiteMobile { get; set; }
+
 
         [Display(Name = "آدرس")]
         [DataType(DataType.MultilineText)]
@@ -55,10 +60,12 @@ namespace Eshop.DomainClass.Setting
         [MaxLength(200)]
         public string SupportTell { get; set; }
 
+
         [Display(Name = "ایمیل پشتیبانی")]
         [MaxLength(250)]
         [EmailAddress(ErrorMessage = "ایمیل وارد شده معتبر نمی باشد")]
         public string SupportEmail { get; set; }
+
 
         [Display(Name = "متن کپی رایت")]
         [DataType(DataType.MultilineText)]
@@ -70,6 +77,7 @@ namespace Eshop.DomainClass.Setting
         [DataType(DataType.MultilineText)]
         [AllowHtml]
         public string SiteRules { get; set; }
+
 
         [Display(Name = "تعداد کالای عمده برای خرید عمده")]
         public int? PublicProductCount { get; set; }

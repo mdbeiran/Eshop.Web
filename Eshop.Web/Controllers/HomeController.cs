@@ -145,8 +145,10 @@ namespace Eshop.Web.Controllers
         public ActionResult ContactUs()
         {
             var contactUsInfo = db.SiteRepository.GetDefaultSiteSetting();
+           
             return View(contactUsInfo);
         }
+
 
         [Route("ContactUs")]
         [HttpPost]
@@ -162,6 +164,7 @@ namespace Eshop.Web.Controllers
 
                 db.SiteRepository.InsertContactUs(contact);
                 db.Save();
+
                 return new HttpStatusCodeResult(HttpStatusCode.Accepted);
             }
 
@@ -176,6 +179,7 @@ namespace Eshop.Web.Controllers
         public ActionResult AboutUs()
         {
             var siteSetting = db.SiteRepository.GetDefaultSiteSetting();
+            
             return View(siteSetting);
         }
 

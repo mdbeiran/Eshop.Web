@@ -20,13 +20,16 @@ namespace Eshop.DomainClass.Setting
         [Key]
         public int ContactId { get; set; }
 
+
         [Display(Name = "کاربر")]
         public int? UserId { get; set; }
         
+
         [Display(Name = "نام و نام خانوادگی")]
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
         [MaxLength(50)]
         public string Name { get; set; }
+
 
         [Display(Name = "موضوع پیام")]
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
@@ -41,23 +44,28 @@ namespace Eshop.DomainClass.Setting
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
         public string Mobile { get; set; }
 
+
         [Display(Name = "پیام")]
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
         [MaxLength(2000)]
         [DataType(DataType.MultilineText)]
         public string Message { get; set; }
 
+
         [Display(Name = "جواب")]
         [DataType(DataType.MultilineText)]
         [AllowHtml]
         public string Answer { get; set; }
 
+
         [Display(Name = "IP")]
         [MaxLength(20)]
         public string UserIP { get; set; }
 
+
         [Display(Name = "خوانده شده")]
         public bool IsRead { get; set; }
+
 
         [Display(Name = "تاریخ و ساعت")]
         public DateTime CreateDate { get; set; }

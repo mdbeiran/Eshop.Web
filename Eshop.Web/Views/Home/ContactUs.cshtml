@@ -1,6 +1,7 @@
 ﻿@using System.Web.UI.WebControls
 @using Eshop.DomainClass.Setting
 @model Eshop.DomainClass.Setting.SiteSetting
+
 @{
     ViewBag.Title = "تماس باما";
     ContactUs contact = new ContactUs();
@@ -39,10 +40,14 @@
                     @using (Ajax.BeginForm("ContactUs", "Home", FormMethod.Post, new AjaxOptions { OnFailure = "ErrorContactUsMessage", OnSuccess = "SuccessContactUsMessage" }, new { @class = "contact-form row", id = "main-contact-form" }))
                     {
                         @Html.AntiForgeryToken()
+
                         <div class="form-group col-md-6 pull-right">
                             <span class="input-icon icon-right">
-                                @Html.EditorFor(model => contact.Name, new { htmlAttributes = new { @class = "form-control", PlaceHolder = Html.DisplayNameFor(m => contact.Name) } })
-                                @Html.ValidationMessageFor(model => contact.Name, "", new { @class = "text-danger" })
+                                @Html.EditorFor(model => contact.Name, 
+                                    new { htmlAttributes = new { @class = "form-control", 
+                                    PlaceHolder = Html.DisplayNameFor(m => contact.Name) } })
+                                @Html.ValidationMessageFor(model => contact.Name, "", 
+                                    new { @class = "text-danger" })
                             </span>
                         </div>
 
